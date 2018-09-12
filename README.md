@@ -3,9 +3,9 @@ NameSayer
 
 SOFTENG 206 Assignment 3
    
-     ______________________ 
-    ( NameSayer is amazing )
-     ---------------------- 
+     _______________
+    ( wow namesayer )
+     ---------------
        o
         o
             .--.
