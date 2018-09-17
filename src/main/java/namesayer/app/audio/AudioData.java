@@ -1,7 +1,10 @@
 package namesayer.app.audio;
 
 import java.nio.ByteBuffer;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
+// fixme: does not support multi-channel audio at the moment so we are just doing everything in mono, i guess thats ok
 public final class AudioData {
 
     private final int sampleRate;
@@ -36,5 +39,10 @@ public final class AudioData {
 
     public boolean isSigned() {
         return isSigned;
+    }
+
+    public Duration getDuration() {
+        return Duration.ofNanos((data.remaining() / getSampleResolutionBits() / 8
+                * TimeUnit.SECONDS.toNanos(1)) / getSampleRate());
     }
 }
