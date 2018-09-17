@@ -33,7 +33,7 @@ public class FFmpegAudioSystem implements AudioSystem {
                     "-ar", "44100",
                     "-ac", "1", // mono
                     "pipe:"
-            ).redirectError(ProcessBuilder.Redirect.INHERIT);
+            );
 
             ByteArrayOutputStream os = new ByteArrayOutputStream();
 
@@ -84,7 +84,7 @@ public class FFmpegAudioSystem implements AudioSystem {
                             "-ac", "1",
                             "-i", "pipe:",
                             location.toString()
-                    ).redirectError(ProcessBuilder.Redirect.INHERIT);
+                    );
 
                     Process process;
                     try {
