@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;" BorderPane.alignment="CENTER">
+         <right>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Record" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="45.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets right="30.0" />
+               </BorderPane.margin>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#e181e1" />
+                        <Stop color="#ac9ae8" offset="0.02074688796680498" />
+                        <Stop color="#ff91b8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+         </right>
+         <left>
+            <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="45.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets left="30.0" />
+               </BorderPane.margin>
+            </Text>
+         </left>
+      </BorderPane>
+   </top>
+   <right>
+      <BorderPane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="560.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="320.0">
+                     <effect>
+                        <DropShadow color="#0000001a" offsetY="0.5" />
+                     </effect>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Circle fill="#1f93ff00" radius="90.0" strokeType="INSIDE" strokeWidth="3.0">
+                     <stroke>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#e181e1" />
+                              <Stop color="RED" offset="0.02074688796680498" />
+                              <Stop color="#750000" offset="0.7447490177358352" />
+                              <Stop color="#750000" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                     <StackPane.margin>
+                        <Insets bottom="20.0" />
+                     </StackPane.margin>
+                  </Circle>
+                  <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/record.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="20.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00/05:00" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Century Gothic" size="20.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets top="210.0" />
+                     </StackPane.margin>
+                  </Text>
+                  <Circle fill="#1f93ff00" radius="45.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0">
+                     <StackPane.margin>
+                        <Insets bottom="400.0" right="120.0" />
+                     </StackPane.margin>
+                  </Circle>
+                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/play.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="400.0" right="115.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <Circle fill="#1f93ff00" radius="45.0" stroke="#ff9244" strokeType="INSIDE" strokeWidth="3.0">
+                     <StackPane.margin>
+                        <Insets bottom="400.0" left="120.0" />
+                     </StackPane.margin>
+                  </Circle>
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/redo.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="400.0" left="120.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <Circle fill="#1f93ff00" radius="45.0" stroke="#8ad67e" strokeType="INSIDE" strokeWidth="3.0">
+                     <StackPane.margin>
+                        <Insets top="400.0" />
+                     </StackPane.margin>
+                  </Circle>
+                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/keep.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets top="400.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets right="50.0" />
+               </padding>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="150.0" />
+               </VBox.margin>
+            </Text>
+            <TextField>
+               <VBox.margin>
+                  <Insets right="50.0" top="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This name already exists! You will record a duplicate.">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#e181e1" />
+                        <Stop color="#ac9ae8" offset="0.02074688796680498" />
+                        <Stop color="#ff91b8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+            <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Microphone:">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <ProgressBar prefWidth="730.0" progress="0.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </ProgressBar>
+         </children>
+         <BorderPane.margin>
+            <Insets left="50.0" right="50.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
