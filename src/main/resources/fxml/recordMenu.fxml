@@ -80,7 +80,7 @@
                         <Insets bottom="20.0" />
                      </StackPane.margin>
                   </ImageView>
-                  <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00/05:00" textAlignment="RIGHT">
+                  <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00/10:00" textAlignment="RIGHT">
                      <font>
                         <Font name="Century Gothic" size="20.0" />
                      </font>
