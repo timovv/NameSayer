@@ -1,6 +1,7 @@
 package namesayer.app.database.file;
 
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import namesayer.app.audio.AudioClip;
@@ -40,7 +41,7 @@ public class FileBasedNameDatabase implements NameDatabase {
     }
 
     private void refreshNames() {
-        Platform.runLater(() -> {
+        Runnable run = () -> {
             // Remove invalids
             Iterator<Name> iter = names.iterator();
             while(iter.hasNext()) {
@@ -58,7 +59,13 @@ public class FileBasedNameDatabase implements NameDatabase {
                     names.add(new FileBasedName(nameInfo, root, resolver, audioSystem));
                 }
             });
-        });
+        };
+
+        if(Platform.isFxApplicationThread()) {
+            run.run();
+        } else {
+            Platform.runLater(run);
+        }
     }
 
     @Override
