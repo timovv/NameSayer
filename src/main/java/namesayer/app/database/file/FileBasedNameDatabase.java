@@ -1,9 +1,9 @@
 package namesayer.app.database.file;
 
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
@@ -11,12 +11,15 @@ import namesayer.app.database.NameDatabase;
 import namesayer.app.database.NameInfo;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class FileBasedNameDatabase implements NameDatabase {
 
     private final ObservableList<Name> names = FXCollections.observableArrayList();
+    private final Map<NameInfo, Name> lookup = new HashMap<>();
     private final ObservableList<Name> namesReadOnly = FXCollections.unmodifiableObservableList(names);
 
     private final Path root;
@@ -44,24 +47,18 @@ public class FileBasedNameDatabase implements NameDatabase {
         Runnable run = () -> {
             // Remove invalids
             Iterator<Name> iter = names.iterator();
-            while(iter.hasNext()) {
-                FileBasedName name = (FileBasedName)iter.next();
-                if(!name.isValid()) {
+            while (iter.hasNext()) {
+                FileBasedName name = (FileBasedName) iter.next();
+                if (!name.isValid()) {
                     iter.remove();
                 }
             }
 
-            // Add new ones
-
-            resolver.getAllNames(root).forEach(nameInfo -> {
-                // if there are none with this path then add it
-                if(names.stream().noneMatch(x -> x.getNameInfo().equals(nameInfo))) {
-                    names.add(new FileBasedName(nameInfo, root, resolver, audioSystem));
-                }
-            });
+            // Add new ones, doesn't do anything if the name isn't in the system
+            resolver.getAllNames(root).forEach(this::internalAddName);
         };
 
-        if(Platform.isFxApplicationThread()) {
+        if (Platform.isFxApplicationThread()) {
             run.run();
         } else {
             Platform.runLater(run);
@@ -70,11 +67,21 @@ public class FileBasedNameDatabase implements NameDatabase {
 
     @Override
     public CompletableFuture<Name> addName(NameInfo nameInfo, AudioClip recording) {
+        if (lookup.containsKey(nameInfo)) {
+            throw new RuntimeException("Name with this info already exists");
+        }
+
         return audioSystem.saveAudio(recording, resolver.getPathForName(root, nameInfo))
-                .thenApply(ignore -> {
-                    FileBasedName name = new FileBasedName(nameInfo, root, resolver, audioSystem);
-                    Platform.runLater(() -> names.add(name));
-                    return name;
-                });
+                .thenApply(ignore -> internalAddName(nameInfo));
+    }
+
+    private Name internalAddName(NameInfo nameInfo) {
+        if (lookup.containsKey(nameInfo)) {
+            return lookup.get(nameInfo);
+        }
+        FileBasedName name = new FileBasedName(nameInfo, root, resolver, audioSystem);
+        names.add(name);
+        lookup.put(nameInfo, name);
+        return name;
     }
 }
