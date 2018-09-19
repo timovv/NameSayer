@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
+import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
@@ -41,6 +42,17 @@ public class FileBasedNameDatabase implements NameDatabase {
     @Override
     public ObservableList<Name> getNames() {
         return namesReadOnly;
+    }
+
+    @Override
+    public CompletableFuture<Void> removeName(Name name) {
+        if (!(name instanceof FileBasedName)) {
+            return CompletableFuture.completedFuture(null);
+        }
+
+        ((FileBasedName) name).delete();
+
+        return CompletableFuture.completedFuture(null);
     }
 
     private void refreshNames() {

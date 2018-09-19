@@ -6,6 +6,7 @@ import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameInfo;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -59,6 +60,14 @@ public class FileBasedName implements Name {
 
     boolean isValid() {
         return Files.exists(location) && resolver.getNameInfo(location).isPresent();
+    }
+
+    void delete() {
+        try {
+            Files.delete(location);
+        } catch(IOException e) {
+            throw new NameSayerException("Could not delete name", e);
+        }
     }
 
     @Override

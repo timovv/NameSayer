@@ -13,5 +13,7 @@ public interface NameDatabase {
         return addName(new NameInfo(name, LocalDateTime.now()), recording);
     }
 
+    CompletableFuture<Void> removeName(Name name);
+
     CompletableFuture<Name> addName(NameInfo nameInfo, AudioClip recording);
 }
