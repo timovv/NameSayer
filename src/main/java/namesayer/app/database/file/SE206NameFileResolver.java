@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  */
 public class SE206NameFileResolver implements NameFileResolver {
 
-    private static final Pattern FORMAT = Pattern.compile("^se206-(?<day>\\d{0,2})-(?<month>\\d{0,2})" +
+    private static final Pattern FORMAT = Pattern.compile("^se206_(?<day>\\d{0,2})-(?<month>\\d{0,2})" +
             "-(?<year>\\d{4})_(?<hour>\\d{0,2})-(?<minute>\\d{0,2})-(?<second>\\d{0,2})_(?<name>.+)\\.wav$");
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d-m-y_h-m-s");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d-M-y_H-m-s");
 
     @Override
     public List<NameInfo> getAllNames(Path base) {
@@ -61,7 +61,7 @@ public class SE206NameFileResolver implements NameFileResolver {
 
     @Override
     public Path getPathForName(Path basePath, NameInfo nameInfo) {
-        return basePath.resolve("se206-" + DATE_TIME_FORMATTER.format(nameInfo.getCreationTime()) + "_"
+        return basePath.resolve("se206_" + DATE_TIME_FORMATTER.format(nameInfo.getCreationTime()) + "_"
                 + nameInfo.getName() + ".wav");
     }
 }
