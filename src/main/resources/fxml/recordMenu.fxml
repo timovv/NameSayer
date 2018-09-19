@@ -14,7 +14,7 @@
    <top>
       <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;" BorderPane.alignment="CENTER">
          <right>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Record" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Record/Play" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="45.0" />
                </font>
@@ -59,11 +59,12 @@
                   </Rectangle>
                   <Circle fill="#1f93ff00" radius="90.0" strokeType="INSIDE" strokeWidth="3.0">
                      <stroke>
-                        <LinearGradient endX="1.0" endY="1.0">
+                        <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                            <stops>
                               <Stop color="#e181e1" />
                               <Stop color="RED" offset="0.02074688796680498" />
-                              <Stop color="#750000" offset="0.7447490177358352" />
+                              <Stop color="RED" offset="0.48855249146256385" />
+                              <Stop color="#750000" offset="0.5168729115411449" />
                               <Stop color="#750000" offset="1.0" />
                            </stops>
                         </LinearGradient>
@@ -138,19 +139,45 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
+            <BorderPane prefHeight="50.0" prefWidth="200.0">
+               <center>
+                  <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="0/10" textAlignment="CENTER" underline="true" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Century Gothic" size="24.0" />
+                     </font>
+                  </Text>
+               </center>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </BorderPane>
             <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets top="150.0" />
+                  <Insets top="90.0" />
                </VBox.margin>
             </Text>
-            <TextField>
+            <HBox prefHeight="20.0" prefWidth="200.0">
+               <children>
+                  <TextField prefHeight="31.0" prefWidth="630.0" promptText="Enter the name you're trying to record">
+                     <effect>
+                        <DropShadow color="#79bcee99" height="10.0" radius="4.5" width="10.0" />
+                     </effect></TextField>
+                  <Button mnemonicParsing="false" prefWidth="70.0" text="🔊" textFill="#2780bf">
+                     <effect>
+                        <DropShadow color="#79bcee99" height="10.0" radius="4.5" width="10.0" />
+                     </effect>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets right="50.0" top="20.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </TextField>
+            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This name already exists! You will record a duplicate.">
                <font>
                   <Font name="Century Gothic" size="24.0" />
@@ -162,21 +189,35 @@
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
                         <Stop color="#e181e1" />
-                        <Stop color="#ac9ae8" offset="0.02074688796680498" />
+                        <Stop color="#ac9ae8" offset="0.007246376811594203" />
                         <Stop color="#ff91b8" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </fill>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No source recording found.">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#e181e1" />
+                        <Stop color="#ac9ae8" offset="0.007246376811594203" />
+                        <Stop color="#ff91b8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
             </Text>
             <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Microphone:">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <ProgressBar prefWidth="730.0" progress="0.0">
+            <ProgressBar prefWidth="700.0" progress="0.0">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
