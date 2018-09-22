@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  */
 public class SE206NameFileResolver implements NameFileResolver {
 
-    private static final Pattern FORMAT = Pattern.compile("^se206_(?<day>\\d{0,2})-(?<month>\\d{0,2})" +
+    private static final Pattern FORMAT = Pattern.compile("^(?<creator>\\w+?)_(?<day>\\d{0,2})-(?<month>\\d{0,2})" +
             "-(?<year>\\d{4})_(?<hour>\\d{0,2})-(?<minute>\\d{0,2})-(?<second>\\d{0,2})_(?<name>.+)\\.wav$");
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d-M-y_H-m-s");
 
@@ -86,9 +86,10 @@ public class SE206NameFileResolver implements NameFileResolver {
         int minute = Integer.parseInt(matcher.group("minute"));
         int second = Integer.parseInt(matcher.group("second"));
         String name = matcher.group("name");
+        String creator = matcher.group("creator");
 
         LocalDateTime time = LocalDateTime.of(year, month, day, hour, minute, second);
-        return Optional.of(new NameInfo(name, time));
+        return Optional.of(new NameInfo(name, creator, time));
     }
 
     @Override
@@ -97,7 +98,7 @@ public class SE206NameFileResolver implements NameFileResolver {
     }
 
     private String getFileName(NameInfo info) {
-        return "se206_" + DATE_TIME_FORMATTER.format(info.getCreationTime()) + "_" + info.getName();
+        return info.getCreator() + "_" + DATE_TIME_FORMATTER.format(info.getCreationTime()) + "_" + info.getName();
     }
 
     @Override
