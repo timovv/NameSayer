@@ -1,5 +1,6 @@
 package namesayer.app.audio.ffmpeg;
 
+import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
 
@@ -79,7 +80,12 @@ public class FFmpegAudioSystem implements AudioSystem {
                         throw new RuntimeException(e);
                     }
 
-                    process.destroy();
+                    try {
+                        process.getOutputStream().close();
+                    } catch(IOException e) {
+                        throw new NameSayerException("Could not close the ffmpeg stream", e);
+                    }
+
                     try {
                         process.waitFor();
                     } catch (InterruptedException e) {

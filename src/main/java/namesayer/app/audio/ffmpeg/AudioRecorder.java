@@ -106,7 +106,6 @@ class AudioRecorder {
         return stream != null;
     }
 
-    int debugcount = 0;
     private void recordingThread() {
         byte[] buf = new byte[1024];
         int count;
@@ -126,7 +125,6 @@ class AudioRecorder {
                 }
 
                 synchronized (micLevelLock) {
-                    System.out.println(debugcount++);
                     if (micLevelIndex + count < micLevelBuffer.length) {
                         System.arraycopy(buf, 0, micLevelBuffer, micLevelIndex, count);
                         micLevelIndex += count;
