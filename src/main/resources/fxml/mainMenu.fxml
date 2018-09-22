@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" >
    <top>
       <VBox>
          <children>
@@ -51,12 +56,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane onMouseClicked="#onPracticeClicked" prefHeight="200.0" prefWidth="200.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
                <center>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="main-menu-button" BorderPane.alignment="CENTER">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="350.0">
                            <effect>
@@ -99,9 +104,9 @@
                   </StackPane>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane onMouseClicked="#onListenClicked" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="main-menu-button" BorderPane.alignment="CENTER">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="350.0">
                            <effect>
@@ -150,9 +155,9 @@
                   </StackPane>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane onMouseClicked="#onRecordClicked" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="main-menu-button" BorderPane.alignment="CENTER">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="350.0">
                            <effect>
@@ -220,4 +225,4 @@
          </viewport>
       </ImageView>
    </center>
-</BorderPane>
+</fx:root>
