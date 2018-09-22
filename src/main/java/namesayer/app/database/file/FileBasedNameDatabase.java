@@ -63,6 +63,7 @@ public class FileBasedNameDatabase implements NameDatabase {
                 FileBasedName name = (FileBasedName) iter.next();
                 if (!name.isValid()) {
                     iter.remove();
+                    lookup.remove(name.getNameInfo());
                 }
             }
 
