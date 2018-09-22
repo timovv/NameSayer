@@ -5,10 +5,14 @@ import namesayer.app.database.NameInfo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +43,34 @@ public class SE206NameFileResolver implements NameFileResolver {
     }
 
     @Override
+    public List<LocalDateTime> getAllAttempts(Path base, NameInfo info) {
+        Path dir = base.resolve("attempts").resolve(getFileName(info));
+
+        if(!Files.isDirectory(dir)) {
+            return Collections.emptyList();
+        }
+
+        try {
+            return Files.list(dir)
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .map(x -> x.substring(x.length() - ".wav".length()))
+                    .map(x -> {
+                        try {
+                            return DATE_TIME_FORMATTER.parse(x);
+                        } catch (DateTimeParseException e) {
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .map(LocalDateTime::from)
+                    .collect(Collectors.toList());
+        } catch(IOException e) {
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
     public Optional<NameInfo> getNameInfo(Path fileLocation) {
         String fileName = fileLocation.getFileName().toString();
         Matcher matcher = FORMAT.matcher(fileName);
@@ -61,7 +93,15 @@ public class SE206NameFileResolver implements NameFileResolver {
 
     @Override
     public Path getPathForName(Path basePath, NameInfo nameInfo) {
-        return basePath.resolve("se206_" + DATE_TIME_FORMATTER.format(nameInfo.getCreationTime()) + "_"
-                + nameInfo.getName() + ".wav");
+        return basePath.resolve(getFileName(nameInfo) + ".wav");
+    }
+
+    private String getFileName(NameInfo info) {
+        return "se206_" + DATE_TIME_FORMATTER.format(info.getCreationTime()) + "_" + info.getName();
+    }
+
+    @Override
+    public Path getPathForAttempt(Path basePath, NameInfo name, LocalDateTime attemptTime) {
+        return basePath.resolve("attempts").resolve(getFileName(name)).resolve(DATE_TIME_FORMATTER.format(attemptTime) + ".wav");
     }
 }

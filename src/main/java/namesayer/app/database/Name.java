@@ -1,5 +1,6 @@
 package namesayer.app.database;
 
+import javafx.collections.ObservableList;
 import namesayer.app.audio.AudioClip;
 
 import java.time.LocalDateTime;
@@ -19,4 +20,14 @@ public interface Name {
     NameInfo getNameInfo();
 
     CompletableFuture<AudioClip> getRecording();
+
+    boolean isBadQuality();
+
+    void setBadQuality(boolean value);
+
+    ObservableList<Attempt> getAttempts();
+
+    CompletableFuture<Void> addAttempt(AudioClip recording, LocalDateTime creationTime);
+
+    CompletableFuture<Void> removeAttempt(Attempt toRemove);
 }

@@ -3,6 +3,7 @@ package namesayer.app.database.file;
 import namesayer.app.database.NameInfo;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,8 @@ public interface NameFileResolver {
      * @return The list of names found. If no names were found, the list will be empty.
      */
     List<NameInfo> getAllNames(Path base);
+
+    List<LocalDateTime> getAllAttempts(Path base, NameInfo info);
 
     /**
      * Get the NameInfo for the name stored at the given path.
@@ -26,4 +29,6 @@ public interface NameFileResolver {
      * @return The path.
      */
     Path getPathForName(Path basePath, NameInfo nameInfo);
+
+    Path getPathForAttempt(Path basePath, NameInfo name, LocalDateTime attemptTime);
 }
