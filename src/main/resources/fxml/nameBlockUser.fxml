@@ -52,6 +52,12 @@
                         <Insets />
                      </StackPane.margin>
                   </ImageView>
+                  <Circle fill="#1f93ff00" radius="30.0" stroke="#999999" strokeType="INSIDE" strokeWidth="3.0" />
+                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/thumbs-down-off.png" />
+                     </image>
+                  </ImageView>
                </children>
             </StackPane>
             <StackPane>
