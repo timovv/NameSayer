@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1240.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1240.0" style="-fx-background-color: #ededed;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <HBox spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-            <StackPane>
+            <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
                <children>
                   <Circle fill="#1f93ff00" radius="30.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0" />
                   <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -87,7 +74,7 @@
    <left>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of recording." BorderPane.alignment="CENTER">
+            <Text fx:id="dateText" fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE TEXT" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
@@ -99,7 +86,7 @@
          <left>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="RIGHT">
+                  <Text fx:id="nameText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="sample text" textAlignment="RIGHT">
                      <font>
                         <Font name="Century Gothic" size="45.0" />
                      </font>
@@ -120,4 +107,4 @@
          </left>
       </BorderPane>
    </left>
-</BorderPane>
+</fx:root>

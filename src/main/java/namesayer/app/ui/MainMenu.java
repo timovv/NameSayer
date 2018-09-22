@@ -3,14 +3,19 @@ package namesayer.app.ui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
+import namesayer.app.audio.AudioSystem;
+import namesayer.app.database.NameDatabase;
 
 import java.io.IOException;
 
 public class MainMenu extends BorderPane {
 
-    public MainMenu() {
+    private final NameDatabase database;
+    private final AudioSystem audioSystem;
+    private final ListenMenu listenMenu;
+
+    public MainMenu(NameDatabase database, AudioSystem audioSystem) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/mainMenu.fxml"));
         loader.setController(this);
@@ -21,6 +26,10 @@ public class MainMenu extends BorderPane {
         } catch(IOException ioex) {
             throw new NameSayerException("Could not create main menu", ioex);
         }
+
+        this.database = database;
+        this.audioSystem = audioSystem;
+        this.listenMenu = new ListenMenu(this, database);
     }
 
     @FXML
@@ -31,8 +40,7 @@ public class MainMenu extends BorderPane {
 
     @FXML
     private void onListenClicked() {
-        ListenMenu menu = new ListenMenu(this);
-        getScene().setRoot(menu);
+        getScene().setRoot(listenMenu);
     }
 
     @FXML

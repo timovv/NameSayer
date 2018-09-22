@@ -1,17 +1,24 @@
 package namesayer.app;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import namesayer.app.audio.AudioSystem;
+import namesayer.app.audio.ffmpeg.FFmpegAudioSystem;
+import namesayer.app.database.NameDatabase;
+import namesayer.app.database.file.FileBasedNameDatabase;
 import namesayer.app.ui.MainMenu;
+
+import java.nio.file.Paths;
 
 public class NameSayerMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(new MainMenu());
+        AudioSystem audio = new FFmpegAudioSystem();
+        NameDatabase db = new FileBasedNameDatabase(Paths.get("names"), audio);
+
+        Scene scene = new Scene(new MainMenu(db, audio));
         stage.setScene(scene);
         stage.show();
     }
