@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -47,6 +48,7 @@ public class FileBasedName implements Name {
         }
 
         setUpBadQuality();
+        updateAttempts();
     }
 
     private void setUpBadQuality() {
@@ -64,6 +66,25 @@ public class FileBasedName implements Name {
             isBadQuality = Files.readAllLines(BAD_QUALITY_FILE).contains(entry);
         } catch (IOException e) {
             isBadQuality = false;
+        }
+    }
+
+    void updateAttempts() {
+        // remove invalids
+        Iterator<Attempt> iter = attempts.iterator();
+        while(iter.hasNext()) {
+            FileBasedAttempt attempt = (FileBasedAttempt)iter.next();
+            if(!attempt.isValid()) {
+                iter.remove();
+            }
+        }
+
+        // add new ones
+        for (LocalDateTime dt : resolver.getAllAttempts(basePath, info)) {
+            if (attempts.stream().noneMatch(x -> x.getAttemptTime().equals(dt))) {
+                Path location = resolver.getPathForAttempt(basePath, info, dt);
+                attempts.add(new FileBasedAttempt(location, dt, audioSystem));
+            }
         }
     }
 
@@ -107,7 +128,7 @@ public class FileBasedName implements Name {
             throw new NameSayerException("Could not update bad quality register", e);
         }
 
-        if(isBadQuality) {
+        if (isBadQuality) {
             badQualityFiles.add(pathOfThisName.getFileName().toString());
         } else {
             badQualityFiles.remove(pathOfThisName.getFileName().toString());
@@ -129,14 +150,14 @@ public class FileBasedName implements Name {
     public CompletableFuture<Void> addAttempt(AudioClip recording, LocalDateTime creationTime) {
         Path location = resolver.getPathForAttempt(basePath, info, creationTime);
 
-        if(Files.exists(location)) {
+        if (Files.exists(location)) {
             throw new NameSayerException("File already exists for this attempt");
         }
 
-        if(!Files.exists(location.getParent())) {
+        if (!Files.exists(location.getParent())) {
             try {
                 Files.createDirectories(location.getParent());
-            } catch(IOException e) {
+            } catch (IOException e) {
                 throw new NameSayerException("Could not create attempt", e);
             }
         }
@@ -147,7 +168,7 @@ public class FileBasedName implements Name {
 
     @Override
     public CompletableFuture<Void> removeAttempt(Attempt toRemove) {
-        if(!(toRemove instanceof FileBasedAttempt)) {
+        if (!(toRemove instanceof FileBasedAttempt)) {
             return CompletableFuture.completedFuture(null);
         }
 
@@ -164,8 +185,8 @@ public class FileBasedName implements Name {
         try {
             Files.delete(pathOfThisName);
 
-            for(Attempt attempt : attempts) {
-                FileBasedAttempt cast = (FileBasedAttempt)attempt;
+            for (Attempt attempt : attempts) {
+                FileBasedAttempt cast = (FileBasedAttempt) attempt;
                 cast.delete();
             }
 

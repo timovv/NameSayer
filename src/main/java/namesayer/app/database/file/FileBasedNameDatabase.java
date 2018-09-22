@@ -3,8 +3,6 @@ package namesayer.app.database.file;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
-import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
@@ -57,13 +55,15 @@ public class FileBasedNameDatabase implements NameDatabase {
 
     private void refreshNames() {
         Runnable run = () -> {
-            // Remove invalids
+            // Remove invalids and update attempts
             Iterator<Name> iter = names.iterator();
             while (iter.hasNext()) {
                 FileBasedName name = (FileBasedName) iter.next();
                 if (!name.isValid()) {
                     iter.remove();
                     lookup.remove(name.getNameInfo());
+                } else {
+                    name.updateAttempts();
                 }
             }
 
@@ -92,6 +92,7 @@ public class FileBasedNameDatabase implements NameDatabase {
         if (lookup.containsKey(nameInfo)) {
             return lookup.get(nameInfo);
         }
+
         FileBasedName name = new FileBasedName(nameInfo, root, resolver, audioSystem);
         names.add(name);
         lookup.put(nameInfo, name);

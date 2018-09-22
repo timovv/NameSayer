@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
-public class FileBasedAttempt implements Attempt {
+class FileBasedAttempt implements Attempt {
 
     private final Path location;
     private final LocalDateTime attemptTime;
@@ -23,7 +23,7 @@ public class FileBasedAttempt implements Attempt {
         this.audioSystem = audioSystem;
     }
 
-    private boolean isValid() {
+    boolean isValid() {
         return Files.exists(location);
     }
 
