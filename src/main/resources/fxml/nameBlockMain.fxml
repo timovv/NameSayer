@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1240.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <HBox spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane>
+               <children>
+                  <StackPane>
+                     <children>
+                        <Circle fill="#1f93ff00" radius="30.0" stroke="#7991eb" strokeType="INSIDE" strokeWidth="3.0" />
+                        <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/more.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane>
+                     <children>
+                        <Circle fill="#1f93ff00" radius="30.0" stroke="#666666" strokeType="INSIDE" strokeWidth="3.0" />
+                        <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/less.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets right="30.0" />
+         </BorderPane.margin>
+      </HBox>
+   </right>
+   <left>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <right>
+            <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of recording." BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets left="30.0" />
+               </BorderPane.margin>
+            </Text>
+         </right>
+         <center>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="45.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#dd7272" />
+                        <Stop color="#7991eb" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="30.0" />
+               </BorderPane.margin>
+            </Text>
+         </center>
+      </BorderPane>
+   </left>
+</BorderPane>
