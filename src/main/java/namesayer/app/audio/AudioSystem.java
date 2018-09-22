@@ -5,7 +5,14 @@ import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 public interface AudioSystem {
-    CompletableFuture<AudioClip> recordAudio(Duration duration);
+
+    double getInputLevel();
+
+    void startRecording();
+
+    AudioClip stopRecording();
+
+    boolean isRecording();
 
     CompletableFuture<AudioClip> loadAudio(Path location);
 
