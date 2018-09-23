@@ -77,7 +77,7 @@
          <center>
             <StackPane prefHeight="70.0" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" stroke="#8ad67e" strokeMiterLimit="2.0" strokeType="INSIDE" width="200.0">
+                  <Rectangle fx:id="startButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" stroke="#8ad67e" strokeMiterLimit="2.0" strokeType="INSIDE" width="200.0">
                      <effect>
                         <DropShadow color="#8ad47d99" height="22.0" radius="10.5" width="22.0" />
                      </effect>
@@ -100,7 +100,7 @@
             </StackPane>
          </center>
          <left>
-            <CheckBox mnemonicParsing="false" text="Shuffle" textFill="#aaaaaa" BorderPane.alignment="CENTER">
+            <CheckBox fx:id="shuffleCheckBox" mnemonicParsing="false" text="Shuffle" textFill="#aaaaaa" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="27.0" />
                </font>
@@ -113,7 +113,7 @@
             </CheckBox>
          </left>
          <right>
-            <Text fx:id="selectedText" text="SAMPLE TEXT" fill="#aaaaaa" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+            <Text fx:id="selectedText" fill="#aaaaaa" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE TEXT" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>

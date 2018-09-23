@@ -35,4 +35,10 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     protected PracticeMenuNameBlock createNameCell(NameDatabase db, Name name) {
         return new PracticeMenuNameBlock(db, name);
     }
+
+    public void reset() {
+        for(PracticeMenuNameBlock block : getAllNames()) {
+            block.setSelected(false);
+        }
+    }
 }
