@@ -10,6 +10,9 @@ import java.nio.ByteBuffer;
 
 class AudioRecorder {
 
+    // IF YOU CHANGE ANY OF THIS, YOU WILL ALSO NEED TO CHANGE, BELOW
+    //  - SIZE OF MIC LEVEL BUFFER
+    //  - MIC LEVEL CALCULATION
     private static int SAMPLE_FREQ_HZ = 44100;
     private static int SAMPLE_RES_BITS = 16;
     private static boolean SAMPLE_SIGNED = true;
@@ -26,17 +29,20 @@ class AudioRecorder {
     private double micLevel = 0;
 
     public AudioRecorder() {
-        // store 400ms worth of audio in our mic level buffer
-        micLevelBuffer = new byte[SAMPLE_FREQ_HZ * (SAMPLE_RES_BITS / 8) * 4 / 10];
+        // store 100ms worth of audio in our mic level buffer
+        micLevelBuffer = new byte[SAMPLE_FREQ_HZ * (SAMPLE_RES_BITS / 8) / 10];
 
         ProcessBuilder pb = new ProcessBuilder(
                 "ffmpeg",
                 "-y",
                 "-f", "pulse",
+                "-fragment_size", "1024",
                 "-i", "default", // TODO timo 2018-09-17 - let the user choose their audio source
                 "-f", Util.getFormatArg(SAMPLE_SIGNED, SAMPLE_RES_BITS, SAMPLE_BIG_ENDIAN),
                 "-ar", Integer.toString(SAMPLE_FREQ_HZ),
                 "-ac", "1", // mono
+                "-fflags", "nobuffer",
+                "-avioflags", "direct",
                 "pipe:"
         );
 
@@ -87,19 +93,20 @@ class AudioRecorder {
 
         data.flip();
 
-        // note: this code assumes 16 bit sample frequency, which is set in the constants at the top of the file.
+        // note: this code assumes 16 bit sample frequency and little-endian PCM, which is set in the constants at the top of the file.
         // so if the constants change, this code needs to change as well.
 
         double rms = 0.;
         while(data.hasRemaining()) {
             short next = data.getShort(); // 16 bits
-            rms += ((int)(next) * next) / (micLevelBuffer.length / 2);
+            next = (short)(((next & 0xff00) >> 8) | ((next & 0x00ff) << 8)); // java is big endian, our pcm is little endian
+            double amplitude = (double)next / Short.MAX_VALUE;
+            rms += (amplitude * amplitude) / (micLevelBuffer.length / 2);
         }
 
-        return rms;
-
-        // log(root(mean-square)) = 1/2 log(mean-square)
-//        return Math.log10(rms) / 2;
+        // P = Amplitude^2 ~= RMS
+        // 10log10(rms) for decibels wrt max possible signal value
+        return 10 * Math.log10(rms);
     }
 
     public boolean isRecording() {
