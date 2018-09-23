@@ -48,9 +48,7 @@ public class FileBasedNameDatabase implements NameDatabase {
             return CompletableFuture.completedFuture(null);
         }
 
-        ((FileBasedName) name).delete();
-
-        return CompletableFuture.completedFuture(null);
+        return CompletableFuture.runAsync(((FileBasedName) name)::delete);
     }
 
     private void refreshNames() {

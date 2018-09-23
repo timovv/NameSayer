@@ -3,6 +3,9 @@ package namesayer.app.ui;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -10,6 +13,7 @@ import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.database.Name;
+import namesayer.app.database.NameDatabase;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +23,7 @@ public class NameBlock extends BorderPane {
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
     private final Name name;
+    private final NameDatabase database;
 
     @FXML
     private Text nameText;
@@ -30,8 +35,9 @@ public class NameBlock extends BorderPane {
     @FXML
     private StackPane unsetBadQualityButton;
 
-    public NameBlock(Name name, URL fxmlLocation) {
+    public NameBlock(Name name, NameDatabase db, URL fxmlLocation) {
         this.name = name;
+        this.database = db;
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         loader.setController(this);
         loader.setRoot(this);
@@ -41,8 +47,6 @@ public class NameBlock extends BorderPane {
         } catch (IOException e) {
             throw new NameSayerException("Could not load practice menu", e);
         }
-
-
     }
 
     /**
@@ -100,6 +104,12 @@ public class NameBlock extends BorderPane {
         name.setBadQuality(false);
         setBadQualityButton.setVisible(true);
         unsetBadQualityButton.setVisible(false);
+    }
+
+    @FXML
+    private void removeButtonClicked() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this recording?");
+        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> database.removeName(name));
     }
 
     public Observable[] getObservables() {

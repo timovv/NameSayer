@@ -31,7 +31,7 @@ public class ListenMenuNameBlock extends NameBlock {
     private final NameDatabase database;
 
     public ListenMenuNameBlock(NameDatabase db, Name name) {
-        super(name, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
+        super(name, db, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
         this.database = db;
         expanded = new SimpleBooleanProperty(false);
 

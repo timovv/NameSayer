@@ -15,7 +15,7 @@ public class PracticeMenuNameBlock extends NameBlock {
     private CheckBox selectedCheckBox;
 
     public PracticeMenuNameBlock(NameDatabase db, Name name) {
-        super(name, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"));
+        super(name, db, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"));
         this.db = db;
     }
 

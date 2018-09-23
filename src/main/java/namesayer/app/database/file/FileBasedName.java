@@ -90,10 +90,6 @@ public class FileBasedName implements Name {
 
     @Override
     public NameInfo getNameInfo() {
-        if (!isValid()) {
-            throw new NameSayerException("Invalid name");
-        }
-
         Optional<NameInfo> info = resolver.getNameInfo(pathOfThisName);
         assert info.isPresent() : "if info was not present the name must be invalid";
         return info.get();
