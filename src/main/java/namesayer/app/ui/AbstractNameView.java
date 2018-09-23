@@ -56,7 +56,9 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
                 if(change.wasAdded()) {
                     allNames.add(createNameCell(db, change.getAddedSubList().get(0)));
                 } else if(change.wasRemoved()) {
-                    allNames.add(createNameCell(db, change.getAddedSubList().get(0)));
+                    Name removed = change.getRemoved().get(0);
+                    allNames.stream().filter(x -> x.getName().equals(removed)).findFirst()
+                            .ifPresent(cell -> allNames.remove(cell));
                 }
             }
         });
