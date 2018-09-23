@@ -14,6 +14,7 @@ public class MainMenu extends BorderPane {
     private final NameDatabase database;
     private final AudioSystem audioSystem;
     private final ListenMenu listenMenu;
+    private final PracticeMenu practiceMenu;
 
     public MainMenu(NameDatabase database, AudioSystem audioSystem) {
         FXMLLoader loader = new FXMLLoader();
@@ -30,12 +31,12 @@ public class MainMenu extends BorderPane {
         this.database = database;
         this.audioSystem = audioSystem;
         this.listenMenu = new ListenMenu(this, database);
+        this.practiceMenu = new PracticeMenu(this, database);
     }
 
     @FXML
     private void onPracticeClicked() {
-        PracticeMenu menu = new PracticeMenu(this);
-        getScene().setRoot(menu);
+        getScene().setRoot(practiceMenu);
     }
 
     @FXML
