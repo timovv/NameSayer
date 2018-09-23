@@ -54,7 +54,7 @@ public class SE206NameFileResolver implements NameFileResolver {
             return Files.list(dir)
                     .map(Path::getFileName)
                     .map(Path::toString)
-                    .map(x -> x.substring(x.length() - ".wav".length()))
+                    .map(x -> x.substring(0, x.length() - ".wav".length()))
                     .map(x -> {
                         try {
                             return DATE_TIME_FORMATTER.parse(x);

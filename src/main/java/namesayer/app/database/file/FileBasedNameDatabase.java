@@ -53,20 +53,23 @@ public class FileBasedNameDatabase implements NameDatabase {
 
     private void refreshNames() {
         Runnable run = () -> {
-            // Remove invalids and update attempts
+            // Remove invalids
             Iterator<Name> iter = names.iterator();
             while (iter.hasNext()) {
                 FileBasedName name = (FileBasedName) iter.next();
                 if (!name.isValid()) {
                     iter.remove();
                     lookup.remove(name.getNameInfo());
-                } else {
-                    name.updateAttempts();
                 }
             }
 
-            // Add new ones, doesn't do anything if the name isn't in the system
+            // Add new ones, doesn't do anything if the name is already in the system
             resolver.getAllNames(root).forEach(this::internalAddName);
+
+            // update attempts
+            for(Name name : getNames()) {
+                ((FileBasedName)name).updateAttempts();
+            }
         };
 
         if (Platform.isFxApplicationThread()) {
