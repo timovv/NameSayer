@@ -41,8 +41,6 @@ class AudioRecorder {
                 "-f", Util.getFormatArg(SAMPLE_SIGNED, SAMPLE_RES_BITS, SAMPLE_BIG_ENDIAN),
                 "-ar", Integer.toString(SAMPLE_FREQ_HZ),
                 "-ac", "1", // mono
-                "-fflags", "nobuffer",
-                "-avioflags", "direct",
                 "pipe:"
         );
 
