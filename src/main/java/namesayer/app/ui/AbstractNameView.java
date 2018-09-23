@@ -1,5 +1,6 @@
 package namesayer.app.ui;
 
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -29,7 +30,8 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
     @FXML
     private TextField nameSearch;
 
-    private FilteredList<TCell> names;
+    private FilteredList<TCell> filteredNames;
+    private ObservableList<TCell> allNames;
 
     protected AbstractNameView(URL fxmlFile, Parent previous, NameDatabase db) {
 
@@ -46,29 +48,33 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
 
         this.previous = previous;
 
-        ObservableList<TCell> userNameBlocks =
-                FXCollections.observableArrayList(db.getNames().stream().map(x -> getNameCell(db, x)).collect(Collectors.toList()));
+        allNames = FXCollections.observableArrayList(NameBlock::getObservables);
+        allNames.addAll(db.getNames().stream().map(x -> createNameCell(db, x)).collect(Collectors.toList()));
 
         db.getNames().addListener((ListChangeListener<Name>) change -> {
             while(change.next()) {
                 if(change.wasAdded()) {
-                    userNameBlocks.add(getNameCell(db, change.getAddedSubList().get(0)));
+                    allNames.add(createNameCell(db, change.getAddedSubList().get(0)));
                 } else if(change.wasRemoved()) {
-                    userNameBlocks.add(getNameCell(db, change.getAddedSubList().get(0)));
+                    allNames.add(createNameCell(db, change.getAddedSubList().get(0)));
                 }
             }
         });
 
-        names = userNameBlocks.sorted(Comparator.comparing(x -> x.getName().getName(), String.CASE_INSENSITIVE_ORDER))
+        filteredNames = allNames.sorted(Comparator.comparing(x -> x.getName().getName(), String.CASE_INSENSITIVE_ORDER))
                 .filtered(x -> x.getName().getName().toLowerCase().contains(nameSearch.getText().toLowerCase()));
 
         nameSearch.textProperty().addListener((observableValue, oldSearch, newSearch) ->
-                names.setPredicate(x -> x.getName().getName().toLowerCase().contains(nameSearch.getText().toLowerCase())));
+                filteredNames.setPredicate(x -> x.getName().getName().toLowerCase().contains(nameSearch.getText().toLowerCase())));
 
-        Bindings.bindContent(namesBox.getChildren(), names);
+        Bindings.bindContent(namesBox.getChildren(), filteredNames);
     }
 
-    protected abstract TCell getNameCell(NameDatabase db, Name name);
+    protected abstract TCell createNameCell(NameDatabase db, Name name);
+
+    protected final ObservableList<TCell> getAllNames() {
+        return allNames;
+    }
 
     @FXML
     private void onBackClicked() {

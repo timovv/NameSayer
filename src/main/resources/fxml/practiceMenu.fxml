@@ -113,7 +113,7 @@
             </CheckBox>
          </left>
          <right>
-            <Text fill="#aaaaaa" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected: {selectedCount}" BorderPane.alignment="CENTER">
+            <Text fx:id="selectedText" text="SAMPLE TEXT" fill="#aaaaaa" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>

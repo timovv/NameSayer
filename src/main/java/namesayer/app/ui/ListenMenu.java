@@ -11,7 +11,7 @@ public class ListenMenu extends AbstractNameView<ListenMenuNameBlock> {
     }
 
     @Override
-    protected ListenMenuNameBlock getNameCell(NameDatabase db, Name name) {
+    protected ListenMenuNameBlock createNameCell(NameDatabase db, Name name) {
         return new ListenMenuNameBlock(db, name);
     }
 }

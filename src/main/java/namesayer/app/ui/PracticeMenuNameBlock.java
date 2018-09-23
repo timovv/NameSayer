@@ -1,5 +1,6 @@
 package namesayer.app.ui;
 
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -28,5 +29,12 @@ public class PracticeMenuNameBlock extends NameBlock {
 
     public void setSelected(boolean value) {
         selectedCheckBox.setSelected(value);
+    }
+
+    @Override
+    public Observable[] getObservables() {
+        return new Observable[] {
+                selectedProperty()
+        };
     }
 }

@@ -1,5 +1,6 @@
 package namesayer.app.ui;
 
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
@@ -70,5 +71,9 @@ public class NameBlock extends BorderPane {
     @FXML
     private void onPlayClicked() {
         getName().getRecording().thenAccept(AudioClip::play);
+    }
+
+    public Observable[] getObservables() {
+        return new Observable[0];
     }
 }
