@@ -1,6 +1,7 @@
 package namesayer.app.database;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public final class NameInfo {
@@ -11,7 +12,7 @@ public final class NameInfo {
     public NameInfo(String name, String creator, LocalDateTime creationDate) {
         this.name = name;
         this.creator = creator;
-        this.creationDate = creationDate;
+        this.creationDate = creationDate.truncatedTo(ChronoUnit.SECONDS);
     }
 
     public String getName() {
