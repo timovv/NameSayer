@@ -1,6 +1,7 @@
 package namesayer.app.database;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public final class NameInfo {
     private final String name;
@@ -29,5 +30,10 @@ public final class NameInfo {
     public boolean equals(Object other) {
         NameInfo otherNameInfo = (NameInfo)other;
         return otherNameInfo.name.equals(this.name) && otherNameInfo.creationDate.equals(creationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, creator, creationDate);
     }
 }
