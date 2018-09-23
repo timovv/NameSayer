@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,7 +12,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1240.0" style="-fx-background-color: #ededed;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <right>
-        <HBox spacing="25.0" BorderPane.alignment="CENTER">
+        <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="172.0" spacing="25.0" BorderPane.alignment="CENTER">
             <children>
                 <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
                     <children>
@@ -28,33 +27,7 @@
                         </ImageView>
                     </children>
                 </StackPane>
-                <StackPane>
-                    <children>
-                        <StackPane fx:id="unsetBadQualityButton" onMouseClicked="#unsetBadQualityClicked">
-                            <children>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#ff9244" strokeType="INSIDE" strokeWidth="3.0" />
-                                <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/thumbs-down.png" />
-                                    </image>
-                                    <StackPane.margin>
-                                        <Insets />
-                                    </StackPane.margin>
-                                </ImageView>
-                            </children>
-                        </StackPane>
-                        <StackPane fx:id="setBadQualityButton" onMouseClicked="#setBadQualityClicked">
-                            <children>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#999999" strokeType="INSIDE" strokeWidth="3.0" />
-                                <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/thumbs-down-off.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </StackPane>
-                    </children>
-                </StackPane>
+                <StackPane />
                 <StackPane onMouseClicked="#removeButtonClicked">
                     <children>
                         <Circle fill="#1f93ff00" radius="30.0" stroke="#e47474" strokeType="INSIDE" strokeWidth="3.0" />
@@ -68,11 +41,6 @@
                         </ImageView>
                     </children>
                 </StackPane>
-                <CheckBox fx:id="selectedCheckBox" ellipsisString="" mnemonicParsing="false">
-                    <HBox.margin>
-                        <Insets left="-1.0" right="-15.0" top="25.0" />
-                    </HBox.margin>
-                </CheckBox>
             </children>
             <BorderPane.margin>
                 <Insets right="30.0" />
@@ -81,20 +49,10 @@
     </right>
     <left>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <center>
-                <Text fx:id="dateText" fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE TEXT" BorderPane.alignment="CENTER">
-                    <font>
-                        <Font name="Century Gothic" size="24.0" />
-                    </font>
-                    <BorderPane.margin>
-                        <Insets />
-                    </BorderPane.margin>
-                </Text>
-            </center>
             <left>
                 <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Text fx:id="nameText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="sample text" textAlignment="RIGHT">
+                        <Text fx:id="attemptText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="sample text" textAlignment="RIGHT">
                             <font>
                                 <Font name="Century Gothic" size="45.0" />
                             </font>

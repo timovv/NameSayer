@@ -77,7 +77,7 @@
          <center>
             <StackPane prefHeight="70.0" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle fx:id="startButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" stroke="#8ad67e" strokeMiterLimit="2.0" strokeType="INSIDE" width="200.0">
+                  <Rectangle fx:id="startButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" onMouseClicked="#onStartClicked" stroke="#8ad67e" strokeMiterLimit="2.0" strokeType="INSIDE" width="200.0">
                      <effect>
                         <DropShadow color="#8ad47d99" height="22.0" radius="10.5" width="22.0" />
                      </effect>

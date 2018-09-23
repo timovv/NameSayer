@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root type="BorderPane" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="560.0" stroke="#8d8d8d"
+                           strokeType="INSIDE" strokeWidth="0.5" width="320.0">
+                    <effect>
+                        <DropShadow color="#0000001a" offsetY="0.5"/>
+                    </effect>
+                    <StackPane.margin>
+                        <Insets/>
+                    </StackPane.margin>
+                </Rectangle>
+                <Circle fill="#1f93ff00" onMouseClicked="#recordButtonClicked" radius="90.0" strokeType="INSIDE"
+                        strokeWidth="3.0">
+                    <stroke>
+                        <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+                            <stops>
+                                <Stop color="#e181e1"/>
+                                <Stop color="RED" offset="0.02074688796680498"/>
+                                <Stop color="RED" offset="0.48855249146256385"/>
+                                <Stop color="#750000" offset="0.5168729115411449"/>
+                                <Stop color="#750000" offset="1.0"/>
+                            </stops>
+                        </LinearGradient>
+                    </stroke>
+                    <StackPane.margin>
+                        <Insets bottom="20.0"/>
+                    </StackPane.margin>
+                </Circle>
+                <ImageView fitHeight="130.0" fitWidth="130.0" onMouseClicked="#recordButtonClicked" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/record.png"/>
+                    </image>
+                    <StackPane.margin>
+                        <Insets bottom="20.0"/>
+                    </StackPane.margin>
+                </ImageView>
+                <Text fx:id="recordingTime" fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT">
+                    <font>
+                        <Font name="Century Gothic" size="20.0"/>
+                    </font>
+                    <StackPane.margin>
+                        <Insets top="210.0"/>
+                    </StackPane.margin>
+                </Text>
+                <Circle fx:id="replayButton" fill="#1f93ff00" radius="45.0" stroke="#79bcee" strokeType="INSIDE"
+                        strokeWidth="3.0">
+                    <StackPane.margin>
+                        <Insets bottom="400.0"/>
+                    </StackPane.margin>
+                </Circle>
+                <ImageView fitHeight="50.0" fitWidth="200.0" onMouseClicked="#playButtonClicked" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/play.png"/>
+                    </image>
+                    <StackPane.margin>
+                        <Insets bottom="400.0" left="5.0"/>
+                    </StackPane.margin>
+                </ImageView>
+                <Circle fill="#1f93ff00" radius="45.0" stroke="#8ad67e" strokeType="INSIDE" strokeWidth="3.0">
+                    <StackPane.margin>
+                        <Insets top="400.0"/>
+                    </StackPane.margin>
+                </Circle>
+                <ImageView fx:id="saveButton" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#saveButtonClicked"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/keep.png"/>
+                    </image>
+                    <StackPane.margin>
+                        <Insets top="400.0"/>
+                    </StackPane.margin>
+                </ImageView>
+            </children>
+            <padding>
+                <Insets right="50.0"/>
+            </padding>
+        </StackPane>
+    </center>
+</fx:root>

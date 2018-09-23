@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -17,10 +15,8 @@ import namesayer.app.database.NameDatabase;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 
 public class NameBlock extends BorderPane {
-    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
     private final Name name;
     private final NameDatabase database;
@@ -54,8 +50,8 @@ public class NameBlock extends BorderPane {
      */
     @FXML
     protected final void initialize() {
-        nameText.setText(toTitleCase(getName().getName()));
-        dateText.setText(getName().getCreationDate().format(FORMAT));
+        nameText.setText(Util.toTitleCase(getName().getName()));
+        dateText.setText(getName().getCreationDate().format(Util.FORMAT));
 
         if(name.isBadQuality()) {
             setBadQualityButton.setVisible(false);
@@ -68,23 +64,6 @@ public class NameBlock extends BorderPane {
 
     public final Name getName() {
         return name;
-    }
-
-    private String toTitleCase(String s) {
-        char[] array = s.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        boolean lastWhitespace = true;
-        for (char c : array) {
-            if (lastWhitespace) {
-                sb.append(Character.toUpperCase(c));
-            } else {
-                sb.append(Character.toLowerCase(c));
-            }
-
-            lastWhitespace = Character.isWhitespace(c);
-        }
-
-        return sb.toString();
     }
 
     @FXML

@@ -31,7 +31,7 @@ public class MainMenu extends BorderPane {
         this.database = database;
         this.audioSystem = audioSystem;
         this.listenMenu = new ListenMenu(this, database);
-        this.practiceMenu = new PracticeMenu(this, database);
+        this.practiceMenu = new PracticeMenu(this, audioSystem, database);
     }
 
     @FXML
