@@ -33,21 +33,31 @@
                 </StackPane>
                 <StackPane>
                     <children>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#ff9244" strokeType="INSIDE" strokeWidth="3.0"/>
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/thumbs-down.png"/>
-                            </image>
-                            <StackPane.margin>
-                                <Insets/>
-                            </StackPane.margin>
-                        </ImageView>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#999999" strokeType="INSIDE" strokeWidth="3.0"/>
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/thumbs-down-off.png"/>
-                            </image>
-                        </ImageView>
+                        <StackPane fx:id="unsetBadQualityButton" onMouseClicked="#unsetBadQualityClicked">
+                            <children>
+                                <Circle fill="#1f93ff00" radius="30.0" stroke="#ff9244" strokeType="INSIDE"
+                                        strokeWidth="3.0"/>
+                                <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/thumbs-down.png"/>
+                                    </image>
+                                    <StackPane.margin>
+                                        <Insets/>
+                                    </StackPane.margin>
+                                </ImageView>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="setBadQualityButton" onMouseClicked="#setBadQualityClicked">
+                            <children>
+                                <Circle fill="#1f93ff00" radius="30.0" stroke="#999999" strokeType="INSIDE"
+                                        strokeWidth="3.0"/>
+                                <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/thumbs-down-off.png"/>
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </StackPane>
                     </children>
                 </StackPane>
                 <StackPane>

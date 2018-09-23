@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
@@ -24,6 +25,11 @@ public class NameBlock extends BorderPane {
     @FXML
     private Text dateText;
 
+    @FXML
+    private StackPane setBadQualityButton;
+    @FXML
+    private StackPane unsetBadQualityButton;
+
     public NameBlock(Name name, URL fxmlLocation) {
         this.name = name;
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
@@ -36,6 +42,7 @@ public class NameBlock extends BorderPane {
             throw new NameSayerException("Could not load practice menu", e);
         }
 
+
     }
 
     /**
@@ -45,6 +52,14 @@ public class NameBlock extends BorderPane {
     protected final void initialize() {
         nameText.setText(toTitleCase(getName().getName()));
         dateText.setText(getName().getCreationDate().format(FORMAT));
+
+        if(name.isBadQuality()) {
+            setBadQualityButton.setVisible(false);
+            unsetBadQualityButton.setVisible(true);
+        } else {
+            setBadQualityButton.setVisible(true);
+            unsetBadQualityButton.setVisible(false);
+        }
     }
 
     public final Name getName() {
@@ -73,7 +88,22 @@ public class NameBlock extends BorderPane {
         getName().getRecording().thenAccept(AudioClip::play);
     }
 
+    @FXML
+    private void setBadQualityClicked() {
+        name.setBadQuality(true);
+        setBadQualityButton.setVisible(false);
+        unsetBadQualityButton.setVisible(true);
+    }
+
+    @FXML
+    private void unsetBadQualityClicked() {
+        name.setBadQuality(false);
+        setBadQualityButton.setVisible(true);
+        unsetBadQualityButton.setVisible(false);
+    }
+
     public Observable[] getObservables() {
         return new Observable[0];
     }
+
 }
