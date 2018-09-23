@@ -65,7 +65,7 @@
                         <Insets />
                      </StackPane.margin>
                   </Rectangle>
-                  <Circle fill="#1f93ff00" radius="90.0" strokeType="INSIDE" strokeWidth="3.0">
+                  <Circle fill="#1f93ff00" onMouseClicked="#recordButtonClicked" radius="90.0" strokeType="INSIDE" strokeWidth="3.0">
                      <stroke>
                         <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                            <stops>
@@ -81,7 +81,7 @@
                         <Insets bottom="20.0" />
                      </StackPane.margin>
                   </Circle>
-                  <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="130.0" fitWidth="130.0" onMouseClicked="#recordButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/record.png" />
                      </image>
@@ -89,7 +89,7 @@
                         <Insets bottom="20.0" />
                      </StackPane.margin>
                   </ImageView>
-                  <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00/10:00" textAlignment="RIGHT">
+                  <Text fx:id="recordingTime" fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT">
                      <font>
                         <Font name="Century Gothic" size="20.0" />
                      </font>
@@ -97,12 +97,12 @@
                         <Insets top="210.0" />
                      </StackPane.margin>
                   </Text>
-                  <Circle fill="#1f93ff00" radius="45.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0">
+                  <Circle fx:id="replayButton" fill="#1f93ff00" radius="45.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0">
                      <StackPane.margin>
                         <Insets bottom="400.0" />
                      </StackPane.margin>
                   </Circle>
-                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="200.0" onMouseClicked="#playButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/play.png" />
                      </image>
@@ -115,7 +115,7 @@
                         <Insets top="400.0" />
                      </StackPane.margin>
                   </Circle>
-                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="saveButton" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#saveButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/keep.png" />
                      </image>
@@ -156,7 +156,7 @@
             </Text>
             <HBox prefHeight="20.0" prefWidth="200.0">
                <children>
-                  <TextField prefHeight="31.0" prefWidth="630.0" promptText="Enter the name you're trying to record">
+                  <TextField fx:id="nameTextField" prefHeight="31.0" prefWidth="630.0" promptText="Enter the name you're trying to record">
                      <effect>
                         <DropShadow color="#79bcee99" height="10.0" radius="4.5" width="10.0" />
                      </effect></TextField>
@@ -212,7 +212,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <ProgressBar prefWidth="700.0" progress="0.0">
+            <ProgressBar fx:id="micLevelBar" prefWidth="700.0" progress="0.0">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

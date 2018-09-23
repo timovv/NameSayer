@@ -46,7 +46,7 @@ public class MainMenu extends BorderPane {
 
     @FXML
     private void onRecordClicked() {
-        RecordMenu menu = new RecordMenu(this);
+        RecordMenu menu = new RecordMenu(this, audioSystem, database);
         getScene().setRoot(menu);
     }
 }
