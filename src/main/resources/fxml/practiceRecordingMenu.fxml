@@ -127,14 +127,17 @@
     <right>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
             <children>
-                <RecordingWidget fx:id="recordingWidget"/>
-                <Button fx:id="nextButton" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="26.0" prefWidth="103.0" text="Finish" textFill="#48c2e0">
+                <RecordingWidget fx:id="recordingWidget" />
+                <Button fx:id="nextButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="26.0" prefWidth="103.0" text="Finish" textFill="#48c2e0">
                <font>
                   <Font size="20.0" />
                </font>
                <effect>
                   <DropShadow color="#49c5de40" />
-               </effect></Button>
+               </effect>
+               <VBox.margin>
+                  <Insets right="50.0" />
+               </VBox.margin></Button>
             </children>
         </VBox>
     </right>
