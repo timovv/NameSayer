@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1240.0" style="-fx-background-color: #efefef;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1240.0" style="-fx-background-color: #fafafa;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <right>
         <HBox spacing="25.0" BorderPane.alignment="CENTER">
             <children>
@@ -97,12 +97,12 @@
             <left>
                 <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Text fx:id="nameText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="RIGHT">
+                        <Text fx:id="nameText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="RIGHT" StackPane.alignment="CENTER_LEFT">
                             <font>
                                 <Font name="Century Gothic" size="45.0" />
                             </font>
                             <StackPane.margin>
-                                <Insets left="-8.0" top="-1.0" />
+                                <Insets left="30.0" top="-1.0" />
                             </StackPane.margin>
                         </Text>
                     </children>
