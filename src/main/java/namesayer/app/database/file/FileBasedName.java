@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
@@ -196,7 +197,8 @@ public class FileBasedName implements Name {
     }
 
     private Attempt internalAddAttempt(LocalDateTime dt) {
-        Optional<Attempt> attempt = attempts.stream().filter(x -> x.getAttemptTime().equals(dt)).findFirst();
+        Optional<Attempt> attempt = attempts.stream().filter(x -> x.getAttemptTime().truncatedTo(ChronoUnit.SECONDS)
+                .equals(dt.truncatedTo(ChronoUnit.SECONDS))).findFirst();
 
         if (!attempt.isPresent()) {
             Path location = resolver.getPathForAttempt(basePath, info, dt);
