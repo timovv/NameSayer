@@ -22,7 +22,7 @@
                         <DropShadow color="#0000001a" offsetY="0.5" />
                     </effect>
                     <StackPane.margin>
-                        <Insets top="60.0" />
+                        <Insets />
                     </StackPane.margin>
                 </Rectangle>
                 <Circle fill="#1f93ff00" onMouseClicked="#recordButtonClicked" radius="90.0" strokeType="INSIDE" strokeWidth="3.0">
@@ -87,6 +87,9 @@
             <padding>
                 <Insets right="50.0" />
             </padding>
+         <BorderPane.margin>
+            <Insets bottom="90.0" top="90.0" />
+         </BorderPane.margin>
         </StackPane>
     </center>
 </fx:root>
