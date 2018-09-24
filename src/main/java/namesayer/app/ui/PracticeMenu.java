@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 import namesayer.app.audio.AudioSystem;
@@ -64,7 +65,14 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     @FXML
     private void onStartClicked() {
 
+        if(selected.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please select one or more names to practice!")
+                    .showAndWait();
+            return;
+        }
+
         List<Name> names = selected.stream().map(NameBlock::getName).collect(Collectors.toList());
+
         if(shuffleCheckBox.isSelected()) {
             Collections.shuffle(names);
         } else {

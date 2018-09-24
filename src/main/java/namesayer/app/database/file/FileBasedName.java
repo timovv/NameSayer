@@ -79,13 +79,8 @@ public class FileBasedName implements Name {
             }
         }
 
-        // add new ones
-        for (LocalDateTime dt : resolver.getAllAttempts(basePath, info)) {
-            if (attempts.stream().noneMatch(x -> x.getAttemptTime().equals(dt))) {
-                Path location = resolver.getPathForAttempt(basePath, info, dt);
-                attempts.add(new FileBasedAttempt(location, dt, audioSystem));
-            }
-        }
+        // add new ones (does nothing if already present)
+        resolver.getAllAttempts(basePath, info).forEach(this::internalAddAttempt);
     }
 
     @Override
@@ -159,7 +154,7 @@ public class FileBasedName implements Name {
         }
 
         return audioSystem.saveAudio(recording, location)
-                .thenRun(() -> Platform.runLater(() -> attempts.add(new FileBasedAttempt(location, creationTime, audioSystem))));
+                .thenRun(() -> Platform.runLater(() -> internalAddAttempt(creationTime)));
     }
 
     @Override
@@ -200,4 +195,16 @@ public class FileBasedName implements Name {
         return this.getNameInfo().equals(((FileBasedName) other).getNameInfo());
     }
 
+    private Attempt internalAddAttempt(LocalDateTime dt) {
+        Optional<Attempt> attempt = attempts.stream().filter(x -> x.getAttemptTime().equals(dt)).findFirst();
+
+        if (!attempt.isPresent()) {
+            Path location = resolver.getPathForAttempt(basePath, info, dt);
+            FileBasedAttempt newAttempt = new FileBasedAttempt(location, dt, audioSystem);
+            attempts.add(newAttempt);
+            return newAttempt;
+        } else {
+            return attempt.get();
+        }
+    }
 }

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 class FileBasedAttempt implements Attempt {
@@ -19,7 +22,7 @@ class FileBasedAttempt implements Attempt {
 
     public FileBasedAttempt(Path location, LocalDateTime attemptTime, AudioSystem audioSystem) {
         this.location = location;
-        this.attemptTime = attemptTime;
+        this.attemptTime = attemptTime.truncatedTo(ChronoUnit.SECONDS);
         this.audioSystem = audioSystem;
     }
 
@@ -51,5 +54,20 @@ class FileBasedAttempt implements Attempt {
         }
 
         return audioSystem.loadAudio(location);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(!(other instanceof FileBasedAttempt)) {
+            return false;
+        }
+
+        FileBasedAttempt cast = (FileBasedAttempt)other;
+        return cast.location.equals(this.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return location.hashCode();
     }
 }

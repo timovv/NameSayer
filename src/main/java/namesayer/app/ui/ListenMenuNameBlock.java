@@ -33,6 +33,8 @@ public class ListenMenuNameBlock extends NameBlock {
     private final NameDatabase database;
     private final Name name;
 
+    private AttemptView attemptView;
+
     public ListenMenuNameBlock(NameDatabase db, Name name) {
         super(name, db, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
         this.database = db;
@@ -45,12 +47,12 @@ public class ListenMenuNameBlock extends NameBlock {
 
     @FXML
     private void onExpandClicked() {
-        expanded.set(true);
-
-        int i = 0;
-        for(Attempt attempt : name.getAttempts()) {
-            attemptsBox.getChildren().add(new AttemptBlock(name, attempt, ++i));
+        if(attemptView == null) {
+            attemptView = new AttemptView(name);
         }
+
+        expanded.set(true);
+        attemptsBox.getChildren().add(attemptView);
     }
 
     @FXML
