@@ -2,6 +2,8 @@ package namesayer.app.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
@@ -53,6 +55,7 @@ public class AttemptBlock extends BorderPane {
 
     @FXML
     private void removeButtonClicked() {
-        name.removeAttempt(attempt);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this attempt?");
+        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> name.removeAttempt(attempt));
     }
 }
