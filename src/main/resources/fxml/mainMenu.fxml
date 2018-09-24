@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root type="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" >
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox>
          <children>
@@ -32,22 +32,42 @@
             </ImageView>
             <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;" BorderPane.alignment="CENTER">
                <left>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name Sayer: Spectrum" textAlignment="RIGHT" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="Century Gothic" size="45.0" />
-                     </font>
+                  <HBox spacing="13.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets left="30.0" />
+                        <Insets left="30.0" top="22.0" />
                      </BorderPane.margin>
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="#8f8f8f99" />
-                              <Stop color="#8f8f8fcc" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Text>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name Sayer" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Century Gothic" size="45.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#8f8f8f99" />
+                                    <Stop color="#8f8f8fcc" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spectrum" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Century Gothic" size="45.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+                                 <stops>
+                                    <Stop color="#f89b9b" />
+                                    <Stop color="#f281d3" offset="0.21888888888888897" />
+                                    <Stop color="#b38aff" offset="0.44074074074074104" />
+                                    <Stop color="#81b9e4" offset="0.6540740740740741" />
+                                    <Stop color="#6bda85" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                     </children>
+                  </HBox>
                </left>
             </BorderPane>
          </children>
@@ -92,7 +112,7 @@
                               <Insets bottom="100.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <Text fill="#5bb256" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice">
+                        <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice">
                            <StackPane.margin>
                               <Insets top="160.0" />
                            </StackPane.margin>
@@ -140,7 +160,7 @@
                               <Insets bottom="100.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <Text fill="#67bac5" strokeType="OUTSIDE" strokeWidth="0.0" text="Listen">
+                        <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Listen">
                            <font>
                               <Font name="Century Gothic" size="32.0" />
                            </font>
@@ -191,7 +211,7 @@
                               <Insets bottom="100.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <Text fill="#ac9ae8" strokeType="OUTSIDE" strokeWidth="0.0" text="Record">
+                        <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Record">
                            <font>
                               <Font name="Century Gothic" size="32.0" />
                            </font>

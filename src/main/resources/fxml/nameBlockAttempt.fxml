@@ -12,7 +12,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" style="-fx-background-color: #ededed;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <right>
-        <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="172.0" spacing="25.0" BorderPane.alignment="CENTER">
+        <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="172.0" spacing="15.0" BorderPane.alignment="CENTER">
             <children>
                 <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
                     <children>
@@ -43,7 +43,7 @@
                 </StackPane>
             </children>
             <BorderPane.margin>
-                <Insets right="30.0" />
+                <Insets left="40.0" right="15.0" />
             </BorderPane.margin>
         </HBox>
     </right>
@@ -52,12 +52,12 @@
             <left>
                 <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Text fx:id="attemptText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="sample text" textAlignment="RIGHT">
+                        <Text fx:id="attemptText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="Sample Text" textAlignment="RIGHT">
                             <font>
                                 <Font name="Century Gothic" size="45.0" />
                             </font>
                             <StackPane.margin>
-                                <Insets bottom="10.0" />
+                                <Insets left="20.0" />
                             </StackPane.margin>
                         </Text>
                     </children>
