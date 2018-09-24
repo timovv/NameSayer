@@ -44,7 +44,7 @@ public class RecordingWidget extends BorderPane {
     @FXML
     private void initialize() {
         recordingTime.textProperty().bind(Bindings.when(secondsLeft.isEqualTo(0)).then("")
-                .otherwise(secondsLeft.asString()));
+                .otherwise(Bindings.concat("Recording for ", secondsLeft.asString(), "s")));
 
         autoStopTimeline = new Timeline(new KeyFrame(Duration.millis(5000), a -> stopRecording()));
         autoStopTimeline.setCycleCount(1);
