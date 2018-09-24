@@ -56,7 +56,11 @@ public class RecordMenu extends BorderPane {
     private void initialize() {
         // set up the mic level bar
         micLevelTimeline = new Timeline(new KeyFrame(Duration.millis(50),
-                a -> micLevelBar.setProgress(1 - (audioSystem.getInputLevel() / -200)))); // nominate -75b as our 0 reference since it seems to work
+                a -> {
+                    double value = (1 - (audioSystem.getInputLevel() / -100));
+                    value = (value >= 0) ? value : 0;
+                    micLevelBar.setProgress(value);
+                })); // nominate -75b as our 0 reference since it seems to work
         micLevelTimeline.setCycleCount(Animation.INDEFINITE);
         micLevelTimeline.play();
 
