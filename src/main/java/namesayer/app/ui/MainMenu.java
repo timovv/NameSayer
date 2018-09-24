@@ -9,6 +9,9 @@ import namesayer.app.database.NameDatabase;
 
 import java.io.IOException;
 
+/**
+ * The main menu
+ */
 public class MainMenu extends BorderPane {
 
     private final NameDatabase database;

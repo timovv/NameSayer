@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
+/**
+ * Bean containing relevant metadata about a name.
+ */
 public final class NameInfo {
     private final String name;
     private final String creator;
@@ -12,6 +15,8 @@ public final class NameInfo {
     public NameInfo(String name, String creator, LocalDateTime creationDate) {
         this.name = name;
         this.creator = creator;
+
+        // truncate this to seconds since that's all we want to be accurate to
         this.creationDate = creationDate.truncatedTo(ChronoUnit.SECONDS);
     }
 

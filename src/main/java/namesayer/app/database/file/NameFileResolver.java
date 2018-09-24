@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Resolves files within a FileBasedNameDatabase.
+ */
 public interface NameFileResolver {
     /**
      * Find all names in the given directory.
@@ -15,6 +18,10 @@ public interface NameFileResolver {
      */
     List<NameInfo> getAllNames(Path base);
 
+    /**
+     * Find all attempts for a given name in the given directory
+     * @return A list of times of for which the attempts were created. (these uniquely identify the attempts)
+     */
     List<LocalDateTime> getAllAttempts(Path base, NameInfo info);
 
     /**
@@ -30,5 +37,8 @@ public interface NameFileResolver {
      */
     Path getPathForName(Path basePath, NameInfo nameInfo);
 
+    /**
+     * Get the path for a given attempt for a given name.
+     */
     Path getPathForAttempt(Path basePath, NameInfo name, LocalDateTime attemptTime);
 }

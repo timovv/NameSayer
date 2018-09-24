@@ -14,6 +14,9 @@ import java.time.temporal.TemporalUnit;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * An attempt that is based on a physical file on disk
+ */
 class FileBasedAttempt implements Attempt {
 
     private final Path location;
@@ -26,10 +29,16 @@ class FileBasedAttempt implements Attempt {
         this.audioSystem = audioSystem;
     }
 
+    /**
+     * @return true if the attempt is still valid
+     */
     boolean isValid() {
         return Files.exists(location);
     }
 
+    /**
+     * Delete this attempt (will invalidate)
+     */
     void delete() {
         try {
             Files.delete(location);

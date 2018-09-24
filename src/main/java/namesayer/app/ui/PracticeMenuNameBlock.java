@@ -7,6 +7,9 @@ import javafx.scene.control.CheckBox;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameDatabase;
 
+/**
+ * A name block with a check box as used by {@link PracticeRecordingMenu}
+ */
 public class PracticeMenuNameBlock extends NameBlock {
 
     private final NameDatabase db;

@@ -22,6 +22,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * A name that is based on a flat file
+ */
 public class FileBasedName implements Name {
 
     private static final Path BAD_QUALITY_FILE = Paths.get("bad_quality.txt");
@@ -52,6 +55,9 @@ public class FileBasedName implements Name {
         updateAttempts();
     }
 
+    /**
+     * Figure out whether this recording was previously marked as bad quality or not
+     */
     private void setUpBadQuality() {
         if (!Files.exists(BAD_QUALITY_FILE)) {
             try {
@@ -70,12 +76,15 @@ public class FileBasedName implements Name {
         }
     }
 
+    /**
+     * Update this name's attempts
+     */
     void updateAttempts() {
         // remove invalids
         Iterator<Attempt> iter = attempts.iterator();
-        while(iter.hasNext()) {
-            FileBasedAttempt attempt = (FileBasedAttempt)iter.next();
-            if(!attempt.isValid()) {
+        while (iter.hasNext()) {
+            FileBasedAttempt attempt = (FileBasedAttempt) iter.next();
+            if (!attempt.isValid()) {
                 iter.remove();
             }
         }
@@ -140,12 +149,15 @@ public class FileBasedName implements Name {
 
     @Override
     public CompletableFuture<Void> addAttempt(AudioClip recording, LocalDateTime creationTime) {
+
+        // find the location
         Path location = resolver.getPathForAttempt(basePath, info, creationTime);
 
         if (Files.exists(location)) {
             throw new NameSayerException("File already exists for this attempt");
         }
 
+        // create subdirs if necessary
         if (!Files.exists(location.getParent())) {
             try {
                 Files.createDirectories(location.getParent());
@@ -173,6 +185,9 @@ public class FileBasedName implements Name {
         return Files.exists(pathOfThisName) && resolver.getNameInfo(pathOfThisName).isPresent();
     }
 
+    /**
+     * Delete this name (will invalidate)
+     */
     void delete() {
         try {
             Files.delete(pathOfThisName);
@@ -196,6 +211,9 @@ public class FileBasedName implements Name {
         return this.getNameInfo().equals(((FileBasedName) other).getNameInfo());
     }
 
+    /**
+     * Add an attempt if it does not exist already; otherwise returns the existing name
+     */
     private Attempt internalAddAttempt(LocalDateTime dt) {
         Optional<Attempt> attempt = attempts.stream().filter(x -> x.getAttemptTime().truncatedTo(ChronoUnit.SECONDS)
                 .equals(dt.truncatedTo(ChronoUnit.SECONDS))).findFirst();

@@ -51,6 +51,7 @@ public class SE206NameFileResolver implements NameFileResolver {
         }
 
         try {
+            // check the filenames and parsing the date in
             return Files.list(dir)
                     .map(Path::getFileName)
                     .map(Path::toString)

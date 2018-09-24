@@ -55,6 +55,9 @@ class AudioRecorder {
         recordingThread.start();
     }
 
+    /**
+     * Start recording mic data into a buffer.
+     */
     public void start() {
         synchronized (streamLock) {
             if (stream != null) {
@@ -65,6 +68,10 @@ class AudioRecorder {
         }
     }
 
+    /**
+     * Stop recording mic data.
+     * @return The recorded AudioClip.
+     */
     public AudioClip stop() {
         byte[] data;
 
@@ -83,6 +90,9 @@ class AudioRecorder {
                         ByteBuffer.wrap(data)));
     }
 
+    /**
+     * Get the input power of the mic in dB with respect to the maximum value of the audio signal.
+     */
     public double getInputLevel() {
         ByteBuffer data = ByteBuffer.allocate(micLevelBuffer.length);
         synchronized (micLevelLock) {
@@ -107,6 +117,9 @@ class AudioRecorder {
         return 10 * Math.log10(rms);
     }
 
+    /**
+     * @return true if the AudioRecorder is recording
+     */
     public boolean isRecording() {
         return stream != null;
     }

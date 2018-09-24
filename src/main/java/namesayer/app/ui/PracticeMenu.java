@@ -14,19 +14,16 @@ import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameDatabase;
 
-import java.awt.Button;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * Menu which allows the user to select what name(s) they want to practice
+ */
 public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
-
-    private static Random random = new Random();
 
     private IntegerProperty selectedCount = new SimpleIntegerProperty();
     private FilteredList<PracticeMenuNameBlock> selected;
@@ -48,6 +45,7 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
         selectedCount.set(selected.size());
         selected.addListener((InvalidationListener) observable -> selectedCount.set(selected.size()));
 
+        // show how many names the user has ticked
         selectedText.textProperty().bind(Bindings.concat("Selected: ", selectedCount));
     }
 
@@ -76,9 +74,11 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
         if(shuffleCheckBox.isSelected()) {
             Collections.shuffle(names);
         } else {
+            // if not shuffling, present them in the same order as in the NameView
             names.sort(Comparator.comparing(Name::getName).thenComparing(Name::getCreationDate));
         }
 
+        // reset for when user comes back
         reset();
         getScene().setRoot(new PracticeRecordingMenu(this, audioSystem, database, names));
     }

@@ -3,8 +3,11 @@ package namesayer.app.ui;
 import java.time.format.DateTimeFormatter;
 
 final class Util {
-    static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+    static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
+    /**
+     * Convert the given string to Title Case
+     */
     static String toTitleCase(String s) {
         char[] array = s.toCharArray();
         StringBuilder sb = new StringBuilder();

@@ -22,6 +22,9 @@ import namesayer.app.database.NameDatabase;
 
 import java.io.IOException;
 
+/**
+ * The menu where users create their own recordings
+ */
 public class RecordMenu extends BorderPane {
 
     private Parent previous;
@@ -56,8 +59,9 @@ public class RecordMenu extends BorderPane {
 
     @FXML
     private void initialize() {
+        // set up the mic level bar
         micLevelTimeline = new Timeline(new KeyFrame(Duration.millis(50),
-                a -> micLevelBar.setProgress(1 - (audioSystem.getInputLevel() / -75.)))); // nominate -75b as our 0 reference since it seems to work
+                a -> micLevelBar.setProgress(1 - (audioSystem.getInputLevel() / -200)))); // nominate -75b as our 0 reference since it seems to work
         micLevelTimeline.setCycleCount(Animation.INDEFINITE);
         micLevelTimeline.play();
 
@@ -71,7 +75,7 @@ public class RecordMenu extends BorderPane {
     }
 
     private void saveButtonClicked() {
-
+        // ensure there's a name to save and a recording as well
         if(nameTextField.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please enter a name.").showAndWait();
             return;

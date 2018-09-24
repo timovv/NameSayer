@@ -16,6 +16,9 @@ import namesayer.app.database.NameDatabase;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * A generic block which represents a name, as used in {@link AbstractNameView}
+ */
 public class NameBlock extends BorderPane {
 
     private final Name name;
@@ -46,12 +49,12 @@ public class NameBlock extends BorderPane {
     }
 
     /**
-     * Children should place initialize stuff in the constructor (it will work)
+     * Children of this class should place initialize stuff in the constructor (it will work)
      */
     @FXML
     protected final void initialize() {
         nameText.setText(Util.toTitleCase(getName().getName()));
-        dateText.setText(getName().getCreationDate().format(Util.FORMAT));
+        dateText.setText(getName().getCreationDate().format(Util.DATE_TIME_FORMAT));
 
         if(name.isBadQuality()) {
             setBadQualityButton.setVisible(false);
@@ -87,10 +90,14 @@ public class NameBlock extends BorderPane {
 
     @FXML
     private void removeButtonClicked() {
+        // double check they actually want to DELET
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this recording?");
         alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> database.removeName(name));
     }
 
+    /**
+     * Inheritors should override this method if they want updates to happen when these observables change
+     */
     public Observable[] getObservables() {
         return new Observable[0];
     }

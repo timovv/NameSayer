@@ -21,13 +21,16 @@ public class AttemptView extends VBox {
 
     public AttemptView(Name name) {
         setName(name);
+
+        // If you have no attempts, show a friendly message
         noAttemptsLabel.visibleProperty().bind(Bindings.createBooleanBinding(() -> nameProperty.get().getAttempts().isEmpty(), nameProperty));
+
         getChildren().add(noAttemptsLabel);
         getChildren().add(attemptsVBox);
     }
 
     private void update() {
-        // force updates to count etc
+        // forced property update
         nameProperty.set(nameProperty.get());
         // update the list
         attemptsVBox.getChildren().clear();

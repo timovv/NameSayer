@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class FFmpegAudioSystem implements AudioSystem {
 
+    // cache of audio clips
     private final Map<Path, FileBackedAudioClip> fileBackedAudioClips = new HashMap<>();
 
     private final AudioRecorder audioRecorder = new AudioRecorder();
@@ -53,6 +54,7 @@ public class FFmpegAudioSystem implements AudioSystem {
     @Override
     public CompletableFuture<Void> saveAudio(AudioClip recording, Path location) {
         return recording.getAudioData()
+                // save audio to file using ffmpeg, ffmpeg takes data from stdin
                 .thenAccept(data -> {
                     ProcessBuilder pb = new ProcessBuilder(
                             "ffmpeg",
@@ -70,6 +72,7 @@ public class FFmpegAudioSystem implements AudioSystem {
                         throw new RuntimeException(e);
                     }
 
+                    // write the bytes to ffmpeg
                     WritableByteChannel channel = Channels.newChannel(process.getOutputStream());
                     ByteBuffer toWrite = data.getData();
                     try {
@@ -81,6 +84,7 @@ public class FFmpegAudioSystem implements AudioSystem {
                     }
 
                     try {
+                        // this tells ffmpeg to stop
                         process.getOutputStream().close();
                     } catch(IOException e) {
                         throw new NameSayerException("Could not close the ffmpeg stream", e);

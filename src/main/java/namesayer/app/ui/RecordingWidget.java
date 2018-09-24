@@ -13,10 +13,12 @@ import javafx.util.Duration;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.NameDatabase;
 
 import java.io.IOException;
 
+/**
+ * Widget used for recording audio, playing it back and saving
+ */
 public class RecordingWidget extends BorderPane {
 
     private AudioClip recording = null;
@@ -43,9 +45,11 @@ public class RecordingWidget extends BorderPane {
 
     @FXML
     private void initialize() {
+        // show how long they have recording
         recordingTime.textProperty().bind(Bindings.when(secondsLeft.isEqualTo(0)).then("")
                 .otherwise(Bindings.concat("Recording for ", secondsLeft.asString(), "s")));
 
+        // create the timelines, we are recording for 5s
         autoStopTimeline = new Timeline(new KeyFrame(Duration.millis(5000), a -> stopRecording()));
         autoStopTimeline.setCycleCount(1);
         countdownTimeline = new Timeline(new KeyFrame(Duration.millis(1000), a -> secondsLeft.set(secondsLeft.get() - 1)));

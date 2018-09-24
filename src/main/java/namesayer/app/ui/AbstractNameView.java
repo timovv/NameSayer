@@ -21,6 +21,10 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * A component that shows a lsit of names.
+ * @param <TCell> The type of the cell to show. There will be one cell for each name in the database.
+ */
 public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPane {
 
     private Parent previous;
@@ -48,9 +52,11 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
 
         this.previous = previous;
 
+        // create a nameblock for each name in the db
         allNames = FXCollections.observableArrayList(NameBlock::getObservables);
         allNames.addAll(db.getNames().stream().map(x -> createNameCell(db, x)).collect(Collectors.toList()));
 
+        // when the database changes, also change the content of the name view
         db.getNames().addListener((ListChangeListener<Name>) change -> {
             while(change.next()) {
                 if(change.wasAdded()) {
@@ -63,9 +69,11 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
             }
         });
 
+        // filtering on search
         filteredNames = allNames.sorted(Comparator.comparing(x -> x.getName().getName(), String.CASE_INSENSITIVE_ORDER))
                 .filtered(x -> x.getName().getName().toLowerCase().contains(nameSearch.getText().toLowerCase()));
 
+        // update the name filter when the search is updated
         nameSearch.textProperty().addListener((observableValue, oldSearch, newSearch) ->
                 filteredNames.setPredicate(x -> x.getName().getName().toLowerCase().contains(nameSearch.getText().toLowerCase())));
 

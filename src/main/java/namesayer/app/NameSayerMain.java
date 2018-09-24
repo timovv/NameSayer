@@ -15,6 +15,7 @@ public class NameSayerMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        // set up audio system and name database as used by the application
         AudioSystem audio = new FFmpegAudioSystem();
         NameDatabase db = new FileBasedNameDatabase(Paths.get("names"), audio);
 

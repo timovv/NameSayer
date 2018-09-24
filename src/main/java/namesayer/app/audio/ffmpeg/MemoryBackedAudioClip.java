@@ -20,6 +20,7 @@ public class MemoryBackedAudioClip implements AudioClip {
     @Override
     public CompletableFuture<Void> play() {
         return CompletableFuture.runAsync(() -> {
+            // ffplay will play from stdin, which we will give it
             ProcessBuilder pb = new ProcessBuilder("ffplay",
                     "-autoexit",
                     "-nodisp",

@@ -24,6 +24,9 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Menu where users can make practice recordings and listen to names
+ */
 public class PracticeRecordingMenu extends BorderPane {
 
     @FXML
@@ -69,20 +72,30 @@ public class PracticeRecordingMenu extends BorderPane {
             throw new NameSayerException("Could not load UI", e);
         }
 
+        // change these labels when the current name changes
         nameLabel.textProperty().bind(Bindings.createStringBinding(() -> Util.toTitleCase(current.get().getName()), current));
+
+        // show the number of recordings they have left
         countLabel.textProperty().bind(Bindings.createStringBinding(() -> "(" + (total - remainingNames.size()) + "/" + total + ")", current));
+
+        // change the button if it's the last recording
         nextButton.textProperty().bind(Bindings.when(Bindings.createBooleanBinding(remainingNames::isEmpty, current)).then("Finish").otherwise("Next"));
     }
 
     @FXML
     private void initialize() {
+
         recordingWidget.setAudioSystem(audioSystem);
         attemptView = new AttemptView(current.get());
+
         scrollPane.setContent(attemptView);
         scrollPane.setFitToWidth(true);
         contentVBox.getChildren().add(scrollPane);
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
+
+        // if the name changes, also update the attmpts
         current.addListener((observable, oldValue, newValue) -> attemptView.setName(newValue));
+        // when the recording is saved, create a new attempt
         recordingWidget.setOnSaveClicked(() -> current.get().addAttempt(recordingWidget.getRecording(), LocalDateTime.now()));
     }
 

@@ -10,6 +10,9 @@ import namesayer.app.database.Attempt;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameDatabase;
 
+/**
+ * A NameBlock that is used in the listen menu, and has an 'expando' that lets you view your attempts
+ */
 public class ListenMenuNameBlock extends NameBlock {
 
 
@@ -41,12 +44,14 @@ public class ListenMenuNameBlock extends NameBlock {
         this.name = name;
         expanded = new SimpleBooleanProperty(false);
 
+        // show the correct (expand vs unexpand) button based on whether attempts are visible or not
         expandoExpand.visibleProperty().bind(expanded.not());
         expandoUnexpand.visibleProperty().bind(expanded);
     }
 
     @FXML
     private void onExpandClicked() {
+        // lazy-load the attempt view because otherwise our app would be quite slow on startup
         if(attemptView == null) {
             attemptView = new AttemptView(name);
         }

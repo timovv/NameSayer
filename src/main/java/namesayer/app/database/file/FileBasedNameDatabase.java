@@ -15,6 +15,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * A name database that is based on a flat file
+ */
 public class FileBasedNameDatabase implements NameDatabase {
 
     private final ObservableList<Name> names = FXCollections.observableArrayList();
@@ -89,6 +92,9 @@ public class FileBasedNameDatabase implements NameDatabase {
                 .thenApply(ignore -> internalAddName(nameInfo));
     }
 
+    /**
+     * Update/add a name if it does not exist already, otherwise return the existing name
+     */
     private Name internalAddName(NameInfo nameInfo) {
         if (lookup.containsKey(nameInfo)) {
             return lookup.get(nameInfo);

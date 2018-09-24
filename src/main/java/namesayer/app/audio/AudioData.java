@@ -5,6 +5,9 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 // fixme: does not support multi-channel audio at the moment so we are just doing everything in mono, i guess thats ok
+/**
+ * A class that represents raw audio data; fields fairly self-explanatory
+ */
 public final class AudioData {
 
     private final int sampleRate;
