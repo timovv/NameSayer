@@ -70,8 +70,8 @@ public class FileBasedNameDatabase implements NameDatabase {
             resolver.getAllNames(root).forEach(this::internalAddName);
 
             // update attempts
-            for(Name name : getNames()) {
-                ((FileBasedName)name).updateAttempts();
+            for (Name name : getNames()) {
+                ((FileBasedName) name).updateAttempts();
             }
         };
 

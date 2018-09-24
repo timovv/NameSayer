@@ -36,7 +36,7 @@ public class PracticeMenuNameBlock extends NameBlock {
 
     @Override
     public Observable[] getObservables() {
-        return new Observable[] {
+        return new Observable[]{
                 selectedProperty()
         };
     }

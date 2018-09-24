@@ -36,7 +36,7 @@ public class AttemptBlock extends BorderPane {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load UI", e);
         }
     }

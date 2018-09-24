@@ -17,7 +17,6 @@ import namesayer.app.database.NameDatabase;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -63,7 +62,7 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     @FXML
     private void onStartClicked() {
 
-        if(selected.isEmpty()) {
+        if (selected.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please select one or more names to practice!")
                     .showAndWait();
             return;
@@ -71,7 +70,7 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
 
         List<Name> names = selected.stream().map(NameBlock::getName).collect(Collectors.toList());
 
-        if(shuffleCheckBox.isSelected()) {
+        if (shuffleCheckBox.isSelected()) {
             Collections.shuffle(names);
         } else {
             // if not shuffling, present them in the same order as in the NameView

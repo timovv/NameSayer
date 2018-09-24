@@ -5,11 +5,9 @@ import namesayer.app.database.NameInfo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * Name file resolver based on the names database supplied to us as part of the assignment.
- *
+ * <p>
  * The format of a given name is se206-d-m-y_h-m-s_Name.wav
  */
 public class SE206NameFileResolver implements NameFileResolver {
@@ -37,7 +35,7 @@ public class SE206NameFileResolver implements NameFileResolver {
                     .filter(Optional::isPresent)
                     .map(Optional::get)
                     .collect(Collectors.toList());
-        } catch(IOException e) {
+        } catch (IOException e) {
             return Collections.emptyList();
         }
     }
@@ -46,7 +44,7 @@ public class SE206NameFileResolver implements NameFileResolver {
     public List<LocalDateTime> getAllAttempts(Path base, NameInfo info) {
         Path dir = base.resolve("attempts").resolve(getFileName(info));
 
-        if(!Files.isDirectory(dir)) {
+        if (!Files.isDirectory(dir)) {
             return Collections.emptyList();
         }
 
@@ -66,7 +64,7 @@ public class SE206NameFileResolver implements NameFileResolver {
                     .filter(Objects::nonNull)
                     .map(LocalDateTime::from)
                     .collect(Collectors.toList());
-        } catch(IOException e) {
+        } catch (IOException e) {
             return Collections.emptyList();
         }
     }
@@ -76,7 +74,7 @@ public class SE206NameFileResolver implements NameFileResolver {
         String fileName = fileLocation.getFileName().toString();
         Matcher matcher = FORMAT.matcher(fileName);
 
-        if(!matcher.matches()) {
+        if (!matcher.matches()) {
             return Optional.empty();
         }
 

@@ -70,13 +70,14 @@ class AudioRecorder {
 
     /**
      * Stop recording mic data.
+     *
      * @return The recorded AudioClip.
      */
     public AudioClip stop() {
         byte[] data;
 
         synchronized (streamLock) {
-            if(stream == null) {
+            if (stream == null) {
                 throw new IllegalStateException("Cannot stop recording if not recording already");
             }
 
@@ -105,10 +106,10 @@ class AudioRecorder {
         // so if the constants change, this code needs to change as well.
 
         double rms = 0.;
-        while(data.hasRemaining()) {
+        while (data.hasRemaining()) {
             short next = data.getShort(); // 16 bits
-            next = (short)(((next & 0xff00) >> 8) | ((next & 0x00ff) << 8)); // java is big endian, our pcm is little endian
-            double amplitude = (double)next / Short.MAX_VALUE;
+            next = (short) (((next & 0xff00) >> 8) | ((next & 0x00ff) << 8)); // java is big endian, our pcm is little endian
+            double amplitude = (double) next / Short.MAX_VALUE;
             rms += (amplitude * amplitude) / (micLevelBuffer.length / 2);
         }
 

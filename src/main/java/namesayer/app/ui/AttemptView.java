@@ -35,13 +35,13 @@ public class AttemptView extends VBox {
         // update the list
         attemptsVBox.getChildren().clear();
         int i = 0;
-        for(Attempt attempt : nameProperty.get().getAttempts().sorted(Comparator.comparing(Attempt::getAttemptTime))) {
+        for (Attempt attempt : nameProperty.get().getAttempts().sorted(Comparator.comparing(Attempt::getAttemptTime))) {
             attemptsVBox.getChildren().add(new AttemptBlock(nameProperty.get(), attempt, ++i));
         }
     }
 
     public void setName(Name name) {
-        if(nameProperty.get() != null) {
+        if (nameProperty.get() != null) {
             nameProperty.get().getAttempts().removeListener(listener);
         }
         nameProperty.set(name);

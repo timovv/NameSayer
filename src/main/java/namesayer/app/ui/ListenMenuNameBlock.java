@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import namesayer.app.database.Attempt;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameDatabase;
 
@@ -52,7 +51,7 @@ public class ListenMenuNameBlock extends NameBlock {
     @FXML
     private void onExpandClicked() {
         // lazy-load the attempt view because otherwise our app would be quite slow on startup
-        if(attemptView == null) {
+        if (attemptView == null) {
             attemptView = new AttemptView(name);
         }
 

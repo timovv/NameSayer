@@ -56,7 +56,7 @@ public class NameBlock extends BorderPane {
         nameText.setText(Util.toTitleCase(getName().getName()));
         dateText.setText(getName().getCreationDate().format(Util.DATE_TIME_FORMAT));
 
-        if(name.isBadQuality()) {
+        if (name.isBadQuality()) {
             setBadQualityButton.setVisible(false);
             unsetBadQualityButton.setVisible(true);
         } else {

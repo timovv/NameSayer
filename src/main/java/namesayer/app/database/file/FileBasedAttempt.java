@@ -10,8 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -42,14 +40,14 @@ class FileBasedAttempt implements Attempt {
     void delete() {
         try {
             Files.delete(location);
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not delete the attempt", e);
         }
     }
 
     @Override
     public LocalDateTime getAttemptTime() {
-        if(!isValid()) {
+        if (!isValid()) {
             throw new NameSayerException("Attempt is now invalid");
         }
 
@@ -58,7 +56,7 @@ class FileBasedAttempt implements Attempt {
 
     @Override
     public CompletableFuture<AudioClip> getRecording() {
-        if(!isValid()) {
+        if (!isValid()) {
             throw new NameSayerException("Attempt is now invalid");
         }
 
@@ -67,11 +65,11 @@ class FileBasedAttempt implements Attempt {
 
     @Override
     public boolean equals(Object other) {
-        if(!(other instanceof FileBasedAttempt)) {
+        if (!(other instanceof FileBasedAttempt)) {
             return false;
         }
 
-        FileBasedAttempt cast = (FileBasedAttempt)other;
+        FileBasedAttempt cast = (FileBasedAttempt) other;
         return cast.location.equals(this.location);
     }
 

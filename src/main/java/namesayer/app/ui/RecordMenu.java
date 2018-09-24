@@ -3,9 +3,6 @@ package namesayer.app.ui;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,10 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import namesayer.app.NameSayerException;
-import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.NameDatabase;
 
@@ -76,12 +71,12 @@ public class RecordMenu extends BorderPane {
 
     private void saveButtonClicked() {
         // ensure there's a name to save and a recording as well
-        if(nameTextField.getText().isEmpty()) {
+        if (nameTextField.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please enter a name.").showAndWait();
             return;
         }
 
-        if(recordingWidget.getRecording() == null) {
+        if (recordingWidget.getRecording() == null) {
             new Alert(Alert.AlertType.WARNING, "You need to make a recording before you can save. Press the record button to start!");
             return;
         }

@@ -30,13 +30,13 @@ public class FileBackedAudioClip implements AudioClip {
             int exitCode;
             try {
                 exitCode = pb.start().waitFor();
-            } catch(IOException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e);
-            } catch(InterruptedException e) {
+            } catch (InterruptedException e) {
                 return;
             }
 
-            if(exitCode != 0) {
+            if (exitCode != 0) {
                 throw new RuntimeException("ffplay exited with exit code: " + exitCode);
             }
         });
@@ -44,7 +44,7 @@ public class FileBackedAudioClip implements AudioClip {
 
     @Override
     public CompletableFuture<AudioData> getAudioData() {
-        if(data != null) {
+        if (data != null) {
             return CompletableFuture.completedFuture(data);
         } else {
             return CompletableFuture.<AudioData>supplyAsync(() -> {

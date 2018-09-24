@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface NameFileResolver {
     /**
      * Find all names in the given directory.
+     *
      * @param base The base directory.
      * @return The list of names found. If no names were found, the list will be empty.
      */
@@ -20,12 +21,14 @@ public interface NameFileResolver {
 
     /**
      * Find all attempts for a given name in the given directory
+     *
      * @return A list of times of for which the attempts were created. (these uniquely identify the attempts)
      */
     List<LocalDateTime> getAllAttempts(Path base, NameInfo info);
 
     /**
      * Get the NameInfo for the name stored at the given path.
+     *
      * @param fileLocation the location of the file
      * @return an optional NameInfo which will be empty if the location did not correspond to a valid name file.
      */
@@ -33,6 +36,7 @@ public interface NameFileResolver {
 
     /**
      * Get the path for a given name.
+     *
      * @return The path.
      */
     Path getPathForName(Path basePath, NameInfo nameInfo);

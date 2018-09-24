@@ -68,7 +68,7 @@ public class PracticeRecordingMenu extends BorderPane {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load UI", e);
         }
 
@@ -111,7 +111,7 @@ public class PracticeRecordingMenu extends BorderPane {
 
     @FXML
     private void onNextClicked() {
-        if(remainingNames.isEmpty()) {
+        if (remainingNames.isEmpty()) {
             new Alert(Alert.AlertType.INFORMATION, "Well done!").showAndWait();
             getScene().setRoot(previous);
         } else {

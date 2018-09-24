@@ -38,7 +38,7 @@ public class RecordingWidget extends BorderPane {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load UI", e);
         }
     }
@@ -58,7 +58,7 @@ public class RecordingWidget extends BorderPane {
 
     @FXML
     private void recordButtonClicked() {
-        if(audioSystem.isRecording()) {
+        if (audioSystem.isRecording()) {
             stopRecording();
         } else {
             startRecording();
@@ -67,14 +67,14 @@ public class RecordingWidget extends BorderPane {
 
     @FXML
     private void playButtonClicked() {
-        if(getRecording() != null) {
+        if (getRecording() != null) {
             getRecording().play();
         }
     }
 
     @FXML
     private void saveButtonClicked() {
-        if(saveClickedHandler != null) {
+        if (saveClickedHandler != null) {
             saveClickedHandler.run();
         }
     }
@@ -88,7 +88,7 @@ public class RecordingWidget extends BorderPane {
     }
 
     private void stopRecording() {
-        if(autoStopTimeline != null) {
+        if (autoStopTimeline != null) {
             autoStopTimeline.stop();
             countdownTimeline.stop();
         }

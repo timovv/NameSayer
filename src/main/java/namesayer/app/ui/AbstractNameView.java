@@ -1,6 +1,5 @@
 package namesayer.app.ui;
 
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -23,6 +22,7 @@ import java.util.stream.Collectors;
 
 /**
  * A component that shows a lsit of names.
+ *
  * @param <TCell> The type of the cell to show. There will be one cell for each name in the database.
  */
 public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPane {
@@ -46,7 +46,7 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load practice menu", e);
         }
 
@@ -58,10 +58,10 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
 
         // when the database changes, also change the content of the name view
         db.getNames().addListener((ListChangeListener<Name>) change -> {
-            while(change.next()) {
-                if(change.wasAdded()) {
+            while (change.next()) {
+                if (change.wasAdded()) {
                     allNames.add(createNameCell(db, change.getAddedSubList().get(0)));
-                } else if(change.wasRemoved()) {
+                } else if (change.wasRemoved()) {
                     Name removed = change.getRemoved().get(0);
                     allNames.stream().filter(x -> x.getName().equals(removed)).findFirst()
                             .ifPresent(cell -> allNames.remove(cell));

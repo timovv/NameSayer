@@ -1,7 +1,6 @@
 package namesayer.app.audio;
 
 import java.nio.file.Path;
-import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -21,6 +20,7 @@ public interface AudioSystem {
 
     /**
      * Tell the AudioSystem to stop recording.
+     *
      * @return The recorded AudioClip.
      */
     AudioClip stopRecording();

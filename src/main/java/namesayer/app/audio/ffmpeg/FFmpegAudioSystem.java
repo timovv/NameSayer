@@ -76,7 +76,7 @@ public class FFmpegAudioSystem implements AudioSystem {
                     WritableByteChannel channel = Channels.newChannel(process.getOutputStream());
                     ByteBuffer toWrite = data.getData();
                     try {
-                        while(toWrite.hasRemaining()) {
+                        while (toWrite.hasRemaining()) {
                             channel.write(toWrite);
                         }
                     } catch (IOException e) {
@@ -86,7 +86,7 @@ public class FFmpegAudioSystem implements AudioSystem {
                     try {
                         // this tells ffmpeg to stop
                         process.getOutputStream().close();
-                    } catch(IOException e) {
+                    } catch (IOException e) {
                         throw new NameSayerException("Could not close the ffmpeg stream", e);
                     }
 

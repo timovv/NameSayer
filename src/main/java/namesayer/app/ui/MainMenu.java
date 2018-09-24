@@ -27,7 +27,7 @@ public class MainMenu extends BorderPane {
 
         try {
             loader.load();
-        } catch(IOException ioex) {
+        } catch (IOException ioex) {
             throw new NameSayerException("Could not create main menu", ioex);
         }
 

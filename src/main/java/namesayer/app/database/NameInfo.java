@@ -34,7 +34,7 @@ public final class NameInfo {
 
     @Override
     public boolean equals(Object other) {
-        NameInfo otherNameInfo = (NameInfo)other;
+        NameInfo otherNameInfo = (NameInfo) other;
         return otherNameInfo.name.equals(this.name) && otherNameInfo.creationDate.equals(creationDate);
     }
 
