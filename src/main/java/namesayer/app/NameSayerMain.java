@@ -9,6 +9,8 @@ import namesayer.app.database.NameDatabase;
 import namesayer.app.database.file.FileBasedNameDatabase;
 import namesayer.app.ui.MainMenu;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class NameSayerMain extends Application {
@@ -17,7 +19,13 @@ public class NameSayerMain extends Application {
     public void start(Stage stage) throws Exception {
         // set up audio system and name database as used by the application
         AudioSystem audio = new FFmpegAudioSystem();
-        NameDatabase db = new FileBasedNameDatabase(Paths.get("names"), audio);
+
+        Path root = Paths.get("names");
+        if(!Files.exists(root)) {
+            Files.createDirectories(root);
+        }
+
+        NameDatabase db = new FileBasedNameDatabase(root, audio);
 
         Scene scene = new Scene(new MainMenu(db, audio));
         stage.setScene(scene);
