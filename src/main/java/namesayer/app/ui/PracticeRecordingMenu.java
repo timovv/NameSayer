@@ -1,18 +1,15 @@
 package namesayer.app.ui;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -51,6 +48,7 @@ public class PracticeRecordingMenu extends BorderPane {
     private ObjectProperty<Name> current;
     private LinkedList<Name> remainingNames;
     private AttemptView attemptView;
+    private ScrollPane scrollPane = new ScrollPane();
 
     public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameDatabase db, List<Name> names) {
 
@@ -80,8 +78,10 @@ public class PracticeRecordingMenu extends BorderPane {
     private void initialize() {
         recordingWidget.setAudioSystem(audioSystem);
         attemptView = new AttemptView(current.get());
-        contentVBox.getChildren().add(attemptView);
-        VBox.setVgrow(attemptView, Priority.ALWAYS);
+        scrollPane.setContent(attemptView);
+        scrollPane.setFitToWidth(true);
+        contentVBox.getChildren().add(scrollPane);
+        VBox.setVgrow(scrollPane, Priority.ALWAYS);
         current.addListener((observable, oldValue, newValue) -> attemptView.setName(newValue));
         recordingWidget.setOnSaveClicked(() -> current.get().addAttempt(recordingWidget.getRecording(), LocalDateTime.now()));
     }
