@@ -71,7 +71,7 @@ public class PracticeRecordingMenuStub extends StackPane {
     private void onNextClicked() {
         // use JFXDialogHelper to create and show a new pop-up dialog
         JFXDialogHelper dialog = new JFXDialogHelper("Well done!", "You have finished all your practices." +
-                "\nGreat job!", "Thanks", stackPane);
+                " Great job!", "Thanks", stackPane);
         dialog.setNextScene(getScene(), new MainMenu(database, audioSystem));
         dialog.show();
     }
