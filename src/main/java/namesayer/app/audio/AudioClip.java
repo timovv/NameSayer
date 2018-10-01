@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Represents a playable clip of audio.
  */
-public interface AudioClip {
+public interface AudioClip extends Playable {
 
     /**
      * Play the audio clip; the CompletableFuture returns when playback finishes.
