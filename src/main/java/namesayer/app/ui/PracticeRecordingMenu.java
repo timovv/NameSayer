@@ -6,12 +6,12 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
@@ -28,6 +28,9 @@ import java.util.List;
  * Menu where users can make practice recordings and listen to names
  */
 public class PracticeRecordingMenu extends BorderPane {
+
+    @FXML
+    private StackPane stackPane;
 
     @FXML
     private RecordingWidget recordingWidget;
@@ -112,13 +115,11 @@ public class PracticeRecordingMenu extends BorderPane {
     @FXML
     private void onNextClicked() {
         if (remainingNames.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have finished all your practices!" +
-                    "\nGood job!");
-            alert.setTitle(null);
-            alert.setTitle("Well done!");
-            alert.showAndWait();
-
-            getScene().setRoot(new MainMenu(database, audioSystem));
+            // use JFXDialogHelper to create and show a new pop-up dialog
+            JFXDialogHelper dialog = new JFXDialogHelper("Well done!", "You have finished all your practices." +
+                    "\nGreat job!", "Thanks", stackPane);
+            dialog.setNextScene(getScene(), new MainMenu(database, audioSystem));
+            dialog.show();
         } else {
             current.set(remainingNames.pollFirst());
         }

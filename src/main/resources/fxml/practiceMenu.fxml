@@ -1,120 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-         prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css"
-         type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121">
-    <top>
-        <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
-                    BorderPane.alignment="CENTER">
-            <right>
-                <Text onMouseClicked="#onPracticeClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice"
-                      textAlignment="RIGHT" BorderPane.alignment="CENTER">
-                    <font>
-                        <Font name="Century Gothic" size="45.0"/>
-                    </font>
-                    <BorderPane.margin>
-                        <Insets right="30.0"/>
-                    </BorderPane.margin>
-                    <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                            <stops>
-                                <Stop color="#eb8581"/>
-                                <Stop color="#85da87" offset="1.0"/>
-                            </stops>
-                        </LinearGradient>
-                    </fill>
-                </Text>
-            </right>
-            <left>
-                <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Back"
-                      textAlignment="RIGHT" BorderPane.alignment="CENTER">
-                    <font>
-                        <Font name="Century Gothic" size="45.0"/>
-                    </font>
-                    <BorderPane.margin>
-                        <Insets left="30.0"/>
-                    </BorderPane.margin>
-                </Text>
-            </left>
-        </BorderPane>
-    </top>
-    <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <TextField fx:id="nameSearch" opacity="0.85" promptText="Search name">
-                    <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0"/>
-                    </VBox.margin>
-                    <font>
-                        <Font name="Century Gothic" size="20.0"/>
-                    </font>
-                </TextField>
-                <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0" style="-fx-background-color: #ededed;">
-                    <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0"/>
-                    </VBox.margin>
-                    <content>
-                        <VBox fx:id="namesBox" spacing="10.0" style="-fx-background-color: #ededed;"/>
-                    </content>
-                </ScrollPane>
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </BorderPane.margin>
-        </VBox>
-    </center>
-    <bottom>
-        <BorderPane BorderPane.alignment="CENTER">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" type="StackPane"
+         xmlns="http://javafx.com/javafx/8.0.121">
+    <children>
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;"
+                    stylesheets="@../css/main.css">
+            <top>
+                <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
+                            BorderPane.alignment="CENTER">
+                    <right>
+                        <Text onMouseClicked="#onPracticeClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice"
+                              textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Century Gothic" size="45.0"/>
+                            </font>
+                            <BorderPane.margin>
+                                <Insets right="30.0"/>
+                            </BorderPane.margin>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#eb8581"/>
+                                        <Stop color="#85da87" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                    </right>
+                    <left>
+                        <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Century Gothic" size="45.0"/>
+                            </font>
+                            <BorderPane.margin>
+                                <Insets left="30.0"/>
+                            </BorderPane.margin>
+                        </Text>
+                    </left>
+                </BorderPane>
+            </top>
             <center>
-                <StackPane prefHeight="70.0" BorderPane.alignment="CENTER">
+                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                     <children>
-                        <JFXButton mnemonicParsing="false" onMouseClicked="#onStartClicked" prefHeight="50.0"
-                                   prefWidth="200.0" styleClass="start-button" text="START" textAlignment="CENTER"
-                                   textFill="#71d05d">
+                        <TextField fx:id="nameSearch" opacity="0.85" promptText="Search name">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0"/>
+                            </VBox.margin>
                             <font>
                                 <Font name="Century Gothic" size="20.0"/>
                             </font>
-                            <StackPane.margin>
-                                <Insets bottom="10.0"/>
-                            </StackPane.margin>
-                        </JFXButton>
+                        </TextField>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0" style="-fx-background-color: #ededed;">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="20.0"/>
+                            </VBox.margin>
+                            <content>
+                                <VBox fx:id="namesBox" spacing="10.0" style="-fx-background-color: #ededed;"/>
+                            </content>
+                        </ScrollPane>
                     </children>
-                </StackPane>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </BorderPane.margin>
+                </VBox>
             </center>
-            <left>
-                <CheckBox fx:id="shuffleCheckBox" mnemonicParsing="false" text="Shuffle" textFill="#aaaaaa"
-                          BorderPane.alignment="CENTER">
-                    <font>
-                        <Font size="25.0"/>
-                    </font>
-                    <BorderPane.margin>
-                        <Insets left="20.0"/>
-                    </BorderPane.margin>
-                    <padding>
-                        <Insets bottom="10.0"/>
-                    </padding>
-                </CheckBox>
-            </left>
-            <right>
-                <Text fx:id="selectedText" fill="#aaaaaa" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected: X"
-                      BorderPane.alignment="CENTER">
-                    <font>
-                        <Font size="25.0"/>
-                    </font>
-                    <BorderPane.margin>
-                        <Insets bottom="10.0" right="20.0"/>
-                    </BorderPane.margin>
-                </Text>
-            </right>
+            <bottom>
+                <BorderPane BorderPane.alignment="CENTER">
+                    <center>
+                        <StackPane prefHeight="70.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <JFXButton mnemonicParsing="false" onMouseClicked="#onStartClicked" prefHeight="50.0"
+                                           prefWidth="200.0" styleClass="start-button" text="START"
+                                           textAlignment="CENTER" textFill="#71d05d">
+                                    <font>
+                                        <Font name="Century Gothic" size="20.0"/>
+                                    </font>
+                                    <StackPane.margin>
+                                        <Insets bottom="10.0"/>
+                                    </StackPane.margin>
+                                </JFXButton>
+                            </children>
+                        </StackPane>
+                    </center>
+                    <right>
+                        <Text fx:id="selectedText" fill="#868686" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Selected: X" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Century Gothic" size="25.0"/>
+                            </font>
+                            <BorderPane.margin>
+                                <Insets bottom="10.0" right="20.0"/>
+                            </BorderPane.margin>
+                        </Text>
+                    </right>
+                    <left>
+                        <JFXCheckBox fx:id="shuffleCheckBox" checkedColor="#83d16e" mnemonicParsing="false"
+                                     text="Shuffle" textFill="#868686" unCheckedColor="#868686"
+                                     BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Century Gothic" size="25.0"/>
+                            </font>
+                            <BorderPane.margin>
+                                <Insets bottom="10.0" left="20.0"/>
+                            </BorderPane.margin>
+                        </JFXCheckBox>
+                    </left>
+                </BorderPane>
+            </bottom>
         </BorderPane>
-    </bottom>
+    </children>
 </fx:root>

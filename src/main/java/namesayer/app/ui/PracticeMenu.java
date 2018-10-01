@@ -7,8 +7,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
@@ -34,6 +34,9 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
 
     @FXML
     private CheckBox shuffleCheckBox;
+
+    @FXML
+    private StackPane stackPane;
 
     public PracticeMenu(Parent previous, AudioSystem audioSystem, NameDatabase db) {
         super(PracticeMenu.class.getResource("/fxml/practiceMenu.fxml"), previous, db);
@@ -63,13 +66,14 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     private void onStartClicked() {
 
         if (selected.isEmpty()) {
+            // use JFXDialogHelper to create and show a new pop-up dialog
+            JFXDialogHelper dialog = new JFXDialogHelper("No Names Selected",
+                    "Please find and choose at least one name to practice!", "Okay", stackPane);
+            dialog.show();
+
             // deselect the button and intuitively prompt the user to find a name
             this.getNamesSearch().requestFocus();
 
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select one or more names to practice!");
-            alert.setTitle("No names selected");
-            alert.setHeaderText(null);
-            alert.showAndWait();
             return;
         }
 

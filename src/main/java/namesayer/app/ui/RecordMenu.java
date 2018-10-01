@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * The menu where users create their own recordings
  */
-public class RecordMenu extends BorderPane {
+public class RecordMenu extends StackPane {
 
     private Parent previous;
 

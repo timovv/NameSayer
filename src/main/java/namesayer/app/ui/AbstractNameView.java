@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
 import namesayer.app.database.Name;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  *
  * @param <TCell> The type of the cell to show. There will be one cell for each name in the database.
  */
-public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPane {
+public abstract class AbstractNameView<TCell extends NameBlock> extends StackPane {
 
     private Parent previous;
 
