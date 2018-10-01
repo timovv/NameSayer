@@ -1,4 +1,27 @@
 .main-menu-button:hover {
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
+
+.start-button{
+    -jfx-button-type: FLAT;
+    -fx-text-fill: white;
+    -fx-background-color: #83d16e;
+    -fx-border-color: #fbfffa;
+}
+
+.start-button:hover {
+    -fx-background-color: #92e07d;
+}
+
+.next-button{
+    -jfx-button-type: FLAT;
+    -fx-text-fill: white;
+    -fx-background-color: #83d16e;
+    -fx-border-color: #fbfffa;
+}
+
+.next-button:hover {
+    -fx-background-color: #92e07d;
+}
+

@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.*?>
 <?import namesayer.app.ui.RecordingWidget?>
-
-<fx:root prefHeight="720.0" prefWidth="1280.0" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/main.css"
+         type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121">
 
     <top>
-        <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;" BorderPane.alignment="CENTER">
+        <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
+                    BorderPane.alignment="CENTER">
             <right>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Practice" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Practice" textAlignment="RIGHT"
+                      BorderPane.alignment="CENTER">
                     <font>
-                        <Font name="Century Gothic" size="45.0" />
+                        <Font name="Century Gothic" size="45.0"/>
                     </font>
                     <BorderPane.margin>
-                        <Insets right="30.0" />
+                        <Insets right="30.0"/>
                     </BorderPane.margin>
                     <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                             <stops>
-                                <Stop color="#e08682" />
-                                <Stop color="#81c383" offset="1.0" />
+                                <Stop color="#e08682"/>
+                                <Stop color="#81c383" offset="1.0"/>
                             </stops>
                         </LinearGradient>
                     </fill>
                 </Text>
             </right>
             <left>
-                <Text fill="#afafaf" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                <Text fill="#afafaf" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Back"
+                      textAlignment="RIGHT" BorderPane.alignment="CENTER">
                     <font>
-                        <Font name="Century Gothic" size="45.0" />
+                        <Font name="Century Gothic" size="45.0"/>
                     </font>
                     <BorderPane.margin>
-                        <Insets left="30.0" />
+                        <Insets left="30.0"/>
                     </BorderPane.margin>
                 </Text>
             </left>
@@ -55,33 +52,38 @@
 
     </left>
     <center>
-        <VBox fx:id="contentVBox" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="contentVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="countLabel" alignment="CENTER" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="(i / n)" textFill="#afafaf">
+                <Label fx:id="countLabel" alignment="CENTER" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308"
+                       maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="800.0"
+                       style="-fx-background-color: #eeeeee;" text="(i / n)" textFill="#afafaf">
                     <font>
-                        <Font size="30.0" />
+                        <Font size="20.0"/>
                     </font>
                     <VBox.margin>
-                        <Insets bottom="20.0" />
+                        <Insets bottom="20.0" right="70.0"/>
                     </VBox.margin>
                 </Label>
                 <HBox spacing="10.0">
                     <children>
                         <Label fx:id="nameLabel" text="NAME GOES HERE">
                             <font>
-                                <Font size="57.0" />
+                                <Font size="57.0"/>
                             </font>
                             <padding>
-                                <Insets right="30.0" />
+                                <Insets right="30.0"/>
                             </padding>
                             <textFill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
-                                        <Stop color="#dd7272" />
-                                        <Stop color="#7991eb" offset="1.0" />
+                                        <Stop color="#dd7272"/>
+                                        <Stop color="#7991eb" offset="1.0"/>
                                     </stops>
                                 </LinearGradient>
                             </textFill>
+                            <HBox.margin>
+                                <Insets top="100.0"/>
+                            </HBox.margin>
                         </Label>
                         <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
                             <children>
@@ -89,56 +91,68 @@
                                     <stroke>
                                         <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                                             <stops>
-                                                <Stop color="#7991eb" />
-                                                <Stop color="#79bcee" offset="1.0" />
+                                                <Stop color="#7991eb"/>
+                                                <Stop color="#79bcee" offset="1.0"/>
                                             </stops>
                                         </LinearGradient>
                                     </stroke>
                                 </Circle>
                                 <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/play.png" />
+                                        <Image url="@../images/play.png"/>
                                     </image>
                                     <StackPane.margin>
-                                        <Insets left="3.0" />
+                                        <Insets left="3.0"/>
                                     </StackPane.margin>
                                 </ImageView>
                             </children>
+                            <HBox.margin>
+                                <Insets top="100.0"/>
+                            </HBox.margin>
                         </StackPane>
                     </children>
                 </HBox>
                 <Label text="Previous Attempts" textFill="#afafaf">
                     <VBox.margin>
-                        <Insets left="3.0" />
+                        <Insets left="3.0"/>
                     </VBox.margin>
                     <font>
-                        <Font size="27.0" />
+                        <Font size="27.0"/>
                     </font>
                 </Label>
             </children>
             <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
             </padding>
             <BorderPane.margin>
-                <Insets left="70.0" top="40.0" />
+                <Insets left="70.0" top="40.0"/>
             </BorderPane.margin>
         </VBox>
     </center>
     <right>
-        <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="17.0" BorderPane.alignment="CENTER">
             <children>
-                <RecordingWidget fx:id="recordingWidget" />
-                <Button fx:id="nextButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="26.0" prefWidth="103.0" text="Finish" textFill="#48c2e0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <effect>
-                  <DropShadow color="#49c5de40" />
-               </effect>
-               <VBox.margin>
-                  <Insets right="50.0" />
-               </VBox.margin></Button>
+                <RecordingWidget fx:id="recordingWidget">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="-100.0"/>
+                    </padding>
+                </RecordingWidget>
+                <JFXButton fx:id="nextButton" mnemonicParsing="false" onAction="#onNextClicked" prefHeight="30.0"
+                           prefWidth="320.0" styleClass="next-button" text="Next">
+                    <font>
+                        <Font name="Century Gothic" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </JFXButton>
             </children>
+            <BorderPane.margin>
+                <Insets top="-83.0"/>
+            </BorderPane.margin>
         </VBox>
     </right>
 </fx:root>

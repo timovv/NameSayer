@@ -93,7 +93,7 @@ public class PracticeRecordingMenu extends BorderPane {
         contentVBox.getChildren().add(scrollPane);
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
-        // if the name changes, also update the attmpts
+        // if the name changes, also update the attempts
         current.addListener((observable, oldValue, newValue) -> attemptView.setName(newValue));
         // when the recording is saved, create a new attempt
         recordingWidget.setOnSaveClicked(() -> current.get().addAttempt(recordingWidget.getRecording(), LocalDateTime.now()));
@@ -112,8 +112,13 @@ public class PracticeRecordingMenu extends BorderPane {
     @FXML
     private void onNextClicked() {
         if (remainingNames.isEmpty()) {
-            new Alert(Alert.AlertType.INFORMATION, "Well done!").showAndWait();
-            getScene().setRoot(previous);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have finished all your practices!" +
+                    "\nGood job!");
+            alert.setTitle(null);
+            alert.setTitle("Well done!");
+            alert.showAndWait();
+
+            getScene().setRoot(new MainMenu(database, audioSystem));
         } else {
             current.set(remainingNames.pollFirst());
         }

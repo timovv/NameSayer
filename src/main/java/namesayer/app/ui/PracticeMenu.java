@@ -63,8 +63,13 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     private void onStartClicked() {
 
         if (selected.isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please select one or more names to practice!")
-                    .showAndWait();
+            // deselect the button and intuitively prompt the user to find a name
+            this.getNamesSearch().requestFocus();
+
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select one or more names to practice!");
+            alert.setTitle("No names selected");
+            alert.setHeaderText(null);
+            alert.showAndWait();
             return;
         }
 
@@ -80,5 +85,11 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
         // reset for when user comes back
         reset();
         getScene().setRoot(new PracticeRecordingMenu(this, audioSystem, database, names));
+    }
+
+    // for testing only!
+    @FXML
+    private void onPracticeClicked() {
+        getScene().setRoot(new PracticeRecordingMenuStub(this, audioSystem, database));
     }
 }

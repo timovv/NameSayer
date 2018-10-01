@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 /**
- * A component that shows a lsit of names.
+ * A component that shows a list of names.
  *
  * @param <TCell> The type of the cell to show. There will be one cell for each name in the database.
  */
@@ -84,6 +84,10 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends BorderPa
 
     protected final ObservableList<TCell> getAllNames() {
         return allNames;
+    }
+
+    protected TextField getNamesSearch() {
+        return nameSearch;
     }
 
     @FXML
