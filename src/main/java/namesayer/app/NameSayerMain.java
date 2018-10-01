@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import namesayer.app.audio.AudioStub;
 import namesayer.app.audio.AudioSystem;
+import namesayer.app.audio.ffmpeg.FFmpegAudioSystem;
 import namesayer.app.database.NameDatabase;
 import namesayer.app.database.file.FileBasedNameDatabase;
 import namesayer.app.ui.MainMenu;
@@ -21,11 +22,14 @@ public class NameSayerMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // set up audio system and name database as used by the application
-        // AudioSystem audio = new FFmpegAudioSystem();
 
-        // use the stub for testing purposes instead
-        AudioSystem audio = new AudioStub();
+        AudioSystem audio;
+        String useMockAudio = System.getProperty("useMockAudio");
+        if(useMockAudio != null && !useMockAudio.equals("false")) {
+            audio = new AudioStub();
+        } else {
+            audio = new FFmpegAudioSystem();
+        }
 
         Path root = Paths.get("names");
         if (!Files.exists(root)) {
