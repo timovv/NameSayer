@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" style="-fx-background-color: #c9c9c9;"
+         type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
+    <children>
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="720.0" prefWidth="1280.0">
+            <top>
+                <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
+                            BorderPane.alignment="CENTER">
+                    <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop" textAlignment="RIGHT"
+                              BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Century Gothic" size="45.0"/>
+                            </font>
+                            <BorderPane.margin>
+                                <Insets right="30.0"/>
+                            </BorderPane.margin>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+                                    <stops>
+                                        <Stop color="#e181e1"/>
+                                        <Stop color="#ffeb0f" offset="0.007246376811594203"/>
+                                        <Stop color="#f83333" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                    </right>
+                    <left>
+                        <Text fill="#a0a0a0" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Century Gothic" size="45.0"/>
+                            </font>
+                            <BorderPane.margin>
+                                <Insets left="30.0"/>
+                            </BorderPane.margin>
+                        </Text>
+                    </left>
+                </BorderPane>
+            </top>
+        </BorderPane>
+    </children>
+</fx:root>

@@ -18,6 +18,7 @@ public class MainMenu extends StackPane {
     private final AudioSystem audioSystem;
     private final ListenMenu listenMenu;
     private final PracticeMenu practiceMenu;
+    private final ShopMenu shopMenu;
 
     public MainMenu(NameDatabase database, AudioSystem audioSystem) {
         FXMLLoader loader = new FXMLLoader();
@@ -35,6 +36,7 @@ public class MainMenu extends StackPane {
         this.audioSystem = audioSystem;
         this.listenMenu = new ListenMenu(this, database);
         this.practiceMenu = new PracticeMenu(this, audioSystem, database);
+        this.shopMenu = new ShopMenu(this);
     }
 
     @FXML
@@ -51,5 +53,10 @@ public class MainMenu extends StackPane {
     private void onRecordClicked() {
         RecordMenu menu = new RecordMenu(this, audioSystem, database);
         getScene().setRoot(menu);
+    }
+
+    @FXML
+    private void onShopButtonClicked() {
+        getScene().setRoot(shopMenu);
     }
 }

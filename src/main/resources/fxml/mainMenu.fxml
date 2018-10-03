@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -7,11 +8,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #ededed;" type="StackPane"
+         xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;"
-                    stylesheets="@../css/main.css">
+                    prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/main.css">
             <top>
                 <VBox>
                     <children>
@@ -65,6 +66,19 @@
                                                 </LinearGradient>
                                             </fill>
                                         </Text>
+                                        <JFXButton mnemonicParsing="false" onAction="#onShopButtonClicked"
+                                                   prefHeight="32.0" prefWidth="140.0" styleClass="shop-button"
+                                                   text="🛒 ">
+                                            <HBox.margin>
+                                                <Insets left="605.0"/>
+                                            </HBox.margin>
+                                            <font>
+                                                <Font name="Century Gothic" size="27.0"/>
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="7.0" top="10.0"/>
+                                            </padding>
+                                        </JFXButton>
                                     </children>
                                 </HBox>
                             </left>

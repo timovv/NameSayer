@@ -39,6 +39,14 @@
     -fx-background-color: #92e07d;
 }
 
+.shop-button {
+    -jfx-button-type: FLAT;
+    -fx-text-fill: white;
+    -fx-background-color: #c9c9c9;
+    -fx-border-color: linear-gradient(to right, #ffd000, #ff2e00);
+    -fx-border-weight: 2px;
+}
+
 .file-button {
     -jfx-button-type: FLAT;
     -fx-text-fill: #fafafa;
