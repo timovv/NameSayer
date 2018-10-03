@@ -2,7 +2,7 @@ package namesayer.app.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.NameDatabase;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * The main menu
  */
-public class MainMenu extends BorderPane {
+public class MainMenu extends StackPane {
 
     private final NameDatabase database;
     private final AudioSystem audioSystem;
