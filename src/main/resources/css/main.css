@@ -3,6 +3,21 @@
     -fx-scale-y: 1.05;
 }
 
+.record-button:hover {
+        -fx-scale-x: 1.03;
+        -fx-scale-y: 1.03;
+}
+
+.tick-button:hover {
+        -fx-scale-x: 1.06;
+        -fx-scale-y: 1.06;
+}
+
+.play-button:hover {
+        -fx-scale-x: 1.06;
+        -fx-scale-y: 1.06;
+}
+
 .start-button,
 .next-button {
     -jfx-button-type: FLAT;
@@ -37,7 +52,7 @@
 
 .name-search {
     -fx-background-color: white;
-    -fx-pref-height: 39;
+    -fx-pref-height: 41;
     -fx-pref-width: 1280;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 20.0;
