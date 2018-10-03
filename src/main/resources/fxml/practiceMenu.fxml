@@ -4,12 +4,14 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" onKeyPressed="#onNameChanged" type="StackPane"
-         xmlns="http://javafx.com/javafx/8.0.121">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" onKeyPressed="#onNameChanged"
+         style="-fx-background-color: #ededed;"
+         type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                     prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;"
@@ -92,12 +94,18 @@
                                     <font>
                                         <Font name="Century Gothic" size="20.0"/>
                                     </font>
+                                    <tooltip>
+                                        <Tooltip text="Add the typed &#10;name to practise."/>
+                                    </tooltip>
                                 </JFXButton>
                                 <JFXButton mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0"
                                            styleClass="file-button" text="📁" textAlignment="CENTER" textFill="#71d05d">
                                     <font>
                                         <Font name="Century Gothic" size="20.0"/>
                                     </font>
+                                    <tooltip>
+                                        <Tooltip text="Upload a list of files &#10;of names to practise."/>
+                                    </tooltip>
                                 </JFXButton>
                             </children>
                         </HBox>
@@ -106,7 +114,7 @@
                                 <Insets left="10.0" right="10.0" top="20.0"/>
                             </VBox.margin>
                             <content>
-                                <VBox fx:id="namesBox" spacing="10.0" style="-fx-background-color: #ededed;"/>
+                                <VBox fx:id="namesBoxDatabase" spacing="10.0" style="-fx-background-color: #ededed;"/>
                             </content>
                         </ScrollPane>
                     </children>

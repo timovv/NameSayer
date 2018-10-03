@@ -8,257 +8,248 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" type="StackPane"
-         xmlns="http://javafx.com/javafx/8.0.121">
-    <children>
-        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;"
-                    stylesheets="@../css/main.css">
-            <top>
-                <VBox>
-                    <children>
-                        <ImageView fitHeight="5.0" fitWidth="5000.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/banner.png"/>
-                            </image>
-                            <viewport>
-                                <Rectangle2D height="5.0" minX="1860.0" width="5000.0"/>
-                            </viewport>
-                            <VBox.margin>
-                                <Insets left="-1000.0"/>
-                            </VBox.margin>
-                        </ImageView>
-                        <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
-                                    BorderPane.alignment="CENTER">
-                            <left>
-                                <HBox spacing="13.0" BorderPane.alignment="CENTER">
-                                    <BorderPane.margin>
-                                        <Insets left="30.0" top="22.0"/>
-                                    </BorderPane.margin>
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name Sayer"
-                                              textAlignment="RIGHT">
-                                            <font>
-                                                <Font name="Century Gothic" size="45.0"/>
-                                            </font>
-                                            <fill>
-                                                <LinearGradient endX="1.0" endY="1.0">
-                                                    <stops>
-                                                        <Stop color="#8f8f8f99"/>
-                                                        <Stop color="#8f8f8fcc" offset="1.0"/>
-                                                    </stops>
-                                                </LinearGradient>
-                                            </fill>
-                                        </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spectrum"
-                                              textAlignment="RIGHT">
-                                            <font>
-                                                <Font name="Century Gothic" size="45.0"/>
-                                            </font>
-                                            <fill>
-                                                <LinearGradient endX="1.0" endY="1.0" startY="1.0">
-                                                    <stops>
-                                                        <Stop color="#f89b9b"/>
-                                                        <Stop color="#f281d3" offset="0.21888888888888897"/>
-                                                        <Stop color="#b38aff" offset="0.44074074074074104"/>
-                                                        <Stop color="#81b9e4" offset="0.6540740740740741"/>
-                                                        <Stop color="#6bda85" offset="1.0"/>
-                                                    </stops>
-                                                </LinearGradient>
-                                            </fill>
-                                        </Text>
-                                    </children>
-                                </HBox>
-                            </left>
-                        </BorderPane>
-                    </children>
-                </VBox>
-            </top>
-            <bottom>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                            <HBox.margin>
-                                <Insets/>
-                            </HBox.margin>
-                            <center>
-                                <StackPane onMouseClicked="#onPracticeClicked" prefHeight="150.0" prefWidth="200.0"
-                                           styleClass="main-menu-button" BorderPane.alignment="CENTER">
-                                    <children>
-                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0"
-                                                   stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="350.0">
-                                            <effect>
-                                                <DropShadow color="#0000001a" offsetY="0.5"/>
-                                            </effect>
-                                        </Rectangle>
-                                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
-                                                   strokeType="INSIDE" strokeWidth="0.25" width="300.0">
-                                            <StackPane.margin>
-                                                <Insets bottom="100.0"/>
-                                            </StackPane.margin>
-                                            <fill>
-                                                <LinearGradient endX="1.0" endY="1.0">
-                                                    <stops>
-                                                        <Stop color="#c4eb8e"/>
-                                                        <Stop color="#96da99" offset="1.0"/>
-                                                    </stops>
-                                                </LinearGradient>
-                                            </fill>
-                                            <effect>
-                                                <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
-                                            </effect>
-                                        </Rectangle>
-                                        <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true"
-                                                   preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/play-icon-circle.png"/>
-                                            </image>
-                                            <StackPane.margin>
-                                                <Insets bottom="100.0"/>
-                                            </StackPane.margin>
-                                        </ImageView>
-                                        <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice">
-                                            <StackPane.margin>
-                                                <Insets top="160.0"/>
-                                            </StackPane.margin>
-                                            <font>
-                                                <Font name="Century Gothic" size="32.0"/>
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </StackPane>
-                            </center>
-                        </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                            <center>
-                                <StackPane onMouseClicked="#onListenClicked" prefHeight="150.0" prefWidth="200.0"
-                                           styleClass="main-menu-button" BorderPane.alignment="CENTER">
-                                    <children>
-                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0"
-                                                   stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="350.0">
-                                            <effect>
-                                                <DropShadow color="#0000001a" offsetY="0.5"/>
-                                            </effect>
-                                            <StackPane.margin>
-                                                <Insets/>
-                                            </StackPane.margin>
-                                        </Rectangle>
-                                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
-                                                   strokeType="INSIDE" strokeWidth="0.25" width="300.0">
-                                            <effect>
-                                                <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
-                                            </effect>
-                                            <fill>
-                                                <LinearGradient endX="1.0" endY="1.0">
-                                                    <stops>
-                                                        <Stop color="#96da99"/>
-                                                        <Stop color="#90dee5" offset="1.0"/>
-                                                    </stops>
-                                                </LinearGradient>
-                                            </fill>
-                                            <StackPane.margin>
-                                                <Insets bottom="100.0"/>
-                                            </StackPane.margin>
-                                        </Rectangle>
-                                        <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true"
-                                                   preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/headphones.png"/>
-                                            </image>
-                                            <StackPane.margin>
-                                                <Insets bottom="100.0"/>
-                                            </StackPane.margin>
-                                        </ImageView>
-                                        <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Listen">
-                                            <font>
-                                                <Font name="Century Gothic" size="32.0"/>
-                                            </font>
-                                            <StackPane.margin>
-                                                <Insets top="160.0"/>
-                                            </StackPane.margin>
-                                        </Text>
-                                    </children>
-                                    <BorderPane.margin>
-                                        <Insets left="50.0"/>
-                                    </BorderPane.margin>
-                                </StackPane>
-                            </center>
-                        </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                            <center>
-                                <StackPane onMouseClicked="#onRecordClicked" prefHeight="150.0" prefWidth="200.0"
-                                           styleClass="main-menu-button" BorderPane.alignment="CENTER">
-                                    <children>
-                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0"
-                                                   stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.5" width="350.0">
-                                            <effect>
-                                                <DropShadow color="#0000001a" offsetY="0.5"/>
-                                            </effect>
-                                            <StackPane.margin>
-                                                <Insets/>
-                                            </StackPane.margin>
-                                        </Rectangle>
-                                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
-                                                   strokeType="INSIDE" strokeWidth="0.25" width="300.0">
-                                            <effect>
-                                                <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
-                                            </effect>
-                                            <fill>
-                                                <LinearGradient endX="1.0" endY="1.0">
-                                                    <stops>
-                                                        <Stop color="#90dee5"/>
-                                                        <Stop color="#ae8fd9" offset="1.0"/>
-                                                    </stops>
-                                                </LinearGradient>
-                                            </fill>
-                                            <StackPane.margin>
-                                                <Insets bottom="100.0"/>
-                                            </StackPane.margin>
-                                        </Rectangle>
-                                        <ImageView fitHeight="180.0" fitWidth="180.0" pickOnBounds="true"
-                                                   preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/mic.png"/>
-                                            </image>
-                                            <StackPane.margin>
-                                                <Insets bottom="100.0"/>
-                                            </StackPane.margin>
-                                        </ImageView>
-                                        <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Record">
-                                            <font>
-                                                <Font name="Century Gothic" size="32.0"/>
-                                            </font>
-                                            <StackPane.margin>
-                                                <Insets top="160.0"/>
-                                            </StackPane.margin>
-                                        </Text>
-                                    </children>
-                                    <BorderPane.margin>
-                                        <Insets left="50.0"/>
-                                    </BorderPane.margin>
-                                </StackPane>
-                            </center>
-                        </BorderPane>
-                    </children>
-                    <BorderPane.margin>
-                        <Insets bottom="40.0"/>
-                    </BorderPane.margin>
-                </HBox>
-            </bottom>
-            <center>
-                <ImageView disable="true" fitHeight="500.0" fitWidth="5000.0" pickOnBounds="true" preserveRatio="true"
-                           BorderPane.alignment="CENTER">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+         minWidth="-Infinity"
+         prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css"
+         type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121">
+    <top>
+        <VBox>
+            <children>
+                <ImageView fitHeight="5.0" fitWidth="5000.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/soundwave.png"/>
+                        <Image url="@../images/banner.png"/>
                     </image>
-                    <BorderPane.margin>
-                        <Insets left="1860.0" top="10.0"/>
-                    </BorderPane.margin>
                     <viewport>
-                        <Rectangle2D height="500.0" minX="1860.0" width="5000.0"/>
+                        <Rectangle2D height="5.0" minX="1860.0" width="5000.0"/>
                     </viewport>
+                    <VBox.margin>
+                        <Insets left="-1000.0"/>
+                    </VBox.margin>
                 </ImageView>
-            </center>
-        </BorderPane>
-    </children>
+                <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
+                            BorderPane.alignment="CENTER">
+                    <left>
+                        <HBox spacing="13.0" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets left="30.0" top="22.0"/>
+                            </BorderPane.margin>
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name Sayer" textAlignment="RIGHT">
+                                    <font>
+                                        <Font name="Century Gothic" size="45.0"/>
+                                    </font>
+                                    <fill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="#8f8f8f99"/>
+                                                <Stop color="#8f8f8fcc" offset="1.0"/>
+                                            </stops>
+                                        </LinearGradient>
+                                    </fill>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spectrum" textAlignment="RIGHT">
+                                    <font>
+                                        <Font name="Century Gothic" size="45.0"/>
+                                    </font>
+                                    <fill>
+                                        <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+                                            <stops>
+                                                <Stop color="#ff5e5e"/>
+                                                <Stop color="#ff5bd3" offset="0.21888888888888897"/>
+                                                <Stop color="#9760ff" offset="0.44074074074074104"/>
+                                                <Stop color="#75c3ff" offset="0.6540740740740741"/>
+                                                <Stop color="#64ff35" offset="1.0"/>
+                                            </stops>
+                                        </LinearGradient>
+                                    </fill>
+                                </Text>
+                            </children>
+                        </HBox>
+                    </left>
+                </BorderPane>
+            </children>
+        </VBox>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                    <center>
+                        <StackPane onMouseClicked="#onPracticeClicked" prefHeight="150.0" prefWidth="200.0"
+                                   styleClass="main-menu-button" BorderPane.alignment="CENTER">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" stroke="#8d8d8d"
+                                           strokeType="INSIDE" strokeWidth="0.5" width="350.0">
+                                    <effect>
+                                        <DropShadow color="#0000001a" offsetY="0.5"/>
+                                    </effect>
+                                </Rectangle>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
+                                           strokeType="INSIDE" strokeWidth="0.25" width="300.0">
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0"/>
+                                    </StackPane.margin>
+                                    <fill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="#c4eb8e"/>
+                                                <Stop color="#96da99" offset="1.0"/>
+                                            </stops>
+                                        </LinearGradient>
+                                    </fill>
+                                    <effect>
+                                        <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
+                                    </effect>
+                                </Rectangle>
+                                <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/play-icon-circle.png"/>
+                                    </image>
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0"/>
+                                    </StackPane.margin>
+                                </ImageView>
+                                <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice">
+                                    <StackPane.margin>
+                                        <Insets top="160.0"/>
+                                    </StackPane.margin>
+                                    <font>
+                                        <Font name="Century Gothic" size="32.0"/>
+                                    </font>
+                                </Text>
+                            </children>
+                        </StackPane>
+                    </center>
+                </BorderPane>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                        <StackPane onMouseClicked="#onListenClicked" prefHeight="150.0" prefWidth="200.0"
+                                   styleClass="main-menu-button" BorderPane.alignment="CENTER">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" stroke="#8d8d8d"
+                                           strokeType="INSIDE" strokeWidth="0.5" width="350.0">
+                                    <effect>
+                                        <DropShadow color="#0000001a" offsetY="0.5"/>
+                                    </effect>
+                                    <StackPane.margin>
+                                        <Insets/>
+                                    </StackPane.margin>
+                                </Rectangle>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
+                                           strokeType="INSIDE" strokeWidth="0.25" width="300.0">
+                                    <effect>
+                                        <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
+                                    </effect>
+                                    <fill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="#96da99"/>
+                                                <Stop color="#90dee5" offset="1.0"/>
+                                            </stops>
+                                        </LinearGradient>
+                                    </fill>
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0"/>
+                                    </StackPane.margin>
+                                </Rectangle>
+                                <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/headphones.png"/>
+                                    </image>
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0"/>
+                                    </StackPane.margin>
+                                </ImageView>
+                                <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Listen">
+                                    <font>
+                                        <Font name="Century Gothic" size="32.0"/>
+                                    </font>
+                                    <StackPane.margin>
+                                        <Insets top="160.0"/>
+                                    </StackPane.margin>
+                                </Text>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets left="50.0"/>
+                            </BorderPane.margin>
+                        </StackPane>
+                    </center>
+                </BorderPane>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                        <StackPane onMouseClicked="#onRecordClicked" prefHeight="150.0" prefWidth="200.0"
+                                   styleClass="main-menu-button" BorderPane.alignment="CENTER">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" stroke="#8d8d8d"
+                                           strokeType="INSIDE" strokeWidth="0.5" width="350.0">
+                                    <effect>
+                                        <DropShadow color="#0000001a" offsetY="0.5"/>
+                                    </effect>
+                                    <StackPane.margin>
+                                        <Insets/>
+                                    </StackPane.margin>
+                                </Rectangle>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
+                                           strokeType="INSIDE" strokeWidth="0.25" width="300.0">
+                                    <effect>
+                                        <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
+                                    </effect>
+                                    <fill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="#90dee5"/>
+                                                <Stop color="#ae8fd9" offset="1.0"/>
+                                            </stops>
+                                        </LinearGradient>
+                                    </fill>
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0"/>
+                                    </StackPane.margin>
+                                </Rectangle>
+                                <ImageView fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/mic.png"/>
+                                    </image>
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0"/>
+                                    </StackPane.margin>
+                                </ImageView>
+                                <Text fill="#c9c9c9" strokeType="OUTSIDE" strokeWidth="0.0" text="Record">
+                                    <font>
+                                        <Font name="Century Gothic" size="32.0"/>
+                                    </font>
+                                    <StackPane.margin>
+                                        <Insets top="160.0"/>
+                                    </StackPane.margin>
+                                </Text>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets left="50.0"/>
+                            </BorderPane.margin>
+                        </StackPane>
+                    </center>
+                </BorderPane>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="40.0"/>
+            </BorderPane.margin>
+        </HBox>
+    </bottom>
+    <center>
+        <ImageView disable="true" fitHeight="500.0" fitWidth="5000.0" pickOnBounds="true" preserveRatio="true"
+                   BorderPane.alignment="CENTER">
+            <image>
+                <Image url="@../images/soundwave.png"/>
+            </image>
+            <BorderPane.margin>
+                <Insets left="1860.0" top="10.0"/>
+            </BorderPane.margin>
+            <viewport>
+                <Rectangle2D height="500.0" minX="1860.0" width="5000.0"/>
+            </viewport>
+        </ImageView>
+    </center>
 </fx:root>
