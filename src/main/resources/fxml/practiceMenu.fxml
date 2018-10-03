@@ -68,10 +68,13 @@
                                             </StackPane.margin>
                                         </TextField>
                                         <JFXChipView fx:id="namesChipView" prefHeight="41.0" prefWidth="432.0"
-                                                     styleClass="name-search">
+                                                     styleClass="name-search" StackPane.alignment="CENTER">
                                             <StackPane.margin>
                                                 <Insets right="2.0"/>
                                             </StackPane.margin>
+                                            <padding>
+                                                <Insets top="1.0"/>
+                                            </padding>
                                         </JFXChipView>
                                         <Text fx:id="searchPrompt" fill="#a4a4a4" strokeType="OUTSIDE" strokeWidth="0.0"
                                               text="Search names">
