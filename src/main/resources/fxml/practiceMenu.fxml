@@ -10,7 +10,8 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" onKeyPressed="#onNameChanged"
-         style="-fx-background-color: #ededed;" type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
+         style="-fx-background-color: #ededed;"
+         type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                     prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;"
@@ -113,7 +114,7 @@
                                 <Insets left="10.0" right="10.0" top="20.0"/>
                             </VBox.margin>
                             <content>
-                                <VBox fx:id="namesBoxDatabase" spacing="10.0" style="-fx-background-color: #ededed;"/>
+                                <VBox fx:id="namesBox" spacing="10.0" style="-fx-background-color: #ededed;"/>
                             </content>
                         </ScrollPane>
                     </children>
@@ -127,6 +128,11 @@
                     <center>
                         <StackPane prefHeight="70.0" BorderPane.alignment="CENTER">
                             <children>
+                                <JFXProgressBar fx:id="progressBar" prefWidth="1280.0" progress="0.0">
+                                    <StackPane.margin>
+                                        <Insets bottom="10.0"/>
+                                    </StackPane.margin>
+                                </JFXProgressBar>
                                 <JFXButton mnemonicParsing="false" onMouseClicked="#onStartClicked" prefHeight="50.0"
                                            prefWidth="200.0" styleClass="start-button" text="START"
                                            textAlignment="CENTER" textFill="#71d05d">
@@ -138,6 +144,9 @@
                                     </StackPane.margin>
                                 </JFXButton>
                             </children>
+                            <BorderPane.margin>
+                                <Insets left="20.0" right="20.0"/>
+                            </BorderPane.margin>
                         </StackPane>
                     </center>
                     <right>

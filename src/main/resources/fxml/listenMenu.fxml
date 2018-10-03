@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css"
+         type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                     prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;">
@@ -28,7 +27,7 @@
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
                                         <Stop color="#e181e1"/>
-                                        <Stop color="#96da99" offset="0.02074688796680498"/>
+                                        <Stop color="#96da99" offset="0.007246376811594203"/>
                                         <Stop color="#8fbee3" offset="1.0"/>
                                     </stops>
                                 </LinearGradient>
@@ -36,7 +35,7 @@
                         </Text>
                     </right>
                     <left>
-                        <Text fill="#a8a8a8" onMousePressed="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
+                        <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
                               text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
@@ -49,31 +48,112 @@
                 </BorderPane>
             </top>
             <center>
-                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <TextField fx:id="nameSearch" opacity="0.85" promptText="Search name">
-                            <VBox.margin>
-                                <Insets left="10.0" right="10.0" top="10.0"/>
-                            </VBox.margin>
-                            <font>
-                                <Font name="Century Gothic" size="20.0"/>
-                            </font>
-                        </TextField>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0" style="-fx-background-color: #ededed;">
-                            <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
-                            </VBox.margin>
-                            <content>
-                                <VBox fx:id="namesBox" maxHeight="1.7976931348623157E308"
-                                      maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                      spacing="10.0" style="-fx-background-color: #ededed;"/>
-                            </content>
-                        </ScrollPane>
-                    </children>
+                <TabPane rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                     </BorderPane.margin>
-                </VBox>
+                    <tabs>
+                        <Tab id="databaseTab" closable="false" styleClass="database-tab" text="Database">
+                            <content>
+                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <BorderPane>
+                                            <VBox.margin>
+                                                <Insets/>
+                                            </VBox.margin>
+                                            <right>
+                                                <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                      text="Listen to individual names from the database"
+                                                      textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                                                    <font>
+                                                        <Font name="Century Gothic" size="15.0"/>
+                                                    </font>
+                                                    <BorderPane.margin>
+                                                        <Insets right="10.0"/>
+                                                    </BorderPane.margin>
+                                                </Text>
+                                            </right>
+                                        </BorderPane>
+                                        <TextField fx:id="nameSearch" opacity="0.85" promptText="Search name">
+                                            <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0"/>
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="Century Gothic" size="20.0"/>
+                                            </font>
+                                        </TextField>
+                                        <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0"
+                                                    style="-fx-background-color: #ededed;">
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
+                                            </VBox.margin>
+                                            <content>
+                                                <VBox fx:id="namesBox" maxHeight="1.7976931348623157E308"
+                                                      maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                                                      minWidth="-Infinity" spacing="10.0"
+                                                      style="-fx-background-color: #ededed;"/>
+                                            </content>
+                                        </ScrollPane>
+                                    </children>
+                                    <opaqueInsets>
+                                        <Insets/>
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="6.0"/>
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        <Tab id="attemptsTab" styleClass="attempts-tab" text="Attempted Names">
+                            <content>
+                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <BorderPane>
+                                            <VBox.margin>
+                                                <Insets left="11.0"/>
+                                            </VBox.margin>
+                                            <right>
+                                                <Text fill="#a8a8a8" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                      text="Listen to full attempted name recordings"
+                                                      textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                                                    <font>
+                                                        <Font name="Century Gothic" size="15.0"/>
+                                                    </font>
+                                                    <BorderPane.margin>
+                                                        <Insets right="10.0"/>
+                                                    </BorderPane.margin>
+                                                </Text>
+                                            </right>
+                                        </BorderPane>
+                                        <TextField fx:id="nameSearchAttempts" opacity="0.85" promptText="Search name">
+                                            <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0"/>
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="Century Gothic" size="20.0"/>
+                                            </font>
+                                        </TextField>
+                                        <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0"
+                                                    style="-fx-background-color: #ededed;">
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
+                                            </VBox.margin>
+                                            <content>
+                                                <VBox fx:id="namesBoxAttempts" maxHeight="1.7976931348623157E308"
+                                                      maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                                                      minWidth="-Infinity" spacing="10.0"
+                                                      style="-fx-background-color: #ededed;"/>
+                                            </content>
+                                        </ScrollPane>
+                                    </children>
+                                    <padding>
+                                        <Insets left="6.0"/>
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
             </center>
         </BorderPane>
     </children>

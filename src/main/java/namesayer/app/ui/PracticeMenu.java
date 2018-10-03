@@ -9,6 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.audio.AudioSystem;
@@ -45,6 +46,9 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     @FXML
     private Text searchPrompt;
 
+    @FXML
+    private ProgressBar progressBar;
+
     public PracticeMenu(Parent previous, AudioSystem audioSystem, NameDatabase db) {
         super(PracticeMenu.class.getResource("/fxml/practiceMenu.fxml"), previous, db);
 
@@ -56,6 +60,9 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
 
         // show how many names the user has ticked
         selectedText.textProperty().bind(Bindings.concat("Selected: ", selectedCount));
+
+        // hides the progress bar until you need it for loading.
+        progressBar.setVisible(false);
     }
 
     @Override
