@@ -6,7 +6,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
@@ -74,19 +73,27 @@ public class RecordMenu extends StackPane {
     }
 
     private void saveButtonClicked() {
-        // ensure there's a name to save and a recording as well
         if (nameTextField.getText().isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please enter a name.").showAndWait();
+            // use JFXDialogHelper to create and show a new pop-up dialog for an empty name
+            JFXDialogHelper dialog = new JFXDialogHelper("Empty Name", "Please enter a name to record.",
+                    "OK", this);
+            dialog.show();
             return;
         }
 
         if (recordingWidget.getRecording() == null) {
-            new Alert(Alert.AlertType.WARNING, "You need to make a recording before you can save. Press the record button to start!");
+            // use JFXDialogHelper to create and show a new pop-up dialog for no recording and save
+            JFXDialogHelper dialog = new JFXDialogHelper("No Recording", "Please record something before" +
+                    " you try to save.", "OK", this);
+            dialog.show();
             return;
         }
 
         database.addName(nameTextField.getText(), "se206", recordingWidget.getRecording());
-        new Alert(Alert.AlertType.INFORMATION, "Recording created successfully!").showAndWait();
+        // use JFXDialogHelper to create and show a new pop-up dialog for successful recording
+        JFXDialogHelper dialog = new JFXDialogHelper("Recording Successful", "Your recording of " +
+                nameTextField.getText() + " was saved.", "OK", this);
+        dialog.show();
     }
 
 

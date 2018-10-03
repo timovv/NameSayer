@@ -1,5 +1,6 @@
 package namesayer.app.ui;
 
+import com.jfoenix.controls.JFXChipView;
 import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
@@ -30,6 +31,9 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     private AudioSystem audioSystem;
 
     @FXML
+    private JFXChipView<String> namesChipView;
+
+    @FXML
     private Text selectedText;
 
     @FXML
@@ -37,6 +41,9 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
 
     @FXML
     private StackPane stackPane;
+
+    @FXML
+    private Text searchPrompt;
 
     public PracticeMenu(Parent previous, AudioSystem audioSystem, NameDatabase db) {
         super(PracticeMenu.class.getResource("/fxml/practiceMenu.fxml"), previous, db);
@@ -89,6 +96,16 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
         // reset for when user comes back
         reset();
         getScene().setRoot(new PracticeRecordingMenu(this, audioSystem, database, names));
+    }
+
+    @FXML
+    private void onNameChanged() {
+        System.out.println("keystroke detected");
+        if (namesChipView.getAccessibleText() != null) {
+            searchPrompt.setVisible(true);
+        } else {
+            searchPrompt.setVisible(false);
+        }
     }
 
     // for testing only!

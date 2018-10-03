@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +8,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" type="StackPane"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" onKeyPressed="#onNameChanged" type="StackPane"
          xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
@@ -54,14 +52,52 @@
             <center>
                 <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextField fx:id="nameSearch" opacity="0.85" promptText="Search name">
+                        <HBox spacing="5.0">
                             <VBox.margin>
                                 <Insets left="10.0" right="10.0" top="10.0"/>
                             </VBox.margin>
-                            <font>
-                                <Font name="Century Gothic" size="20.0"/>
-                            </font>
-                        </TextField>
+                            <children>
+                                <StackPane>
+                                    <children>
+                                        <TextField fx:id="nameSearch" opacity="0.85" visible="false">
+                                            <font>
+                                                <Font name="Century Gothic" size="20.0"/>
+                                            </font>
+                                            <StackPane.margin>
+                                                <Insets right="2.0"/>
+                                            </StackPane.margin>
+                                        </TextField>
+                                        <JFXChipView fx:id="namesChipView" prefHeight="41.0" prefWidth="432.0"
+                                                     styleClass="name-search">
+                                            <StackPane.margin>
+                                                <Insets right="2.0"/>
+                                            </StackPane.margin>
+                                        </JFXChipView>
+                                        <Text fx:id="searchPrompt" fill="#a4a4a4" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Search names">
+                                            <font>
+                                                <Font name="Century Gothic" size="25.0"/>
+                                            </font>
+                                            <StackPane.margin>
+                                                <Insets/>
+                                            </StackPane.margin>
+                                        </Text>
+                                    </children>
+                                </StackPane>
+                                <JFXButton mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0"
+                                           styleClass="add-button" text="＋" textAlignment="CENTER" textFill="#71d05d">
+                                    <font>
+                                        <Font name="Century Gothic" size="20.0"/>
+                                    </font>
+                                </JFXButton>
+                                <JFXButton mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0"
+                                           styleClass="file-button" text="📁" textAlignment="CENTER" textFill="#71d05d">
+                                    <font>
+                                        <Font name="Century Gothic" size="20.0"/>
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0" style="-fx-background-color: #ededed;">
                             <VBox.margin>
                                 <Insets left="10.0" right="10.0" top="20.0"/>
