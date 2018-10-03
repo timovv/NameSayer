@@ -79,12 +79,12 @@
                                             </padding>
                                         </JFXChipView>
                                         <Text fx:id="searchPrompt" fill="#a4a4a4" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Search names">
+                                              text="Search names" StackPane.alignment="CENTER_LEFT">
                                             <font>
-                                                <Font name="Century Gothic" size="25.0"/>
+                                                <Font name="Century Gothic" size="20.0"/>
                                             </font>
                                             <StackPane.margin>
-                                                <Insets/>
+                                                <Insets left="9.0" top="2.0"/>
                                             </StackPane.margin>
                                         </Text>
                                     </children>
