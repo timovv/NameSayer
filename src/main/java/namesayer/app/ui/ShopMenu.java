@@ -30,6 +30,18 @@ public class ShopMenu extends StackPane {
     }
 
     @FXML
+    private void onSFXClicked() {
+        //testing purposes only
+        System.out.println("SFX click detected.");
+    }
+
+    @FXML
+    private void onSpectrumGUIClicked() {
+        //testing purposes only
+        System.out.println("SpectrumGUI click detected.");
+    }
+
+    @FXML
     private void onBackClicked() {
         getScene().setRoot(previous);
     }

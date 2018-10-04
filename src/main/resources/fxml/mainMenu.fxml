@@ -67,10 +67,10 @@
                                             </fill>
                                         </Text>
                                         <JFXButton mnemonicParsing="false" onAction="#onShopButtonClicked"
-                                                   prefHeight="32.0" prefWidth="140.0" styleClass="shop-button"
+                                                   prefHeight="32.0" prefWidth="150.0" styleClass="shop-button"
                                                    text="🛒 ">
                                             <HBox.margin>
-                                                <Insets left="605.0"/>
+                                                <Insets left="600.0"/>
                                             </HBox.margin>
                                             <font>
                                                 <Font name="Century Gothic" size="27.0"/>
