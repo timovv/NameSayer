@@ -16,11 +16,13 @@ import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
+import namesayer.app.database.AttemptInfo;
 import namesayer.app.database.Name;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -47,16 +49,15 @@ public class PracticeRecordingMenu extends BorderPane {
     @FXML
     private VBox contentVBox;
 
-    private NameDatabase database;
+    private NameSayerDatabase database;
     private AudioSystem audioSystem;
     private Parent previous;
     private int total;
     private ObjectProperty<Name> current;
     private LinkedList<Name> remainingNames;
-    private AttemptView attemptView;
     private ScrollPane scrollPane = new ScrollPane();
 
-    public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameDatabase db, List<Name> names) {
+    public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db, List<Name> names) {
 
         this.audioSystem = audioSystem;
         this.previous = previous;
@@ -89,17 +90,18 @@ public class PracticeRecordingMenu extends BorderPane {
     private void initialize() {
 
         recordingWidget.setAudioSystem(audioSystem);
-        attemptView = new AttemptView(current.get());
 
-        scrollPane.setContent(attemptView);
         scrollPane.setFitToWidth(true);
         contentVBox.getChildren().add(scrollPane);
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
         // if the name changes, also update the attempts
-        current.addListener((observable, oldValue, newValue) -> attemptView.setName(newValue));
         // when the recording is saved, create a new attempt
-        recordingWidget.setOnSaveClicked(() -> current.get().addAttempt(recordingWidget.getRecording(), LocalDateTime.now()));
+        recordingWidget.setOnSaveClicked(() -> {
+            String name = current.get().getName();
+            AttemptInfo attemptInfo = new AttemptInfo(Collections.singletonList(name), LocalDateTime.now());
+            database.getAttemptDatabase().createNew(attemptInfo, recordingWidget.getRecording());
+        });
     }
 
     @FXML

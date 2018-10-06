@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.database.Name;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +22,7 @@ import java.net.URL;
 public class NameBlock extends BorderPane {
 
     private final Name name;
-    private final NameDatabase database;
+    private final NameSayerDatabase database;
 
     @FXML
     private Text nameText;
@@ -34,7 +34,7 @@ public class NameBlock extends BorderPane {
     @FXML
     private StackPane unsetBadQualityButton;
 
-    public NameBlock(Name name, NameDatabase db, URL fxmlLocation) {
+    public NameBlock(Name name, NameSayerDatabase db, URL fxmlLocation) {
         this.name = name;
         this.database = db;
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
@@ -92,7 +92,7 @@ public class NameBlock extends BorderPane {
     private void removeButtonClicked() {
         // double check they actually want to DELET
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this recording?");
-        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> database.removeName(name));
+        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> database.getNameDatabase().remove(name));
     }
 
     /**

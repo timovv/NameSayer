@@ -10,6 +10,7 @@ import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.database.Attempt;
 import namesayer.app.database.Name;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 
@@ -22,12 +23,12 @@ public class AttemptBlock extends BorderPane {
     @FXML
     private Text attemptText;
 
-    private final Name name;
     private final Attempt attempt;
+    private final NameSayerDatabase db;
     private final int index;
 
-    public AttemptBlock(Name name, Attempt attempt, int index) {
-        this.name = name;
+    public AttemptBlock(NameSayerDatabase db, Attempt attempt, int index) {
+        this.db = db;
         this.attempt = attempt;
         // index is just a number so we can go Attempt 1, Attempt 2, Attempt 3, etc.
         this.index = index;
@@ -56,6 +57,8 @@ public class AttemptBlock extends BorderPane {
     @FXML
     private void removeButtonClicked() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this attempt?");
-        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> name.removeAttempt(attempt));
+        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> {
+            db.getAttemptDatabase().remove(attempt);
+        });
     }
 }

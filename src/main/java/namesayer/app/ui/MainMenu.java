@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 
@@ -14,12 +14,12 @@ import java.io.IOException;
  */
 public class MainMenu extends StackPane {
 
-    private final NameDatabase database;
+    private final NameSayerDatabase database;
     private final AudioSystem audioSystem;
     private final ListenMenu listenMenu;
     private final PracticeMenu practiceMenu;
 
-    public MainMenu(NameDatabase database, AudioSystem audioSystem) {
+    public MainMenu(NameSayerDatabase database, AudioSystem audioSystem) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/mainMenu.fxml"));
         loader.setController(this);
