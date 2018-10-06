@@ -1,12 +1,7 @@
 package namesayer.app.database.file;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import namesayer.app.NameSayerException;
-import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.Attempt;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameInfo;
 
@@ -14,99 +9,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
-/**
- * A name that is based on a flat file
- */
-public class FileBasedName implements Name {
+public class FileBasedName extends FileBasedRecordingItem<NameInfo> implements Name {
 
     private static final Path BAD_QUALITY_FILE = Paths.get("bad_quality.txt");
 
-    private final NameInfo info;
-    private final Path basePath;
-    private final Path pathOfThisName;
-    private final NameFileResolver resolver;
-    private final AudioSystem audioSystem;
-
-    private final ObservableList<Attempt> attempts = FXCollections.observableArrayList();
-    private final ObservableList<Attempt> readOnlyAttempts = FXCollections.unmodifiableObservableList(attempts);
-
     private boolean isBadQuality;
 
-    FileBasedName(NameInfo nameInfo, Path basePath, NameFileResolver resolver, AudioSystem audioSystem) {
-        this.resolver = resolver;
-        this.audioSystem = audioSystem;
-        this.info = nameInfo;
-        this.basePath = basePath;
-        this.pathOfThisName = resolver.getPathForName(basePath, nameInfo);
-
-        if (!isValid()) {
-            throw new NameSayerException("Not a valid path for this resolver");
-        }
-
+    public FileBasedName(NameInfo nameInfo, Path basePath, RecordingFileResolver<NameInfo> resolver, AudioSystem audioSystem) {
+        super(nameInfo, basePath, resolver, audioSystem);
         setUpBadQuality();
-        updateAttempts();
-    }
-
-    /**
-     * Figure out whether this recording was previously marked as bad quality or not
-     */
-    private void setUpBadQuality() {
-        if (!Files.exists(BAD_QUALITY_FILE)) {
-            try {
-                Files.createFile(BAD_QUALITY_FILE);
-            } catch (IOException e) {
-                throw new NameSayerException("Could not set up bad quality file", e);
-            }
-        }
-
-        String entry = pathOfThisName.getFileName().toString();
-
-        try {
-            isBadQuality = Files.readAllLines(BAD_QUALITY_FILE).contains(entry);
-        } catch (IOException e) {
-            isBadQuality = false;
-        }
-    }
-
-    /**
-     * Update this name's attempts
-     */
-    void updateAttempts() {
-        // remove invalids
-        Iterator<Attempt> iter = attempts.iterator();
-        while (iter.hasNext()) {
-            FileBasedAttempt attempt = (FileBasedAttempt) iter.next();
-            if (!attempt.isValid()) {
-                iter.remove();
-            }
-        }
-
-        // add new ones (does nothing if already present)
-        resolver.getAllAttempts(basePath, info).forEach(this::internalAddAttempt);
-    }
-
-    @Override
-    public NameInfo getNameInfo() {
-        Optional<NameInfo> info = resolver.getNameInfo(pathOfThisName);
-        assert info.isPresent() : "if info was not present the name must be invalid";
-        return info.get();
-    }
-
-    @Override
-    public CompletableFuture<AudioClip> getRecording() {
-        if (!isValid()) {
-            throw new NameSayerException("Invalid name");
-        }
-
-        return audioSystem.loadAudio(pathOfThisName);
     }
 
     @Override
@@ -114,7 +28,7 @@ public class FileBasedName implements Name {
         return isBadQuality;
     }
 
-    @Override
+
     public void setBadQuality(boolean value) {
         if (value == isBadQuality) {
             return;
@@ -130,9 +44,9 @@ public class FileBasedName implements Name {
         }
 
         if (isBadQuality) {
-            badQualityFiles.add(pathOfThisName.getFileName().toString());
+            badQualityFiles.add(getPathOfThisItem().getFileName().toString());
         } else {
-            badQualityFiles.remove(pathOfThisName.getFileName().toString());
+            badQualityFiles.remove(getPathOfThisItem().getFileName().toString());
         }
 
         try {
@@ -142,89 +56,24 @@ public class FileBasedName implements Name {
         }
     }
 
-    @Override
-    public ObservableList<Attempt> getAttempts() {
-        return readOnlyAttempts;
-    }
-
-    @Override
-    public CompletableFuture<Void> addAttempt(AudioClip recording, LocalDateTime creationTime) {
-
-        // find the location
-        Path location = resolver.getPathForAttempt(basePath, info, creationTime);
-
-        if (Files.exists(location)) {
-            throw new NameSayerException("File already exists for this attempt");
-        }
-
-        // create subdirs if necessary
-        if (!Files.exists(location.getParent())) {
+    /**
+     * Figure out whether this recording was previously marked as bad quality or not
+     */
+    private void setUpBadQuality() {
+        if (!Files.exists(BAD_QUALITY_FILE)) {
             try {
-                Files.createDirectories(location.getParent());
+                Files.createFile(BAD_QUALITY_FILE);
             } catch (IOException e) {
-                throw new NameSayerException("Could not create attempt", e);
+                throw new NameSayerException("Could not set up bad quality file", e);
             }
         }
 
-        return audioSystem.saveAudio(recording, location)
-                .thenRun(() -> Platform.runLater(() -> internalAddAttempt(creationTime)));
-    }
+        String entry = getPathOfThisItem().getFileName().toString();
 
-    @Override
-    public CompletableFuture<Void> removeAttempt(Attempt toRemove) {
-        if (!(toRemove instanceof FileBasedAttempt)) {
-            return CompletableFuture.completedFuture(null);
-        }
-
-        ((FileBasedAttempt) toRemove).delete();
-        Platform.runLater(() -> attempts.remove(toRemove));
-        return CompletableFuture.completedFuture(null);
-    }
-
-    boolean isValid() {
-        return Files.exists(pathOfThisName) && resolver.getNameInfo(pathOfThisName).isPresent();
-    }
-
-    /**
-     * Delete this name (will invalidate)
-     */
-    void delete() {
         try {
-            Files.delete(pathOfThisName);
-
-            for (Attempt attempt : attempts) {
-                FileBasedAttempt cast = (FileBasedAttempt) attempt;
-                cast.delete();
-            }
-
+            isBadQuality = Files.readAllLines(BAD_QUALITY_FILE).contains(entry);
         } catch (IOException e) {
-            throw new NameSayerException("Could not delete name", e);
-        }
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Name)) {
-            return false;
-        }
-
-        return this.getNameInfo().equals(((FileBasedName) other).getNameInfo());
-    }
-
-    /**
-     * Add an attempt if it does not exist already; otherwise returns the existing name
-     */
-    private Attempt internalAddAttempt(LocalDateTime dt) {
-        Optional<Attempt> attempt = attempts.stream().filter(x -> x.getAttemptTime().truncatedTo(ChronoUnit.SECONDS)
-                .equals(dt.truncatedTo(ChronoUnit.SECONDS))).findFirst();
-
-        if (!attempt.isPresent()) {
-            Path location = resolver.getPathForAttempt(basePath, info, dt);
-            FileBasedAttempt newAttempt = new FileBasedAttempt(location, dt, audioSystem);
-            attempts.add(newAttempt);
-            return newAttempt;
-        } else {
-            return attempt.get();
+            isBadQuality = false;
         }
     }
 }

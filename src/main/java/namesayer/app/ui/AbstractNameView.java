@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
 import namesayer.app.database.Name;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +37,7 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends StackPan
     private FilteredList<TCell> filteredNames;
     private ObservableList<TCell> allNames;
 
-    protected AbstractNameView(URL fxmlFile, Parent previous, NameDatabase db) {
+    protected AbstractNameView(URL fxmlFile, Parent previous, NameSayerDatabase db) {
 
         FXMLLoader loader = new FXMLLoader(fxmlFile);
         loader.setController(this);
@@ -54,10 +54,10 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends StackPan
 
         // create a nameblock for each name in the db
         allNames = FXCollections.observableArrayList(NameBlock::getObservables);
-        allNames.addAll(db.getNames().stream().map(x -> createNameCell(db, x)).collect(Collectors.toList()));
+        allNames.addAll(db.getNameDatabase().getAll().stream().map(x -> createNameCell(db, x)).collect(Collectors.toList()));
 
         // when the database changes, also change the content of the name view
-        db.getNames().addListener((ListChangeListener<Name>) change -> {
+        db.getNameDatabase().getAll().addListener((ListChangeListener<Name>) change -> {
             while (change.next()) {
                 if (change.wasAdded()) {
                     allNames.add(createNameCell(db, change.getAddedSubList().get(0)));
@@ -80,7 +80,7 @@ public abstract class AbstractNameView<TCell extends NameBlock> extends StackPan
         Bindings.bindContent(namesBox.getChildren(), filteredNames);
     }
 
-    protected abstract TCell createNameCell(NameDatabase db, Name name);
+    protected abstract TCell createNameCell(NameSayerDatabase db, Name name);
 
     protected final ObservableList<TCell> getAllNames() {
         return allNames;

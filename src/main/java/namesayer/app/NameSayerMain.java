@@ -6,8 +6,8 @@ import javafx.stage.Stage;
 import namesayer.app.audio.AudioStub;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.audio.ffmpeg.FFmpegAudioSystem;
-import namesayer.app.database.NameDatabase;
-import namesayer.app.database.file.FileBasedNameDatabase;
+import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.database.file.FileBasedNameSayerDatabase;
 import namesayer.app.ui.MainMenu;
 
 import java.nio.file.Files;
@@ -31,12 +31,17 @@ public class NameSayerMain extends Application {
             audio = new FFmpegAudioSystem();
         }
 
-        Path root = Paths.get("names");
-        if (!Files.exists(root)) {
-            Files.createDirectories(root);
+        Path namesRoot = Paths.get("names");
+        if (!Files.exists(namesRoot)) {
+            Files.createDirectories(namesRoot);
         }
 
-        NameDatabase db = new FileBasedNameDatabase(root, audio);
+        Path attemptsRoot = Paths.get("attempts");
+        if(!Files.exists(attemptsRoot)) {
+            Files.createDirectories(attemptsRoot);
+        }
+
+        NameSayerDatabase db = new FileBasedNameSayerDatabase(namesRoot, attemptsRoot, audio);
 
         Scene scene = new Scene(new MainMenu(db, audio));
         stage.setScene(scene);

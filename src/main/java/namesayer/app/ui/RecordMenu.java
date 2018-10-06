@@ -12,9 +12,13 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameInfo;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 /**
  * The menu where users create their own recordings
@@ -26,7 +30,7 @@ public class RecordMenu extends StackPane {
 
     private Timeline micLevelTimeline;
     private AudioSystem audioSystem;
-    private NameDatabase database;
+    private NameSayerDatabase database;
 
     @FXML
     private TextField nameTextField;
@@ -35,7 +39,7 @@ public class RecordMenu extends StackPane {
     @FXML
     private RecordingWidget recordingWidget;
 
-    public RecordMenu(Parent previous, AudioSystem audio, NameDatabase db) {
+    public RecordMenu(Parent previous, AudioSystem audio, NameSayerDatabase db) {
         this.previous = previous;
         this.audioSystem = audio;
         this.database = db;
@@ -89,7 +93,8 @@ public class RecordMenu extends StackPane {
             return;
         }
 
-        database.addName(nameTextField.getText(), "se206", recordingWidget.getRecording());
+        NameInfo nameInfo = new NameInfo(nameTextField.getText(), "se206", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        database.getNameDatabase().createNew(nameInfo, recordingWidget.getRecording());
         // use JFXDialogHelper to create and show a new pop-up dialog for successful recording
         JFXDialogHelper dialog = new JFXDialogHelper("Recording Successful", "Your recording of " +
                 nameTextField.getText() + " was saved.", "OK", this);

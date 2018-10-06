@@ -14,7 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,7 +28,7 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
 
     private IntegerProperty selectedCount = new SimpleIntegerProperty();
     private FilteredList<PracticeMenuNameBlock> selected;
-    private NameDatabase database;
+    private NameSayerDatabase database;
     private AudioSystem audioSystem;
 
     @FXML
@@ -49,7 +49,7 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     @FXML
     private ProgressBar progressBar;
 
-    public PracticeMenu(Parent previous, AudioSystem audioSystem, NameDatabase db) {
+    public PracticeMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db) {
         super(PracticeMenu.class.getResource("/fxml/practiceMenu.fxml"), previous, db);
 
         this.audioSystem = audioSystem;
@@ -66,7 +66,7 @@ public class PracticeMenu extends AbstractNameView<PracticeMenuNameBlock> {
     }
 
     @Override
-    protected PracticeMenuNameBlock createNameCell(NameDatabase db, Name name) {
+    protected PracticeMenuNameBlock createNameCell(NameSayerDatabase db, Name name) {
         return new PracticeMenuNameBlock(db, name);
     }
 

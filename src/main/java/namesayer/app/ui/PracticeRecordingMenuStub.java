@@ -9,7 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.NameDatabase;
+import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 
@@ -38,11 +38,11 @@ public class PracticeRecordingMenuStub extends StackPane {
 
 
     private Parent previous;
-    private NameDatabase database;
+    private NameSayerDatabase database;
     private AudioSystem audioSystem;
 
 
-    public PracticeRecordingMenuStub(Parent previous, AudioSystem as, NameDatabase db) {
+    public PracticeRecordingMenuStub(Parent previous, AudioSystem as, NameSayerDatabase db) {
         this.previous = previous;
         this.audioSystem = as;
         this.database = db;
