@@ -57,15 +57,16 @@ public class FileBasedRecordingDatabase<TInfo, TRecording extends FileBasedRecor
 
     @Override
     public CompletableFuture<Void> remove(RecordingItem<TInfo> name) {
-        for(TRecording recording : recordings) {
-            if(recording.equals(name)) {
-                // Ignoring inspection due to compiler bug (lol)
-                //noinspection Convert2MethodRef
-                return CompletableFuture.runAsync(() -> recording.delete());
-            }
-        }
+        TInfo info = name.getInfo();
+        TRecording recording = lookup.get(info);
 
-        return CompletableFuture.completedFuture(null);
+        if(recording == null) {
+            return CompletableFuture.completedFuture(null);
+        } else {
+            // Not doing inspection because following through is actually a compile error (might be a bug actually)
+            // noinspection Convert2MethodRef
+            return CompletableFuture.runAsync(() -> recording.delete());
+        }
     }
 
     private void refreshRecordings() {
