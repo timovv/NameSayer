@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #ededed;" stylesheets="@../css/main.css"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #ededed;"
          type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"

@@ -25,7 +25,7 @@ public class NameSayerMain extends Application {
 
         AudioSystem audio;
         String useMockAudio = System.getProperty("useMockAudio");
-        if(useMockAudio != null && !useMockAudio.equals("false")) {
+        if (useMockAudio != null && !useMockAudio.equals("false")) {
             audio = new AudioStub();
         } else {
             audio = new FFmpegAudioSystem();
@@ -37,13 +37,15 @@ public class NameSayerMain extends Application {
         }
 
         Path attemptsRoot = Paths.get("attempts");
-        if(!Files.exists(attemptsRoot)) {
+        if (!Files.exists(attemptsRoot)) {
             Files.createDirectories(attemptsRoot);
         }
 
         NameSayerDatabase db = new FileBasedNameSayerDatabase(namesRoot, attemptsRoot, audio);
 
-        Scene scene = new Scene(new MainMenu(db, audio));
+        MainMenu mainMenu = new MainMenu(db, audio);
+        Scene scene = new Scene(mainMenu);
+        mainMenu.setTheme("main");
         stage.setScene(scene);
         stage.show();
     }

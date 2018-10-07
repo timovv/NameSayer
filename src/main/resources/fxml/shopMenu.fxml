@@ -12,7 +12,7 @@
          type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    prefHeight="720.0" prefWidth="1280.0" styleClass="shop-menu" stylesheets="@../css/main.css">
+                    prefHeight="720.0" prefWidth="1280.0" styleClass="shop-menu">
             <top>
                 <BorderPane prefHeight="100.0" prefWidth="200.0" styleClass="shop-banner" BorderPane.alignment="CENTER">
                     <right>

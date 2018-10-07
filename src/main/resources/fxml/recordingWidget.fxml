@@ -12,7 +12,7 @@
 <fx:root xmlns:fx="http://javafx.com/fxml/1" prefHeight="200.0" prefWidth="400.0" type="BorderPane"
          BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121">
     <center>
-        <StackPane prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/main.css" BorderPane.alignment="CENTER">
+        <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="560.0" stroke="#8d8d8d"
                            strokeType="INSIDE" strokeWidth="0.5" width="320.0">

@@ -59,4 +59,9 @@ public class MainMenu extends StackPane {
     private void onShopButtonClicked() {
         getScene().setRoot(shopMenu);
     }
+
+    public void setTheme(String address) {
+        this.getScene().getStylesheets().clear();
+        this.getScene().getStylesheets().add("/css/" + address + ".css");
+    }
 }
