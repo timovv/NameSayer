@@ -18,8 +18,8 @@
                 <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
                             BorderPane.alignment="CENTER">
                     <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Record" textAlignment="RIGHT"
-                              BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="record-label" text="Record"
+                              textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
                             </font>

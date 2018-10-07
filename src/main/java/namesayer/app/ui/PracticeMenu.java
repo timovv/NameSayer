@@ -1,6 +1,5 @@
 package namesayer.app.ui;
 
-import com.jfoenix.controls.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -9,9 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.util.StringConverter;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
@@ -24,7 +24,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 /**
@@ -32,32 +31,24 @@ import java.util.stream.Collectors;
  */
 public class PracticeMenu extends StackPane {
 
+    private final Parent previous;
     private IntegerProperty selectedCount = new SimpleIntegerProperty();
     private NameSayerDatabase database;
     private AudioSystem audioSystem;
-
     @FXML
     private AutoCompleteTextField namesTextField;
-
     @FXML
     private Text selectedText;
-
     @FXML
     private CheckBox shuffleCheckBox;
-
     @FXML
     private StackPane stackPane;
-
     @FXML
     private Text searchPrompt;
-
     @FXML
     private ProgressBar progressBar;
-
     @FXML
     private ListView<List<Name>> namesList;
-
-    private final Parent previous;
 
     public PracticeMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db) {
 
@@ -72,7 +63,7 @@ public class PracticeMenu extends StackPane {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load fxml for practice menu", e);
         }
     }
@@ -87,13 +78,16 @@ public class PracticeMenu extends StackPane {
         progressBar.setVisible(false);
 
         namesList.setEditable(false);
-        namesList.setPlaceholder(new Label("Nothing has been selected yet!"));
+        Label placeholder = new Label("You have not yet chosen a name to practise.");
+        placeholder.setFont(new Font("Century Gothic", 20));
+        placeholder.setTextFill(Color.web("#b0b0b0"));
+        namesList.setPlaceholder(placeholder);
         namesList.setCellFactory(param -> new ListCell<List<Name>>() {
             @Override
             protected void updateItem(List<Name> item, boolean empty) {
                 super.updateItem(item, empty);
 
-                if(empty || item == null || item.isEmpty()) {
+                if (empty || item == null || item.isEmpty()) {
                     setText(null);
                 } else {
                     setText(String.join(" ",
@@ -146,8 +140,8 @@ public class PracticeMenu extends StackPane {
     @FXML
     private void addNameClicked() {
         String text = namesTextField.getText().trim();
-        if(!tryAddName(text)) {
-            new JFXDialogHelper("Could not add name", "Could not find databsase entries for the entered name!", "Okay", this).show();
+        if (!tryAddName(text)) {
+            new JFXDialogHelper("Could Not Add Name", "Could not find databsase entries for the entered name!", "Okay", this).show();
         }
     }
 
@@ -159,28 +153,28 @@ public class PracticeMenu extends StackPane {
         File file = fileChooser.showOpenDialog(getScene().getWindow());
         Path path = file.toPath();
 
-        if(!Files.isRegularFile(path)) {
-            new JFXDialogHelper("File not found", "The file could not be found", "Okay", this).show();
+        if (!Files.isRegularFile(path)) {
+            new JFXDialogHelper("File Not Found", "The file could not be found", "Okay", this).show();
             return;
         }
 
         List<String> lines;
         try {
             lines = Files.readAllLines(path);
-        } catch(IOException e) {
-            new JFXDialogHelper("Could not read file", "The file could not be read", "Okay", this).show();
+        } catch (IOException e) {
+            new JFXDialogHelper("Could Not Read File", "The file could not be read", "Okay", this).show();
             return;
         }
 
         List<String> notFoundFor = new ArrayList<>();
-        for(String line : lines) {
-            if(!tryAddName(line)) {
+        for (String line : lines) {
+            if (!tryAddName(line)) {
                 notFoundFor.add(line);
             }
         }
 
-        if(!notFoundFor.isEmpty()) {
-            new JFXDialogHelper("Could not read name(s)",
+        if (!notFoundFor.isEmpty()) {
+            new JFXDialogHelper("Could Not Read Name(s)",
                     "Could not find database entries for the following name(s):\n"
                             + String.join("\n", notFoundFor),
                     "Okay",
@@ -192,19 +186,19 @@ public class PracticeMenu extends StackPane {
         List<Name> namesOut = new ArrayList<>();
         String[] split = fullName.split("[\\s-]");
         boolean couldFind = true;
-        for(String name : split) {
+        for (String name : split) {
             List<Name> found = database.getNamesFor(name);
 
-        if(found.isEmpty()) {
-            couldFind = false;
-            break;
+            if (found.isEmpty()) {
+                couldFind = false;
+                break;
             }
 
             // todo make the selection of name random (ignoring bad quality files when possible)
             namesOut.add(found.get(0));
         }
 
-        if(couldFind) {
+        if (couldFind) {
             namesList.getItems().add(namesOut);
             return true;
         } else {

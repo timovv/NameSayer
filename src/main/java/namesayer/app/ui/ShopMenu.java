@@ -2,7 +2,6 @@ package namesayer.app.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import namesayer.app.NameSayerException;
 
@@ -13,9 +12,9 @@ import java.io.IOException;
  */
 public class ShopMenu extends StackPane {
 
-    private Parent previous;
+    private MainMenu previous;
 
-    public ShopMenu(Parent previous) {
+    public ShopMenu(MainMenu previous) {
         this.previous = previous;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shopMenu.fxml"));
@@ -39,6 +38,10 @@ public class ShopMenu extends StackPane {
     private void onSpectrumGUIClicked() {
         //testing purposes only
         System.out.println("SpectrumGUI click detected.");
+
+        //change theme to Spectrum mode
+        getScene().setRoot(previous);
+        previous.setTheme("spectrum");
     }
 
     @FXML

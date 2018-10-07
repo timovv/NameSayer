@@ -16,7 +16,8 @@
             <top>
                 <VBox>
                     <children>
-                        <ImageView fitHeight="5.0" fitWidth="5000.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="spectrumBanner" fitHeight="5.0" fitWidth="5000.0" pickOnBounds="true"
+                                   preserveRatio="true">
                             <image>
                                 <Image url="@../images/banner.png"/>
                             </image>
@@ -49,8 +50,8 @@
                                                 </LinearGradient>
                                             </fill>
                                         </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spectrum"
-                                              textAlignment="RIGHT">
+                                        <Text fx:id="spectrumLabel" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Spectrum" textAlignment="RIGHT">
                                             <font>
                                                 <Font name="Century Gothic" size="45.0"/>
                                             </font>
@@ -68,15 +69,15 @@
                                         </Text>
                                         <JFXButton mnemonicParsing="false" onAction="#onShopButtonClicked"
                                                    prefHeight="32.0" prefWidth="150.0" styleClass="shop-button"
-                                                   text="🛒 ">
+                                                   text="Shop">
                                             <HBox.margin>
-                                                <Insets left="600.0"/>
+                                                <Insets left="600.0" top="-2.0"/>
                                             </HBox.margin>
                                             <font>
                                                 <Font name="Century Gothic" size="27.0"/>
                                             </font>
                                             <padding>
-                                                <Insets bottom="7.0" top="10.0"/>
+                                                <Insets bottom="10.0" top="10.0"/>
                                             </padding>
                                         </JFXButton>
                                     </children>
@@ -104,15 +105,16 @@
                                             </effect>
                                         </Rectangle>
                                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
-                                                   strokeType="INSIDE" strokeWidth="0.25" width="300.0">
+                                                   strokeType="INSIDE" strokeWidth="0.25"
+                                                   styleClass="main-practice-button" width="300.0">
                                             <StackPane.margin>
                                                 <Insets bottom="100.0"/>
                                             </StackPane.margin>
                                             <fill>
-                                                <LinearGradient endX="1.0" endY="1.0">
+                                                <LinearGradient endX="1.0" endY="0.8952380952380953">
                                                     <stops>
                                                         <Stop color="#c4eb8e"/>
-                                                        <Stop color="#96da99" offset="1.0"/>
+                                                        <Stop color="#96d9a7" offset="1.0"/>
                                                     </stops>
                                                 </LinearGradient>
                                             </fill>
@@ -156,7 +158,8 @@
                                             </StackPane.margin>
                                         </Rectangle>
                                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
-                                                   strokeType="INSIDE" strokeWidth="0.25" width="300.0">
+                                                   strokeType="INSIDE" strokeWidth="0.25"
+                                                   styleClass="main-listen-button" width="300.0">
                                             <effect>
                                                 <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
                                             </effect>
@@ -211,7 +214,8 @@
                                             </StackPane.margin>
                                         </Rectangle>
                                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" stroke="#dddddd"
-                                                   strokeType="INSIDE" strokeWidth="0.25" width="300.0">
+                                                   strokeType="INSIDE" strokeWidth="0.25"
+                                                   styleClass="main-record-button" width="300.0">
                                             <effect>
                                                 <DropShadow color="#0000001c" offsetY="5.0" spread="0.6"/>
                                             </effect>
@@ -258,8 +262,8 @@
                 </HBox>
             </bottom>
             <center>
-                <ImageView disable="true" fitHeight="500.0" fitWidth="5000.0" pickOnBounds="true" preserveRatio="true"
-                           BorderPane.alignment="CENTER">
+                <ImageView fx:id="soundwaveBanner" disable="true" fitHeight="500.0" fitWidth="5000.0"
+                           pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                     <image>
                         <Image url="@../images/soundwave.png"/>
                     </image>

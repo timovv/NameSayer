@@ -19,8 +19,8 @@
                 <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
                             BorderPane.alignment="CENTER">
                     <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Practice" textAlignment="RIGHT"
-                              BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="practice-label" text="Practice"
+                              textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
                             </font>
@@ -69,7 +69,7 @@
                         </Label>
                         <HBox spacing="10.0">
                             <children>
-                                <Label fx:id="nameLabel" text="NAME GOES HERE">
+                                <Label fx:id="nameLabel" styleClass="name-label" text="NAME GOES HERE">
                                     <font>
                                         <Font size="57.0"/>
                                     </font>
