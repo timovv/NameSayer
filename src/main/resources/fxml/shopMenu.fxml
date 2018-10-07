@@ -65,8 +65,8 @@
                                         <Insets/>
                                     </HBox.margin>
                                 </Text>
-                                <Text fill="#e84c3d" strokeType="OUTSIDE" strokeWidth="0.0" text="1000 Credits."
-                                      textAlignment="RIGHT">
+                                <Text fx:id="lipCoinLabel" fill="#e84c3d" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="1000 LipCoins." textAlignment="RIGHT">
                                     <font>
                                         <Font name="Century Gothic" size="20.0"/>
                                     </font>
@@ -123,7 +123,7 @@
                                                 <Insets top="110.0"/>
                                             </StackPane.margin>
                                         </Text>
-                                        <Text fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0" text="500 Credits"
+                                        <Text fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0" text="500 LipCoins"
                                               textAlignment="RIGHT">
                                             <font>
                                                 <Font name="Century Gothic" size="18.0"/>
@@ -162,7 +162,7 @@
                                                 <Insets top="110.0"/>
                                             </StackPane.margin>
                                         </Text>
-                                        <Text fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0" text="1000 Credits"
+                                        <Text fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0" text="1000 LipCoins"
                                               textAlignment="RIGHT">
                                             <font>
                                                 <Font name="Century Gothic" size="18.0"/>
