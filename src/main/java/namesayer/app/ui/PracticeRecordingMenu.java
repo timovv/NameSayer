@@ -56,6 +56,7 @@ public class PracticeRecordingMenu extends StackPane {
     private ObjectProperty<List<Name>> current;
     private LinkedList<List<Name>> remainingNames;
     private ScrollPane scrollPane = new ScrollPane();
+    private AttemptView attemptView;
 
     public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db, List<List<Name>> names) {
 
@@ -93,6 +94,8 @@ public class PracticeRecordingMenu extends StackPane {
         recordingWidget.setAudioSystem(audioSystem);
 
         scrollPane.setFitToWidth(true);
+        attemptView = new AttemptView(current.get(), database);
+        scrollPane.setContent(attemptView);
         contentVBox.getChildren().add(scrollPane);
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
@@ -112,11 +115,17 @@ public class PracticeRecordingMenu extends StackPane {
 
     @FXML
     private void onPlayClicked() {
+        playName();
+    }
+
+    private CompletableFuture<Void> playName() {
         List<Name> names = current.get();
         CompletableFuture<Void> next = CompletableFuture.completedFuture(null);
         for(Name name : current.get()) {
             next = next.thenCompose(x -> name.getRecording()).thenCompose(AudioClip::play);
         }
+
+        return next;
     }
 
     @FXML
@@ -129,6 +138,7 @@ public class PracticeRecordingMenu extends StackPane {
             dialog.show();
         } else {
             current.set(remainingNames.pollFirst());
+            attemptView.setNames(current.get());
         }
     }
 

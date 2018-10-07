@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptInfo> {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-y-H-m-s");
 
     @Override
     public List<AttemptInfo> getAll(Path base) {

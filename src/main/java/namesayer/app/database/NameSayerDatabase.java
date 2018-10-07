@@ -21,4 +21,8 @@ public interface NameSayerDatabase {
                         .equals(names.stream().map(String::toLowerCase).collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
+
+    default List<Attempt> getAttemptsForNames(List<Name> names) {
+        return getAttemptsFor(names.stream().map(Name::getName).collect(Collectors.toList()));
+    }
 }
