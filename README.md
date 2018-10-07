@@ -1,7 +1,18 @@
 NameSayer
 =========
 
-SOFTENG 206 Assignment 3
+SOFTENG 206 Assignment 4
+
+Target User
+-----------
+
+Our product is targeted at students who wish to learn their classmates' names.
+
+Special features
+----------------
+* You are able to add names to the database through the record menu
+* We have tooltips for the icons in the practice menu.
+* You can stop recording by clicking the record button again.
 
 Building and Use
 ----------------
@@ -19,7 +30,8 @@ Building and Use
     * Listen, which allows you to view/remove database entries, and you can view your previous attempts by clicking on 
         the ellipsis next to each name
     * Record, which allows you to create new entries for the database itself (not attempts).
-   
+
+
      _______________
     ( wow namesayer )
      ---------------
