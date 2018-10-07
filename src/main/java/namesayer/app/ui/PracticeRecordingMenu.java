@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -22,14 +21,15 @@ import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
  * Menu where users can make practice recordings and listen to names
  */
-public class PracticeRecordingMenu extends BorderPane {
+public class PracticeRecordingMenu extends StackPane {
 
     @FXML
     private StackPane stackPane;
@@ -53,11 +53,11 @@ public class PracticeRecordingMenu extends BorderPane {
     private AudioSystem audioSystem;
     private Parent previous;
     private int total;
-    private ObjectProperty<Name> current;
-    private LinkedList<Name> remainingNames;
+    private ObjectProperty<List<Name>> current;
+    private LinkedList<List<Name>> remainingNames;
     private ScrollPane scrollPane = new ScrollPane();
 
-    public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db, List<Name> names) {
+    public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db, List<List<Name>> names) {
 
         this.audioSystem = audioSystem;
         this.previous = previous;
@@ -77,7 +77,8 @@ public class PracticeRecordingMenu extends BorderPane {
         }
 
         // change these labels when the current name changes
-        nameLabel.textProperty().bind(Bindings.createStringBinding(() -> Util.toTitleCase(current.get().getName()), current));
+        nameLabel.textProperty().bind(Bindings.createStringBinding(() ->
+                Util.toTitleCase(String.join(" ", current.get().stream().map(Name::getName).collect(Collectors.toList()))), current));
 
         // show the number of recordings they have left
         countLabel.textProperty().bind(Bindings.createStringBinding(() -> "(" + (total - remainingNames.size()) + "/" + total + ")", current));
@@ -98,8 +99,8 @@ public class PracticeRecordingMenu extends BorderPane {
         // if the name changes, also update the attempts
         // when the recording is saved, create a new attempt
         recordingWidget.setOnSaveClicked(() -> {
-            String name = current.get().getName();
-            AttemptInfo attemptInfo = new AttemptInfo(Collections.singletonList(name), LocalDateTime.now());
+            List<String> names = current.get().stream().map(Name::getName).collect(Collectors.toList());
+            AttemptInfo attemptInfo = new AttemptInfo(names, LocalDateTime.now());
             database.getAttemptDatabase().createNew(attemptInfo, recordingWidget.getRecording());
         });
     }
@@ -111,7 +112,11 @@ public class PracticeRecordingMenu extends BorderPane {
 
     @FXML
     private void onPlayClicked() {
-        current.get().getRecording().thenApply(AudioClip::play);
+        List<Name> names = current.get();
+        CompletableFuture<Void> next = CompletableFuture.completedFuture(null);
+        for(Name name : current.get()) {
+            next = next.thenCompose(x -> name.getRecording()).thenCompose(AudioClip::play);
+        }
     }
 
     @FXML
