@@ -18,7 +18,7 @@ public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
     private final TInfo info;
     private final Path basePath;
     private final Path pathOfThisItem;
-    private final RecordingFileResolver resolver;
+    private final RecordingFileResolver<TInfo> resolver;
     private final AudioSystem audioSystem;
 
     public FileBasedRecordingItem(TInfo nameInfo, Path basePath, RecordingFileResolver<TInfo> resolver, AudioSystem audioSystem) {
@@ -70,7 +70,7 @@ public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
             return false;
         }
 
-        return this.getInfo().equals(((FileBasedRecordingItem) other).getInfo());
+        return this.getInfo().equals(((FileBasedRecordingItem<?>) other).getInfo());
     }
 
     protected Path getBasePath() {
@@ -81,7 +81,7 @@ public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
         return pathOfThisItem;
     }
 
-    protected RecordingFileResolver getResolver() {
+    protected RecordingFileResolver<TInfo> getResolver() {
         return resolver;
     }
 

@@ -1,5 +1,7 @@
 package namesayer.app.ui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -9,14 +11,11 @@ import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.database.Attempt;
-import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
 
-import java.io.IOException;
-
 /**
- * A block which represents a single attempt. These are currently used in the PracticeRecordingMenu, so you can
- * listen to your previous attempts.
+ * A block which represents a single attempt. These are currently used in the
+ * PracticeRecordingMenu, so you can listen to your previous attempts.
  */
 public class AttemptBlock extends BorderPane {
 

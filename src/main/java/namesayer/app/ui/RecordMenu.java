@@ -18,7 +18,6 @@ import namesayer.app.database.NameSayerDatabase;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 /**
  * The menu where users create their own recordings

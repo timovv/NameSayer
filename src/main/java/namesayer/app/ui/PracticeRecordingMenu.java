@@ -120,7 +120,6 @@ public class PracticeRecordingMenu extends StackPane {
     }
 
     private CompletableFuture<Void> playName() {
-        List<Name> names = current.get();
         CompletableFuture<Void> next = CompletableFuture.completedFuture(null);
         for (Name name : current.get()) {
             next = next.thenCompose(x -> name.getRecording()).thenCompose(AudioClip::play);

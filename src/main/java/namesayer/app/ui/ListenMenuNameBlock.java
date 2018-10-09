@@ -1,9 +1,6 @@
 package namesayer.app.ui;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import namesayer.app.database.Name;
@@ -24,10 +21,7 @@ public class ListenMenuNameBlock extends NameBlock {
     @FXML
     private VBox attemptsBox;
 
-    private BooleanProperty expanded;
-
     public ListenMenuNameBlock(NameSayerDatabase db, Name name) {
         super(name, db, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
-        expanded = new SimpleBooleanProperty(false);
     }
 }

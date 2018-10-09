@@ -26,8 +26,7 @@ class AudioRecorder {
     private final Object micLevelLock = new Object();
     private final byte[] micLevelBuffer;
     private int micLevelIndex = 0;
-    private double micLevel = 0;
-
+    
     public AudioRecorder() {
         // store 100ms worth of audio in our mic level buffer
         micLevelBuffer = new byte[SAMPLE_FREQ_HZ * (SAMPLE_RES_BITS / 8) / 10];
