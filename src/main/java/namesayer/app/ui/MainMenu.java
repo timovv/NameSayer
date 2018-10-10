@@ -1,5 +1,7 @@
 package namesayer.app.ui;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -7,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
+import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.NameSayerDatabase;
 
@@ -31,6 +34,7 @@ public class MainMenu extends StackPane {
 
     @FXML
     Text spectrumLabel;
+    private NameSayerSettings settings;
 
     public MainMenu(NameSayerDatabase database, AudioSystem audioSystem) {
         FXMLLoader loader = new FXMLLoader();
@@ -49,6 +53,8 @@ public class MainMenu extends StackPane {
         this.listenMenu = new ListenMenu(this, database);
         this.practiceMenu = new PracticeMenu(this, audioSystem, database);
         this.shopMenu = new ShopMenu(this);
+
+        NameSayerSettings.getInstance().themeProperty().addListener((observable, oldValue, newValue) -> setTheme(newValue));
     }
 
     @FXML
@@ -76,7 +82,7 @@ public class MainMenu extends StackPane {
         getScene().setRoot(shopMenu);
     }
 
-    public void setTheme(String address) {
+    private void setTheme(String address) {
         this.getScene().getStylesheets().clear();
         this.getScene().getStylesheets().add("/css/" + address + ".css");
         if (address.equals("spectrum")) {
