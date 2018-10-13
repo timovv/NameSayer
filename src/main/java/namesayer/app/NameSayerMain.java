@@ -45,8 +45,9 @@ public class NameSayerMain extends Application {
 
         MainMenu mainMenu = new MainMenu(db, audio);
         Scene scene = new Scene(mainMenu);
-        mainMenu.setTheme("main");
         stage.setScene(scene);
+        // remove once NameSayerSettings is working
+        mainMenu.setTheme("main");
         stage.show();
     }
 }

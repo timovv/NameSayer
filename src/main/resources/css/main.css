@@ -125,23 +125,101 @@
 
 .main-record-button,
 .record-label {
-    -fx-fill: #ae8fd9;
+    -fx-fill: #ff7265;
 }
 
 .main-listen-button,
 .listen-label {
-    -fx-fill: #7dc7ce;
+    -fx-fill: #ff7265;
 }
 
 .main-practice-button,
 .practice-label {
-    -fx-fill: #88ce98;
+    -fx-fill: #ff7265;
 }
 
 .name-label {
-    -fx-fill: #7991eb;
+    -fx-fill: #ff7265;
 }
 
 .shop-label {
-    -fx-fill: #e84c3d;
+    -fx-fill: #ff7265;
+}
+
+.name-sayer-title {
+    -fx-fill: #f59d2a;
+}
+
+.start-button,
+.next-button {
+    -jfx-button-type: FLAT;
+    -fx-text-fill: white;
+    -fx-background-color: #ff7265;
+    -fx-border-color: #fbfffa;
+}
+
+.add-button {
+    -jfx-button-type: FLAT;
+    -fx-text-fill: white;
+    -fx-background-color: #ff7265;
+    -fx-border-color: #83d16e;
+}
+
+.file-button {
+    -jfx-button-type: FLAT;
+    -fx-text-fill: #fafafa;
+    -fx-background-color: #bbbbbb;
+    -fx-border-color: #bbbbbb;
+}
+
+.start-button:hover,
+.add-button:hover,
+.next-button:hover {
+    -fx-background-color: #fa948a;
+}
+.microphone-level > .bar{
+    -fx-background-color: #ff7265;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:250px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #dddddd;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #ededed;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #a8a8a8;
+    -fx-font-family: "Century Gothic";
+    -fx-font-weight: 300;
+    -fx-font-size: 20px;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-font-family: "Century Gothic";
+    -fx-font-weight: 300;
+    -fx-font-size: 20px;
+    -fx-text-fill: #ff7265;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+     -fx-border-color: #ff7265;
 }

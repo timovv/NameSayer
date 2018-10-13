@@ -1,7 +1,5 @@
 package namesayer.app.ui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -82,17 +80,18 @@ public class MainMenu extends StackPane {
         getScene().setRoot(shopMenu);
     }
 
-    private void setTheme(String address) {
+    // change to private once the settings thing actually works
+    public void setTheme(String address) {
         this.getScene().getStylesheets().clear();
         this.getScene().getStylesheets().add("/css/" + address + ".css");
         if (address.equals("spectrum")) {
             spectrumLabel.setVisible(true);
             spectrumBanner.setImage(new Image(getClass().getResourceAsStream("/images/banner.png")));
             soundwaveBanner.setImage(new Image(getClass().getResourceAsStream("/images/soundwave.png")));
-        } else {
+        } else if (address.equals("main")) {
             spectrumLabel.setVisible(false);
-            spectrumBanner.setImage(new Image(getClass().getResourceAsStream("/images/grey-banner.png")));
-            soundwaveBanner.setImage(new Image(getClass().getResourceAsStream("/images/grey-soundwave.png")));
+            spectrumBanner.setImage(new Image(getClass().getResourceAsStream("/images/main-banner.png")));
+            soundwaveBanner.setImage(new Image(getClass().getResourceAsStream("/images/main-soundwave.png")));
         }
     }
 }

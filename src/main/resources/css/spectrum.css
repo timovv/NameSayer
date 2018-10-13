@@ -64,8 +64,8 @@
 .file-button {
     -jfx-button-type: FLAT;
     -fx-text-fill: #fafafa;
-    -fx-background-color: #cccccc;
-    -fx-border-color: #cccccc;
+    -fx-background-color: #bbbbbb;
+    -fx-border-color: #bbbbbb;
 }
 
 .file-button:hover {

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import namesayer.app.NameSayerException;
+import namesayer.app.shop.SpectrumGUIPack;
 
 import java.io.IOException;
 
@@ -40,8 +41,7 @@ public class ShopMenu extends StackPane {
         System.out.println("SpectrumGUI click detected.");
 
         //change theme to Spectrum mode
-        getScene().setRoot(previous);
-        previous.setTheme("spectrum");
+        new SpectrumGUIPack().activate();
     }
 
     @FXML

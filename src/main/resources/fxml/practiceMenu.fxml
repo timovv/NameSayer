@@ -133,8 +133,8 @@
                     </right>
                     <left>
                         <JFXCheckBox fx:id="shuffleCheckBox" checkedColor="#83d16e" mnemonicParsing="false"
-                                     text="Shuffle" textFill="#868686" unCheckedColor="#868686"
-                                     BorderPane.alignment="CENTER">
+                                     styleClass="shuffle-checkbox" text="Shuffle" textFill="#868686"
+                                     unCheckedColor="#868686" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="25.0"/>
                             </font>
