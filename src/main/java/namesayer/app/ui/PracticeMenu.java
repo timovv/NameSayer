@@ -100,6 +100,7 @@ public class PracticeMenu extends StackPane {
 
         namesTextField.getEntries()
                 .addAll(database.getNameDatabase().getAll().stream().map(Name::getName).map(Util::toTitleCase).collect(Collectors.toSet()));
+        namesTextField.setOnAction(x -> addNameClicked());
     }
 
     @FXML
@@ -140,6 +141,7 @@ public class PracticeMenu extends StackPane {
     @FXML
     private void addNameClicked() {
         String text = namesTextField.getText().trim();
+        namesTextField.clear();
         if (!tryAddName(text)) {
             new JFXDialogHelper("Could Not Add Name", "Could not find databsase entries for the entered name!", "Okay", this).show();
         }
