@@ -17,59 +17,6 @@
     <right>
         <HBox spacing="25.0" BorderPane.alignment="CENTER">
             <children>
-                <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
-                    <children>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0" />
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/play.png" />
-                            </image>
-                            <StackPane.margin>
-                                <Insets left="5.0" />
-                            </StackPane.margin>
-                        </ImageView>
-                    </children>
-                </StackPane>
-                <StackPane>
-                    <children>
-                        <StackPane fx:id="unsetBadQualityButton" onMouseClicked="#unsetBadQualityClicked">
-                            <children>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#ff9244" strokeType="INSIDE" strokeWidth="3.0" />
-                                <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/thumbs-down.png" />
-                                    </image>
-                                    <StackPane.margin>
-                                        <Insets />
-                                    </StackPane.margin>
-                                </ImageView>
-                            </children>
-                        </StackPane>
-                        <StackPane fx:id="setBadQualityButton" onMouseClicked="#setBadQualityClicked">
-                            <children>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#999999" strokeType="INSIDE" strokeWidth="3.0" />
-                                <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/thumbs-down-off.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </StackPane>
-                    </children>
-                </StackPane>
-                <StackPane onMouseClicked="#removeButtonClicked">
-                    <children>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#e47474" strokeType="INSIDE" strokeWidth="3.0" />
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/delete.png" />
-                            </image>
-                            <StackPane.margin>
-                                <Insets />
-                            </StackPane.margin>
-                        </ImageView>
-                    </children>
-                </StackPane>
                 <StackPane>
                     <children>
                         <StackPane fx:id="expandoExpand" onMouseClicked="#onExpandClicked">
@@ -106,14 +53,6 @@
     <left>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <right>
-                <Text fx:id="dateText" fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of recording." BorderPane.alignment="CENTER">
-                    <font>
-                        <Font name="Century Gothic" size="24.0" />
-                    </font>
-                    <BorderPane.margin>
-                        <Insets left="66.0" top="12.0" />
-                    </BorderPane.margin>
-                </Text>
             </right>
             <center>
                 <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="name-label" text="Name" textAlignment="RIGHT" BorderPane.alignment="CENTER_LEFT">

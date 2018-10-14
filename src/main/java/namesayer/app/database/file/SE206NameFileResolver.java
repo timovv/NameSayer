@@ -1,23 +1,22 @@
 package namesayer.app.database.file;
 
-import namesayer.app.database.NameInfo;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import namesayer.app.database.NameInfo;
+
 /**
- * Name file resolver based on the names database supplied to us as part of the assignment.
+ * Name file resolver based on the names database supplied to us as part of the
+ * assignment.
  * <p>
  * The format of a given name is se206-d-m-y_h-m-s_Name.wav
  */

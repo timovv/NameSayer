@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -16,12 +17,14 @@ import namesayer.app.NameSayerException;
 import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
+import namesayer.app.audio.Playable;
 import namesayer.app.database.AttemptInfo;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -120,7 +123,6 @@ public class PracticeRecordingMenu extends StackPane {
     }
 
     private CompletableFuture<Void> playName() {
-        List<Name> names = current.get();
         CompletableFuture<Void> next = CompletableFuture.completedFuture(null);
         for (Name name : current.get()) {
             next = next.thenCompose(x -> name.getRecording()).thenCompose(AudioClip::play);

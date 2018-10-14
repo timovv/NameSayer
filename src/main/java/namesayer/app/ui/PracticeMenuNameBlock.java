@@ -12,14 +12,11 @@ import namesayer.app.database.NameSayerDatabase;
  */
 public class PracticeMenuNameBlock extends NameBlock {
 
-    private final NameSayerDatabase db;
-
     @FXML
     private CheckBox selectedCheckBox;
 
     public PracticeMenuNameBlock(NameSayerDatabase db, Name name) {
         super(name, db, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"));
-        this.db = db;
     }
 
     public BooleanProperty selectedProperty() {

@@ -6,6 +6,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
+<?import namesayer.app.ui.SearchableCellView?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #ededed;" type="StackPane"
          xmlns="http://javafx.com/javafx/8.0.121">
     <children>
@@ -74,26 +75,11 @@
                                                 </Text>
                                             </right>
                                         </BorderPane>
-                                        <TextField fx:id="nameSearch" opacity="0.85" promptText="Search name">
-                                            <VBox.margin>
-                                                <Insets left="10.0" right="10.0" top="10.0"/>
-                                            </VBox.margin>
-                                            <font>
-                                                <Font name="Century Gothic" size="20.0"/>
-                                            </font>
-                                        </TextField>
-                                        <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0"
-                                                    style="-fx-background-color: #ededed;">
-                                            <VBox.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
-                                            </VBox.margin>
-                                            <content>
-                                                <VBox fx:id="namesBox" maxHeight="1.7976931348623157E308"
-                                                      maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                                                      minWidth="-Infinity" spacing="10.0"
-                                                      style="-fx-background-color: #ededed;"/>
-                                            </content>
-                                        </ScrollPane>
+                                        <SearchableCellView fx:id="nameCellView" VBox.vgrow="ALWAYS">
+                                            <placeholder>
+                                                <Label text="hi"/>
+                                            </placeholder>
+                                        </SearchableCellView>
                                     </children>
                                     <opaqueInsets>
                                         <Insets/>
@@ -125,26 +111,11 @@
                                                 </Text>
                                             </right>
                                         </BorderPane>
-                                        <TextField fx:id="nameSearchAttempts" opacity="0.85" promptText="Search name">
-                                            <VBox.margin>
-                                                <Insets left="10.0" right="10.0" top="10.0"/>
-                                            </VBox.margin>
-                                            <font>
-                                                <Font name="Century Gothic" size="20.0"/>
-                                            </font>
-                                        </TextField>
-                                        <ScrollPane hbarPolicy="NEVER" prefHeight="10000.0"
-                                                    style="-fx-background-color: #ededed;">
-                                            <VBox.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
-                                            </VBox.margin>
-                                            <content>
-                                                <VBox fx:id="namesBoxAttempts" maxHeight="1.7976931348623157E308"
-                                                      maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                                                      minWidth="-Infinity" spacing="10.0"
-                                                      style="-fx-background-color: #ededed;"/>
-                                            </content>
-                                        </ScrollPane>
+                                        <SearchableCellView fx:id="attemptsCellView" VBox.vgrow="ALWAYS">
+                                            <placeholder>
+                                                <Label text="hi"/>
+                                            </placeholder>
+                                        </SearchableCellView>
                                     </children>
                                     <padding>
                                         <Insets left="6.0"/>
