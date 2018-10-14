@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
+import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.NameSayerDatabase;
 
@@ -70,8 +71,8 @@ public class PracticeRecordingMenuStub extends StackPane {
     @FXML
     private void onNextClicked() {
         // use JFXDialogHelper to create and show a new pop-up dialog
-        JFXDialogHelper dialog = new JFXDialogHelper("Well done!", "You have finished all your practices." +
-                " Great job!", "Thanks", stackPane);
+        JFXDialogHelper dialog = new JFXDialogHelper("Practice Over",
+                NameSayerSettings.getInstance().getWellDoneMessage(), "Thanks", stackPane);
         dialog.setNextScene(getScene(), new MainMenu(database, audioSystem));
         dialog.show();
     }

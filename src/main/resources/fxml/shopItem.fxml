@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" prefHeight="150.0" prefWidth="200.0"
+         style="-fx-background-color: #3d3d3d;"
+         type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
+    <children>
+        <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e84c3d" height="120.0" onMouseClicked="#onItemClicked"
+                   stroke="#e84c3d" strokeType="INSIDE" strokeWidth="2.0" styleClass="shop-item-button" width="120.0">
+            <StackPane.margin>
+                <Insets bottom="50.0"/>
+            </StackPane.margin>
+        </Rectangle>
+        <ImageView fx:id="shopItemIcon" disable="true" fitHeight="80.0" fitWidth="200.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../images/package.png"/>
+            </image>
+            <StackPane.margin>
+                <Insets bottom="50.0"/>
+            </StackPane.margin>
+        </ImageView>
+        <Text fx:id="shopItemLabel" fill="#838383" strokeType="OUTSIDE" strokeWidth="0.0" text="Spectrum GUI Pack"
+              textAlignment="RIGHT">
+            <font>
+                <Font name="Century Gothic" size="20.0"/>
+            </font>
+            <StackPane.margin>
+                <Insets top="110.0"/>
+            </StackPane.margin>
+        </Text>
+        <Text fx:id="shopItemCost" fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0" text="1000 LipCoins"
+              textAlignment="RIGHT">
+            <font>
+                <Font name="Century Gothic" size="18.0"/>
+            </font>
+            <StackPane.margin>
+                <Insets top="165.0"/>
+            </StackPane.margin>
+        </Text>
+    </children>
+</fx:root>

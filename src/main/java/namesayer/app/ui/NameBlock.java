@@ -44,7 +44,7 @@ public class NameBlock extends BorderPane {
         try {
             loader.load();
         } catch (IOException e) {
-            throw new NameSayerException("Could not load practice menu", e);
+            throw new NameSayerException("Could not load name block", e);
         }
     }
 

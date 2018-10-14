@@ -1,7 +1,5 @@
 package namesayer.app.shop;
 
-import namesayer.app.NameSayerSettings;
-
 import java.net.URL;
 
 public interface ShopItem {
@@ -15,4 +13,6 @@ public interface ShopItem {
     void activate();
 
     void deactivate();
+
+    boolean isActive();
 }

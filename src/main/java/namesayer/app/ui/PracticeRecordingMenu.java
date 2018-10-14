@@ -13,6 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import namesayer.app.NameSayerException;
+import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.AttemptInfo;
@@ -121,7 +122,7 @@ public class PracticeRecordingMenu extends StackPane {
     private CompletableFuture<Void> playName() {
         List<Name> names = current.get();
         CompletableFuture<Void> next = CompletableFuture.completedFuture(null);
-        for(Name name : current.get()) {
+        for (Name name : current.get()) {
             next = next.thenCompose(x -> name.getRecording()).thenCompose(AudioClip::play);
         }
 
@@ -132,8 +133,8 @@ public class PracticeRecordingMenu extends StackPane {
     private void onNextClicked() {
         if (remainingNames.isEmpty()) {
             // use JFXDialogHelper to create and show a new pop-up dialog
-            JFXDialogHelper dialog = new JFXDialogHelper("Well done!", "You have finished all your practices." +
-                    " Great job!", "Thanks", stackPane);
+            JFXDialogHelper dialog = new JFXDialogHelper("Practice Over",
+                    NameSayerSettings.getInstance().getWellDoneMessage(), "Thanks", stackPane);
             dialog.setNextScene(getScene(), new MainMenu(database, audioSystem));
             dialog.show();
         } else {

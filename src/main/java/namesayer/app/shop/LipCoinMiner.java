@@ -5,13 +5,13 @@ import namesayer.app.NameSayerSettings;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class SpectrumGUIPack implements ShopItem {
+public class LipCoinMiner implements ShopItem {
 
-    private final String spectrumTheme = "spectrum";
+    private final int lipCoinMiningRate = 1;
 
     @Override
     public String getName() {
-        return "Spectrum GUI Pack";
+        return "LipCoin Miner";
     }
 
     @Override
@@ -26,21 +26,21 @@ public class SpectrumGUIPack implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 1000;
+        return 500;
     }
 
     @Override
     public void activate() {
-        NameSayerSettings.getInstance().setTheme(spectrumTheme);
+        NameSayerSettings.getInstance().setLipCoinMiner(lipCoinMiningRate);
     }
 
     @Override
     public void deactivate() {
-        NameSayerSettings.getInstance().setTheme(NameSayerSettings.defaultSettings().getTheme());
+        NameSayerSettings.getInstance().setWellDoneMessage(NameSayerSettings.defaultSettings().getWellDoneMessage());
     }
 
     @Override
     public boolean isActive() {
-        return NameSayerSettings.getInstance().getTheme().equals(spectrumTheme);
+        return NameSayerSettings.getInstance().getLipCoinMiner().equals(lipCoinMiningRate);
     }
 }
