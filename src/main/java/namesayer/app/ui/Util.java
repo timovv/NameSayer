@@ -1,5 +1,10 @@
 package namesayer.app.ui;
 
+import javafx.fxml.FXMLLoader;
+import namesayer.app.NameSayerException;
+
+import java.io.IOException;
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
 
 final class Util {
@@ -23,5 +28,17 @@ final class Util {
         }
 
         return sb.toString();
+    }
+
+    static void loadFxmlComponent(URL location, Object root) {
+        FXMLLoader loader = new FXMLLoader(location);
+        loader.setController(root);
+        loader.setRoot(root);
+
+        try {
+            loader.load();
+        } catch(IOException e) {
+            throw new NameSayerException("Could not load component", e);
+        }
     }
 }
