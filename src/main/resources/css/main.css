@@ -147,7 +147,7 @@
 }
 
 .name-sayer-title {
-    -fx-fill: #f59d2a;
+    -fx-fill: linear-gradient(to bottom right, #f59d2a 0%, #ff7265 100%);
 }
 
 .start-button,
@@ -222,4 +222,8 @@
 
 .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
      -fx-border-color: #ff7265;
+}
+
+.title-block {
+ -fx-background-color: linear-gradient(to bottom right, #ffffff 0%, #c9c9c9 100%);
 }

@@ -11,15 +11,11 @@ import namesayer.app.shop.LipCoin;
 import namesayer.app.shop.ShopItem;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class ShopItemIcon extends StackPane {
 
 
-    private final ShopItem shopItem;
-    private final String itemName;
-    private final int cost;
-    private final URL imagePath;
+    private ShopItem shopItem;
 
     @FXML
     private ImageView shopItemIcon;
@@ -30,11 +26,8 @@ public class ShopItemIcon extends StackPane {
     @FXML
     private Text shopItemCost;
 
-    public ShopItemIcon(ShopItem shopItem, String itemName, int cost, URL imagePath) {
+    public ShopItemIcon(ShopItem shopItem) {
         this.shopItem = shopItem;
-        this.itemName = itemName;
-        this.cost = cost;
-        this.imagePath = imagePath;
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/shopItem.fxml"));
@@ -50,18 +43,19 @@ public class ShopItemIcon extends StackPane {
 
     @FXML
     protected final void initialize() {
-        shopItemName.setText(itemName);
-        shopItemCost.setText("" + cost);
+        shopItemName.setText(shopItem.getName());
 
         if (shopItem.isActive()) {
             shopItemIcon.setImage(new Image(getClass().getResourceAsStream("/images/package-active.png")));
+            shopItemCost.setText("Active");
         } else {
             shopItemIcon.setImage(new Image(getClass().getResourceAsStream("/images/package.png")));
+            shopItemCost.setText("" + shopItem.getPrice());
         }
     }
 
     @FXML
     private void onItemClicked() {
-        LipCoin.tryPurchase(cost);
+        LipCoin.tryPurchase(shopItem.getPrice());
     }
 }

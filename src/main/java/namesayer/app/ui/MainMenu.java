@@ -76,7 +76,7 @@ public class MainMenu extends StackPane {
         getScene().setRoot(shopMenu);
     }
 
-    // change to private once the settings thing actually works
+    // TODO: change to private once the settings thing actually works
     public void setTheme(String address) {
         this.getScene().getStylesheets().clear();
         this.getScene().getStylesheets().add("/css/" + address + ".css");
