@@ -157,6 +157,11 @@ public class PracticeMenu extends StackPane {
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text files", ".txt"));
 
         File file = fileChooser.showOpenDialog(getScene().getWindow());
+
+        if(file == null) {
+            return;
+        }
+
         Path path = file.toPath();
 
         if (!Files.isRegularFile(path)) {
