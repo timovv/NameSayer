@@ -1,5 +1,8 @@
 package namesayer.app.ui;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -8,11 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import namesayer.app.NameSayerException;
 import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioClip;
@@ -35,6 +40,8 @@ import java.util.stream.Collectors;
  */
 public class PracticeRecordingMenu extends StackPane {
 
+    private final Timeline micLevelTimeline;
+
     @FXML
     private StackPane stackPane;
 
@@ -52,6 +59,9 @@ public class PracticeRecordingMenu extends StackPane {
 
     @FXML
     private VBox contentVBox;
+
+    @FXML
+    private ProgressBar micLevelBar;
 
     private NameSayerDatabase database;
     private AudioSystem audioSystem;
@@ -80,7 +90,14 @@ public class PracticeRecordingMenu extends StackPane {
         } catch (IOException e) {
             throw new NameSayerException("Could not load UI", e);
         }
-
+        micLevelTimeline = new Timeline(new KeyFrame(Duration.millis(50),
+                a -> {
+                    double value = (1 - (audioSystem.getInputLevel() / -100));
+                    value = (value >= 0) ? value : 0;
+                    micLevelBar.setProgress(value);
+                })); // nominate -75b as our 0 reference since it seems to work
+        micLevelTimeline.setCycleCount(Animation.INDEFINITE);
+        micLevelTimeline.play();
         // change these labels when the current name changes
         nameLabel.textProperty().bind(Bindings.createStringBinding(() ->
                 Util.toTitleCase(String.join(" ", current.get().stream().map(Name::getName).collect(Collectors.toList()))), current));
