@@ -125,17 +125,17 @@
 
 .main-record-button,
 .record-label {
-    -fx-fill: #ff7265;
+    -fx-fill: linear-gradient(to bottom right, #f59d2a 0%, #ff7265 60%);
 }
 
 .main-listen-button,
 .listen-label {
-    -fx-fill: #ff7265;
+    -fx-fill: linear-gradient(to bottom right, #f59d2a 0%, #ff7265 60%);
 }
 
 .main-practice-button,
 .practice-label {
-    -fx-fill: #ff7265;
+    -fx-fill: linear-gradient(to bottom right, #f59d2a 0%, #ff7265 60%);
 }
 
 .name-label {
