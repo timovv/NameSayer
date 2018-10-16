@@ -6,8 +6,6 @@ public interface ShopItem {
 
     String getName();
 
-    URL getIconURL();
-
     int getPrice();
 
     void activate();

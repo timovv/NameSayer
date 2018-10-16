@@ -15,16 +15,6 @@ public class IncreasedRecordingTime implements ShopItem {
     }
 
     @Override
-    public URL getIconURL() {
-        try {
-            return new URL("/images/package.png");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
     public int getPrice() {
         return 500;
     }
