@@ -15,11 +15,15 @@ public final class NameSayerSettings {
         DEFAULT_SETTINGS.themeProperty.setValue(null);
         DEFAULT_SETTINGS.wellDoneMessageProperty.setValue("You have finished all your practices.");
         DEFAULT_SETTINGS.lipCoinMinerProperty.setValue(0);
+        DEFAULT_SETTINGS.recordingTimeProperty.setValue(5);
+        DEFAULT_SETTINGS.guiScaleProperty.setValue(1);
     }
 
     private StringProperty themeProperty = new SimpleStringProperty();
     private StringProperty wellDoneMessageProperty = new SimpleStringProperty();
     private IntegerProperty lipCoinMinerProperty = new SimpleIntegerProperty();
+    private IntegerProperty recordingTimeProperty = new SimpleIntegerProperty();
+    private IntegerProperty guiScaleProperty = new SimpleIntegerProperty();
 
     private NameSayerSettings() {
     }
@@ -72,6 +76,30 @@ public final class NameSayerSettings {
 
     public IntegerProperty lipCoinMinerProperty() {
         return lipCoinMinerProperty;
+    }
+
+    public Integer getRecordingTime() {
+        return recordingTimeProperty.get();
+    }
+
+    public void setRecordingTime(int newRecordingTime) {
+        recordingTimeProperty.set(newRecordingTime);
+    }
+
+    public IntegerProperty recordingTimeProperty() {
+        return recordingTimeProperty;
+    }
+
+    public Integer getGUIScale() {
+        return guiScaleProperty.get();
+    }
+
+    public void setGUIScale(int newScale) {
+        guiScaleProperty.set(newScale);
+    }
+
+    public IntegerProperty guiScaleProperty() {
+        return guiScaleProperty;
     }
 }
 

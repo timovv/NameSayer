@@ -5,13 +5,13 @@ import namesayer.app.NameSayerSettings;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class CongratulatoryMessage implements ShopItem {
+public class BIGMode implements ShopItem {
 
-    private final String congratulatoryMessage = "HOLY MOLY YOU DID IT, YOU BEAST! WHAT AN ABSOLUTE MADMAN 999/10 GOOD PRACTICE LAD!!!";
+    private final Integer scale = 2;
 
     @Override
     public String getName() {
-        return "Congratulatory Message";
+        return "BIG Mode";
     }
 
     @Override
@@ -26,21 +26,21 @@ public class CongratulatoryMessage implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 300;
+        return 500;
     }
 
     @Override
     public void activate() {
-        NameSayerSettings.getInstance().setWellDoneMessage(congratulatoryMessage);
+        NameSayerSettings.getInstance().setGUIScale(scale);
     }
 
     @Override
     public void deactivate() {
-        NameSayerSettings.getInstance().setWellDoneMessage(NameSayerSettings.defaultSettings().getWellDoneMessage());
+        NameSayerSettings.getInstance().setGUIScale(NameSayerSettings.defaultSettings().getGUIScale());
     }
 
     @Override
     public boolean isActive() {
-        return NameSayerSettings.getInstance().getWellDoneMessage().equals(congratulatoryMessage);
+        return NameSayerSettings.getInstance().getGUIScale().equals(scale);
     }
 }

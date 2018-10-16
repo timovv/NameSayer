@@ -26,7 +26,7 @@ public class LipCoinMiner implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 500;
+        return 1000;
     }
 
     @Override
