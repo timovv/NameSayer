@@ -16,6 +16,11 @@ public class WishingWell extends OneTimePurchaseShopItem {
     }
 
     @Override
+    public String getDescription() {
+        return "";
+    }
+
+    @Override
     public int getPrice() {
         return this.price;
     }

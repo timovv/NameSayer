@@ -8,6 +8,8 @@ public interface ShopItem {
 
     String getName();
 
+    String getDescription();
+
     int getPrice();
 
     void setActive(boolean active);

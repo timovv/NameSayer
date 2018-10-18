@@ -14,6 +14,11 @@ public class SpectrumGUIPack extends ShopItemBase {
     }
 
     @Override
+    public String getDescription() {
+        return "";
+    }
+
+    @Override
     public int getPrice() {
         return this.price;
     }
