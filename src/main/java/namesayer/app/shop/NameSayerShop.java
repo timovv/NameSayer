@@ -31,8 +31,9 @@ public class NameSayerShop {
                 new BIGMode(),
                 new CongratulatoryMessage(),
                 new IncreasedRecordingTime(),
-                new LipCoinMiner(),
-                new SpectrumGUIPack()
+                new LipCoinMiner(this),
+                new SpectrumGUIPack(),
+                new WishingWellShopItem()
         ));
     }
 
