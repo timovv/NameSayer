@@ -27,6 +27,11 @@ public class LipCoinMiner extends ShopItemBase {
     }
 
     @Override
+    public String getDescription() {
+        return "";
+    }
+
+    @Override
     public int getPrice() {
         return 1000;
     }

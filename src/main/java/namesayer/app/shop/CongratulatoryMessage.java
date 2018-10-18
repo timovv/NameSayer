@@ -15,6 +15,11 @@ public class CongratulatoryMessage extends ShopItemBase {
     }
 
     @Override
+    public String getDescription() {
+        return "";
+    }
+
+    @Override
     public int getPrice() {
         return 300;
     }

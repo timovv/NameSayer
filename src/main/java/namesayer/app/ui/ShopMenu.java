@@ -62,7 +62,7 @@ public class ShopMenu extends StackPane {
             JFXDialogLayout contents = new JFXDialogLayout();
 
             contents.setHeading(new Text(item.getName()));
-            contents.setBody(new VBox(new Text("Description"),
+            contents.setBody(new VBox(new Text(item.getDescription()),
                     new Text("Cost: " + item.getPrice() + " LipCoins\u2122")));
 
             JFXButton purchaseButton = new JFXButton("Purchase");

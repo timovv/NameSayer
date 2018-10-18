@@ -15,6 +15,11 @@ public class BIGMode extends ShopItemBase {
     }
 
     @Override
+    public String getDescription() {
+        return "";
+    }
+
+    @Override
     public int getPrice() {
         return 500;
     }
