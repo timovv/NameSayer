@@ -5,7 +5,7 @@ import namesayer.app.NameSayerSettings;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class SpectrumGUIPack implements ShopItem {
+public class SpectrumGUIPack extends ShopItemBase {
 
     private final String spectrumTheme = "spectrum";
 
@@ -27,10 +27,5 @@ public class SpectrumGUIPack implements ShopItem {
     @Override
     public void deactivate() {
         NameSayerSettings.getInstance().setTheme(NameSayerSettings.defaultSettings().getTheme());
-    }
-
-    @Override
-    public boolean isActive() {
-        return NameSayerSettings.getInstance().getTheme().equals(spectrumTheme);
     }
 }

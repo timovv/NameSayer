@@ -5,7 +5,7 @@ import namesayer.app.NameSayerSettings;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class LipCoinMiner implements ShopItem {
+public class LipCoinMiner extends ShopItemBase {
 
     private final int lipCoinMiningRate = 1;
 
@@ -27,10 +27,5 @@ public class LipCoinMiner implements ShopItem {
     @Override
     public void deactivate() {
         NameSayerSettings.getInstance().setWellDoneMessage(NameSayerSettings.defaultSettings().getWellDoneMessage());
-    }
-
-    @Override
-    public boolean isActive() {
-        return NameSayerSettings.getInstance().getLipCoinMiner().equals(lipCoinMiningRate);
     }
 }

@@ -5,7 +5,7 @@ import namesayer.app.NameSayerSettings;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BIGMode implements ShopItem {
+public class BIGMode extends ShopItemBase {
 
     private final Integer scale = 2;
 
@@ -27,10 +27,5 @@ public class BIGMode implements ShopItem {
     @Override
     public void deactivate() {
         NameSayerSettings.getInstance().setGUIScale(NameSayerSettings.defaultSettings().getGUIScale());
-    }
-
-    @Override
-    public boolean isActive() {
-        return NameSayerSettings.getInstance().getGUIScale().equals(scale);
     }
 }

@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class NameSayerShop {
 
     private final Set<ShopItem> allShopItems;
-    private final Set<ShopItem> purchasedShopItems;
 
     private final IntegerProperty balanceProperty = new SimpleIntegerProperty();
 
@@ -29,8 +29,6 @@ public class NameSayerShop {
                 new LipCoinMiner(),
                 new SpectrumGUIPack()
         ));
-
-        purchasedShopItems = new HashSet<>();
     }
 
     /**
@@ -44,7 +42,7 @@ public class NameSayerShop {
      * @return A set of all items purchased in the shop
      */
     public Set<ShopItem> getPurchasedItems() {
-        return Collections.unmodifiableSet(purchasedShopItems);
+        return allShopItems.stream().filter(ShopItem::isPurchased).collect(Collectors.toSet());
     }
 
     /**
@@ -55,7 +53,7 @@ public class NameSayerShop {
      *                            - if the item is already purchased
      */
     public void purchase(ShopItem item) {
-        if (isPurchased(item)) {
+        if (item.isPurchased()) {
             throw new NameSayerException("Could not purchase this item since it has already been purchased!");
         }
 
@@ -64,7 +62,7 @@ public class NameSayerShop {
         }
 
         addToBalance(-item.getPrice());
-        purchasedShopItems.add(item);
+        item.setPurchased(true);
     }
 
     /**
@@ -102,15 +100,5 @@ public class NameSayerShop {
      */
     public void setBalance(int amount) {
         balanceProperty.setValue(amount);
-    }
-
-    /**
-     * Determine whether the given item has been purchased.
-     *
-     * @param item The item to test.
-     * @return true if the item has been purchased.
-     */
-    public boolean isPurchased(ShopItem item) {
-        return purchasedShopItems.contains(item);
     }
 }

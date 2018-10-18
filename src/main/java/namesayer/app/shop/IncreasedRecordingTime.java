@@ -5,7 +5,7 @@ import namesayer.app.NameSayerSettings;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class IncreasedRecordingTime implements ShopItem {
+public class IncreasedRecordingTime extends ShopItemBase {
 
     private final Integer longerRecordingTime = 10;
 
@@ -27,10 +27,5 @@ public class IncreasedRecordingTime implements ShopItem {
     @Override
     public void deactivate() {
         NameSayerSettings.getInstance().setRecordingTime(NameSayerSettings.defaultSettings().getRecordingTime());
-    }
-
-    @Override
-    public boolean isActive() {
-        return NameSayerSettings.getInstance().getRecordingTime().equals(longerRecordingTime);
     }
 }

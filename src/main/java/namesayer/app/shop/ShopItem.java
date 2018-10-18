@@ -1,5 +1,7 @@
 package namesayer.app.shop;
 
+import javafx.beans.property.BooleanProperty;
+
 import java.net.URL;
 
 public interface ShopItem {
@@ -8,9 +10,15 @@ public interface ShopItem {
 
     int getPrice();
 
-    void activate();
+    void setActive(boolean active);
 
-    void deactivate();
+    BooleanProperty activeProperty();
 
     boolean isActive();
+
+    void setPurchased(boolean purchased);
+
+    BooleanProperty purchasedProperty();
+
+    boolean isPurchased();
 }
