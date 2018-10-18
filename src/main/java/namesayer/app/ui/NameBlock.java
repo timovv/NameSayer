@@ -8,10 +8,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import namesayer.app.Constants;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +26,8 @@ public class NameBlock extends BorderPane {
     private final Name name;
     private final NameSayerDatabase database;
 
+    private NameSayerShop shop;
+
     @FXML
     private Text nameText;
     @FXML
@@ -34,9 +38,10 @@ public class NameBlock extends BorderPane {
     @FXML
     private StackPane unsetBadQualityButton;
 
-    public NameBlock(Name name, NameSayerDatabase db, URL fxmlLocation) {
+    public NameBlock(Name name, NameSayerDatabase db, NameSayerShop shop, URL fxmlLocation) {
         this.name = name;
         this.database = db;
+        this.shop = shop;
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         loader.setController(this);
         loader.setRoot(this);
@@ -77,6 +82,8 @@ public class NameBlock extends BorderPane {
     @FXML
     private void setBadQualityClicked() {
         name.setBadQuality(true);
+        // Todo: Give the user some feedback when they do this
+        shop.addToBalance(Constants.COINS_PER_THUMBS_DOWN);
         setBadQualityButton.setVisible(false);
         unsetBadQualityButton.setVisible(true);
     }
@@ -84,6 +91,7 @@ public class NameBlock extends BorderPane {
     @FXML
     private void unsetBadQualityClicked() {
         name.setBadQuality(false);
+        shop.addToBalance(Constants.COINS_PER_THUMBS_DOWN);
         setBadQualityButton.setVisible(true);
         unsetBadQualityButton.setVisible(false);
     }

@@ -26,6 +26,7 @@ public class MainMenu extends StackPane {
     private final ListenMenu listenMenu;
     private final PracticeMenu practiceMenu;
     private final ShopMenu shopMenu;
+    private final RecordMenu recordMenu;
     private Scene scene;
 
     @FXML
@@ -53,9 +54,10 @@ public class MainMenu extends StackPane {
 
         this.database = database;
         this.audioSystem = audioSystem;
-        this.listenMenu = new ListenMenu(this, database);
-        this.practiceMenu = new PracticeMenu(this, audioSystem, database);
+        this.listenMenu = new ListenMenu(this, database, shop);
+        this.practiceMenu = new PracticeMenu(this, audioSystem, database, shop);
         this.shopMenu = new ShopMenu(this, shop);
+        this.recordMenu = new RecordMenu(this, audioSystem, database, shop);
 
         NameSayerSettings.getInstance().themeProperty().addListener((observable, oldValue, newValue) -> setTheme(newValue));
     }
@@ -72,8 +74,7 @@ public class MainMenu extends StackPane {
 
     @FXML
     private void onRecordClicked() {
-        RecordMenu menu = new RecordMenu(this, audioSystem, database);
-        getScene().setRoot(menu);
+        getScene().setRoot(recordMenu);
     }
 
     public void setScene(Scene scene) {

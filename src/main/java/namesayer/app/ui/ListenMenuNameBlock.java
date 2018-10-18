@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 /**
  * A NameBlock that is used in the listen menu, and has an 'expando' that lets you view your attempts
@@ -32,8 +33,8 @@ public class ListenMenuNameBlock extends NameBlock {
 
     private BooleanProperty expanded;
 
-    public ListenMenuNameBlock(NameSayerDatabase db, Name name) {
-        super(name, db, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
+    public ListenMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name) {
+        super(name, db, shop, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
         expanded = new SimpleBooleanProperty(false);
 
         // show the correct (expand vs unexpand) button based on whether attempts are visible or not
