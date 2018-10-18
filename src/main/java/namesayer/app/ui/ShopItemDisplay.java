@@ -1,10 +1,13 @@
 package namesayer.app.ui;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.shop.ShopItem;
@@ -18,6 +21,13 @@ public class ShopItemDisplay extends StackPane {
     private Text shopItemLabel;
     @FXML
     private Text shopItemCost;
+    @FXML
+    private ImageView shopItemIcon;
+
+    private static final Image PACKAGE_ACTIVE_IMAGE =
+            new Image(ShopItemDisplay.class.getResource("/images/package-active.png").toString());
+    private static final Image PACKAGE_INACTIVE_IMAGE =
+            new Image(ShopItemDisplay.class.getResource("/images/package.png").toString());
 
     public ShopItemDisplay(ShopItem shopItem) {
         shopItemProperty = new SimpleObjectProperty<>(shopItem);
@@ -27,6 +37,11 @@ public class ShopItemDisplay extends StackPane {
 
         shopItemLabel.setText(shopItem.getName());
         shopItemCost.setText(Integer.toString(shopItem.getPrice()));
+
+        shopItemIcon.imageProperty()
+                .bind(Bindings.when(shopItem.activeProperty())
+                        .then(PACKAGE_ACTIVE_IMAGE)
+                        .otherwise(PACKAGE_INACTIVE_IMAGE));
     }
 
     @FXML

@@ -50,13 +50,9 @@ public class ShopMenu extends StackPane {
     }
 
     private void handleItemClicked(ShopItem item) {
-        if (shop.isPurchased(item)) {
+        if (item.isPurchased()) {
             // activate /deactivate
-            if (item.isActive()) {
-                item.deactivate();
-            } else {
-                item.activate();
-            }
+            item.setActive(!item.isActive());
         } else {
             if (shop.getBalance() < item.getPrice()) {
                 new JFXDialogHelper("Insufficient funds",
@@ -68,7 +64,7 @@ public class ShopMenu extends StackPane {
 
             // go ahead with purchase
             shop.purchase(item);
-            item.activate();
+            item.setActive(true);
         }
     }
 
