@@ -2,9 +2,13 @@ package namesayer.app.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
-import namesayer.app.shop.SpectrumGUIPack;
+import namesayer.app.shop.NameSayerShop;
+import namesayer.app.shop.ShopItem;
 
 import java.io.IOException;
 
@@ -13,9 +17,17 @@ import java.io.IOException;
  */
 public class ShopMenu extends StackPane {
 
-    private MainMenu previous;
+    private final NameSayerShop shop;
+    private final Parent previous;
 
-    public ShopMenu(MainMenu previous) {
+    @FXML
+    private Pane shopPane;
+
+    @FXML
+    private Text lipCoinLabel;
+
+    public ShopMenu(Parent previous, NameSayerShop shop) {
+        this.shop = shop;
         this.previous = previous;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shopMenu.fxml"));
@@ -27,21 +39,37 @@ public class ShopMenu extends StackPane {
         } catch (IOException e) {
             throw new NameSayerException("Could not load practice menu", e);
         }
+
+        for (ShopItem item : shop.getAvailableItems()) {
+            ShopItemDisplay display = new ShopItemDisplay(item);
+            display.setOnAction(x -> handleItemClicked(item));
+            shopPane.getChildren().add(display);
+        }
+
+        lipCoinLabel.textProperty().bind(shop.balanceProperty().asString().concat(" LipCoins\u2122."));
     }
 
-    @FXML
-    private void onSFXClicked() {
-        //testing purposes only
-        System.out.println("SFX click detected.");
-    }
+    private void handleItemClicked(ShopItem item) {
+        if (shop.isPurchased(item)) {
+            // activate /deactivate
+            if (item.isActive()) {
+                item.deactivate();
+            } else {
+                item.activate();
+            }
+        } else {
+            if (shop.getBalance() < item.getPrice()) {
+                new JFXDialogHelper("Insufficient funds",
+                        "You do not have enough LipCoins\u2122 for this purchase.",
+                        "Okay",
+                        this).show();
+                return;
+            }
 
-    @FXML
-    private void onSpectrumGUIClicked() {
-        //testing purposes only
-        System.out.println("SpectrumGUI click detected.");
-
-        //change theme to Spectrum mode
-        new SpectrumGUIPack().activate();
+            // go ahead with purchase
+            shop.purchase(item);
+            item.activate();
+        }
     }
 
     @FXML

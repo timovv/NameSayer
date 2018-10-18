@@ -10,6 +10,7 @@ import namesayer.app.NameSayerException;
 import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
 
@@ -32,9 +33,10 @@ public class MainMenu extends StackPane {
 
     @FXML
     Text spectrumLabel;
+
     private NameSayerSettings settings;
 
-    public MainMenu(NameSayerDatabase database, AudioSystem audioSystem) {
+    public MainMenu(NameSayerDatabase database, AudioSystem audioSystem, NameSayerShop shop) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/mainMenu.fxml"));
         loader.setController(this);
@@ -50,7 +52,7 @@ public class MainMenu extends StackPane {
         this.audioSystem = audioSystem;
         this.listenMenu = new ListenMenu(this, database);
         this.practiceMenu = new PracticeMenu(this, audioSystem, database);
-        this.shopMenu = new ShopMenu(this);
+        this.shopMenu = new ShopMenu(this, shop);
 
         NameSayerSettings.getInstance().themeProperty().addListener((observable, oldValue, newValue) -> setTheme(newValue));
     }

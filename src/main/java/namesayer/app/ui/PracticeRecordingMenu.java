@@ -64,6 +64,7 @@ public class PracticeRecordingMenu extends StackPane {
     private ProgressBar micLevelBar;
 
     private NameSayerDatabase database;
+    private final Parent mainMenu;
     private AudioSystem audioSystem;
     private Parent previous;
     private int total;
@@ -72,7 +73,8 @@ public class PracticeRecordingMenu extends StackPane {
     private ScrollPane scrollPane = new ScrollPane();
     private AttemptView attemptView;
 
-    public PracticeRecordingMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db, List<List<Name>> names) {
+    public PracticeRecordingMenu(Parent previous, Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db, List<List<Name>> names) {
+        this.mainMenu = mainMenu;
 
         this.audioSystem = audioSystem;
         this.previous = previous;
@@ -154,7 +156,7 @@ public class PracticeRecordingMenu extends StackPane {
             // use JFXDialogHelper to create and show a new pop-up dialog
             JFXDialogHelper dialog = new JFXDialogHelper("Practice Over",
                     NameSayerSettings.getInstance().getWellDoneMessage(), "Thanks", stackPane);
-            dialog.setNextScene(getScene(), new MainMenu(database, audioSystem));
+            dialog.setNextScene(getScene(), mainMenu);
             dialog.show();
         } else {
             current.set(remainingNames.pollFirst());

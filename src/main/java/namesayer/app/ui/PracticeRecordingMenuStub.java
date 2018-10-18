@@ -43,7 +43,7 @@ public class PracticeRecordingMenuStub extends StackPane {
     private AudioSystem audioSystem;
 
 
-    public PracticeRecordingMenuStub(Parent previous, AudioSystem as, NameSayerDatabase db) {
+    public PracticeRecordingMenuStub(Parent previous, Parent mainMenu, AudioSystem as, NameSayerDatabase db) {
         this.previous = previous;
         this.audioSystem = as;
         this.database = db;
@@ -73,7 +73,6 @@ public class PracticeRecordingMenuStub extends StackPane {
         // use JFXDialogHelper to create and show a new pop-up dialog
         JFXDialogHelper dialog = new JFXDialogHelper("Practice Over",
                 NameSayerSettings.getInstance().getWellDoneMessage(), "Thanks", stackPane);
-        dialog.setNextScene(getScene(), new MainMenu(database, audioSystem));
         dialog.show();
     }
 }

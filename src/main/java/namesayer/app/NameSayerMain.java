@@ -8,6 +8,7 @@ import namesayer.app.audio.AudioSystem;
 import namesayer.app.audio.ffmpeg.FFmpegAudioSystem;
 import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.database.file.FileBasedNameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 import namesayer.app.ui.MainMenu;
 
 import java.nio.file.Files;
@@ -43,7 +44,10 @@ public class NameSayerMain extends Application {
 
         NameSayerDatabase db = new FileBasedNameSayerDatabase(namesRoot, attemptsRoot, audio);
 
-        MainMenu mainMenu = new MainMenu(db, audio);
+        NameSayerShop shop = new NameSayerShop();
+        shop.setBalance(50000);
+
+        MainMenu mainMenu = new MainMenu(db, audio, shop);
         Scene scene = new Scene(mainMenu);
         stage.setScene(scene);
         // TODO: Read files to settings
