@@ -31,7 +31,7 @@ public class NameSayerShop {
                 new BIGMode(),
                 new CongratulatoryMessage(),
                 new IncreasedRecordingTime(),
-                new LipCoinMiner(),
+                new LipCoinMiner(this),
                 new SpectrumGUIPack()
         ));
     }

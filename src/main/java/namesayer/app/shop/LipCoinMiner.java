@@ -1,13 +1,25 @@
 package namesayer.app.shop;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 import namesayer.app.NameSayerSettings;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class LipCoinMiner extends ShopItemBase {
 
-    private final int lipCoinMiningRate = 1;
+    private final int lipCoinMiningRatePerSecond = 1;
+    private final NameSayerShop shop;
+    private final Timeline timeline;
+
+    public LipCoinMiner(NameSayerShop shop) {
+        this.shop = shop;
+        this.timeline = new Timeline(new KeyFrame(Duration.seconds(1),
+                event -> shop.addToBalance(lipCoinMiningRatePerSecond)));
+        this.timeline.setCycleCount(Timeline.INDEFINITE);
+    }
+
 
     @Override
     public String getName() {
@@ -21,11 +33,11 @@ public class LipCoinMiner extends ShopItemBase {
 
     @Override
     public void activate() {
-        NameSayerSettings.getInstance().setLipCoinMiner(lipCoinMiningRate);
+        timeline.playFromStart();
     }
 
     @Override
     public void deactivate() {
-        NameSayerSettings.getInstance().setWellDoneMessage(NameSayerSettings.defaultSettings().getWellDoneMessage());
+        timeline.pause();
     }
 }
