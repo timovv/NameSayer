@@ -1,10 +1,15 @@
 package namesayer.app.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.shop.NameSayerShop;
@@ -54,17 +59,33 @@ public class ShopMenu extends StackPane {
             // activate /deactivate
             item.setActive(!item.isActive());
         } else {
-            if (shop.getBalance() < item.getPrice()) {
-                new JFXDialogHelper("Insufficient funds",
-                        "You do not have enough LipCoins\u2122 for this purchase.",
-                        "Okay",
-                        this).show();
-                return;
+            JFXDialogLayout contents = new JFXDialogLayout();
+
+            contents.setHeading(new Text(item.getName()));
+            contents.setBody(new VBox(new Text("Description"),
+                    new Text("Cost: " + item.getPrice() + " LipCoins\u2122")));
+
+            JFXButton purchaseButton = new JFXButton("Purchase");
+            JFXButton cancelButton = new JFXButton("Cancel");
+
+            if(shop.getBalance() < item.getPrice()) {
+                purchaseButton.setDisable(true);
             }
 
-            // go ahead with purchase
-            shop.purchase(item);
-            item.setActive(true);
+            contents.setActions(cancelButton, purchaseButton);
+
+            JFXDialog dialog = new JFXDialog(this, contents, JFXDialog.DialogTransition.CENTER);
+
+            cancelButton.setOnAction(x -> dialog.close());
+
+            purchaseButton.setOnAction(x -> {
+                // go ahead with purchase
+                shop.purchase(item);
+                item.setActive(true);
+                dialog.close();
+            });
+
+            dialog.show();
         }
     }
 
