@@ -57,19 +57,6 @@
                         </StackPane>
                     </children>
                 </StackPane>
-                <StackPane onMouseClicked="#removeButtonClicked">
-                    <children>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#e47474" strokeType="INSIDE" strokeWidth="3.0" />
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/delete.png" />
-                            </image>
-                            <StackPane.margin>
-                                <Insets />
-                            </StackPane.margin>
-                        </ImageView>
-                    </children>
-                </StackPane>
                 <StackPane>
                     <children>
                         <StackPane fx:id="expandoExpand" onMouseClicked="#onExpandClicked">
