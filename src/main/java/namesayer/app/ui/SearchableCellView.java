@@ -8,11 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -28,6 +30,7 @@ public class SearchableCellView<T> extends VBox {
     private final ObservableList<T> content;
     private final SortedList<T> contentSorted;
     private final FilteredList<T> contentFiltered;
+    private final ScrollPane scrollablePane;
 
     private Node placeholderNode;
 
@@ -42,15 +45,20 @@ public class SearchableCellView<T> extends VBox {
         this.searchFilter = new SimpleObjectProperty<>();
         this.cellFactory = new SimpleObjectProperty<>();
         this.placeholderNode = placeholder;
+        StackPane.setAlignment(placeholderNode, Pos.CENTER);
 
         searchBox = new TextField();
         searchBox.setPromptText("Search");
-        ScrollPane scrollablePane = new ScrollPane();
+        StackPane stackPane = new StackPane();
+        scrollablePane = new ScrollPane();
         scrollablePane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollablePane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        VBox.setVgrow(scrollablePane, Priority.ALWAYS);
+        VBox.setVgrow(stackPane, Priority.ALWAYS);
         insidePaneBox = new VBox();
         scrollablePane.setContent(insidePaneBox);
+        stackPane.getChildren().add(scrollablePane);
+        placeholderNode.setVisible(false);
+        stackPane.getChildren().add(placeholderNode);
 
         content = FXCollections.observableArrayList();
         contentSorted = content.sorted();
@@ -58,7 +66,7 @@ public class SearchableCellView<T> extends VBox {
 
         searchBox.setFont(Font.font("Century Gothic", 20));
         getChildren().add(searchBox);
-        getChildren().add(scrollablePane);
+        getChildren().add(stackPane);
 
         contentFiltered.addListener((Observable x) -> refreshContent());
 
@@ -88,9 +96,13 @@ public class SearchableCellView<T> extends VBox {
         }
 
         if (contentFiltered.isEmpty()) {
-            insidePaneBox.getChildren().add(placeholderNode);
+            placeholderNode.setVisible(true);
+            scrollablePane.setVisible(false);
             return;
         }
+
+        placeholderNode.setVisible(false);
+        scrollablePane.setVisible(true);
 
         int i = 0;
         for (T item : contentFiltered) {
