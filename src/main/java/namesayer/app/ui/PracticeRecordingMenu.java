@@ -26,6 +26,7 @@ import namesayer.app.audio.Playable;
 import namesayer.app.database.AttemptInfo;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -69,16 +70,23 @@ public class PracticeRecordingMenu extends StackPane {
     private Parent previous;
     private int total;
     private ObjectProperty<List<Name>> current;
+    private final NameSayerShop shop;
     private LinkedList<List<Name>> remainingNames;
     private ScrollPane scrollPane = new ScrollPane();
     private AttemptView attemptView;
 
-    public PracticeRecordingMenu(Parent previous, Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db, List<List<Name>> names) {
+    public PracticeRecordingMenu(Parent previous,
+                                 Parent mainMenu,
+                                 AudioSystem audioSystem,
+                                 NameSayerDatabase db,
+                                 NameSayerShop shop,
+                                 List<List<Name>> names) {
         this.mainMenu = mainMenu;
 
         this.audioSystem = audioSystem;
         this.previous = previous;
         this.database = db;
+        this.shop = shop;
         this.remainingNames = new LinkedList<>(names);
         this.total = names.size();
         current = new SimpleObjectProperty<>(remainingNames.pollFirst());
@@ -154,8 +162,11 @@ public class PracticeRecordingMenu extends StackPane {
     private void onNextClicked() {
         if (remainingNames.isEmpty()) {
             // use JFXDialogHelper to create and show a new pop-up dialog
+            int coinsEarned = total * NameSayerSettings.getInstance().getCoinsPerPractice();
+            shop.addToBalance(coinsEarned);
             JFXDialogHelper dialog = new JFXDialogHelper("Practice Over",
-                    NameSayerSettings.getInstance().getWellDoneMessage(), "Thanks", stackPane);
+                    NameSayerSettings.getInstance().getWellDoneMessage() +
+                            "\n\nLipCoins\u2122 earned: " + coinsEarned, "Thanks", stackPane);
             dialog.setNextScene(getScene(), mainMenu);
             dialog.show();
         } else {

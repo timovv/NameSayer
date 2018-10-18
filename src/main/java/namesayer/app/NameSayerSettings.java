@@ -17,6 +17,7 @@ public final class NameSayerSettings {
         DEFAULT_SETTINGS.lipCoinMinerProperty.setValue(0);
         DEFAULT_SETTINGS.recordingTimeProperty.setValue(5);
         DEFAULT_SETTINGS.guiScaleProperty.setValue(1);
+        DEFAULT_SETTINGS.coinsPerPracticeProperty.set(50);
     }
 
     private StringProperty themeProperty = new SimpleStringProperty();
@@ -24,6 +25,7 @@ public final class NameSayerSettings {
     private IntegerProperty lipCoinMinerProperty = new SimpleIntegerProperty();
     private IntegerProperty recordingTimeProperty = new SimpleIntegerProperty();
     private IntegerProperty guiScaleProperty = new SimpleIntegerProperty();
+    private IntegerProperty coinsPerPracticeProperty = new SimpleIntegerProperty();
 
     private NameSayerSettings() {
     }
@@ -33,6 +35,7 @@ public final class NameSayerSettings {
             instance = new NameSayerSettings();
             instance.themeProperty.setValue(DEFAULT_SETTINGS.getTheme());
             instance.wellDoneMessageProperty.setValue(DEFAULT_SETTINGS.getWellDoneMessage());
+            instance.coinsPerPracticeProperty.set(DEFAULT_SETTINGS.getCoinsPerPractice());
         }
 
         return instance;
@@ -101,5 +104,18 @@ public final class NameSayerSettings {
     public IntegerProperty guiScaleProperty() {
         return guiScaleProperty;
     }
+
+    public int getCoinsPerPractice() {
+        return coinsPerPracticeProperty.get();
+    }
+
+    public IntegerProperty coinsPerPracticeProperty() {
+        return coinsPerPracticeProperty;
+    }
+
+    public void setCoinsPerPractice(int value) {
+        coinsPerPracticeProperty.set(value);
+    }
+
 }
 

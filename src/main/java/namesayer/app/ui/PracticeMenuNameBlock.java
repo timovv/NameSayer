@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 /**
  * A name block with a check box as used by {@link PracticeRecordingMenu}
@@ -15,8 +16,8 @@ public class PracticeMenuNameBlock extends NameBlock {
     @FXML
     private CheckBox selectedCheckBox;
 
-    public PracticeMenuNameBlock(NameSayerDatabase db, Name name) {
-        super(name, db, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"));
+    public PracticeMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name) {
+        super(name, db, shop, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"));
     }
 
     public BooleanProperty selectedProperty() {

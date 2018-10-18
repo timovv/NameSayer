@@ -10,10 +10,12 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import namesayer.app.Constants;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.NameInfo;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -30,6 +32,7 @@ public class RecordMenu extends StackPane {
     private Timeline micLevelTimeline;
     private AudioSystem audioSystem;
     private NameSayerDatabase database;
+    private NameSayerShop shop;
 
     @FXML
     private TextField nameTextField;
@@ -38,10 +41,11 @@ public class RecordMenu extends StackPane {
     @FXML
     private RecordingWidget recordingWidget;
 
-    public RecordMenu(Parent previous, AudioSystem audio, NameSayerDatabase db) {
+    public RecordMenu(Parent previous, AudioSystem audio, NameSayerDatabase db, NameSayerShop shop) {
         this.previous = previous;
         this.audioSystem = audio;
         this.database = db;
+        this.shop = shop;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/recordMenu.fxml"));
         loader.setController(this);
@@ -93,10 +97,12 @@ public class RecordMenu extends StackPane {
         }
 
         NameInfo nameInfo = new NameInfo(nameTextField.getText(), "se206", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        int coinsEarned = Constants.COINS_PER_RECORDING_MADE;
         database.getNameDatabase().createNew(nameInfo, recordingWidget.getRecording());
         // use JFXDialogHelper to create and show a new pop-up dialog for successful recording
         JFXDialogHelper dialog = new JFXDialogHelper("Recording Successful", "Your recording of " +
-                nameTextField.getText() + " was saved.", "OK", this);
+                nameTextField.getText() + " was saved.\n\nYou earned " + coinsEarned + "LipCoins\u2122", "OK", this);
+        shop.addToBalance(coinsEarned);
         dialog.show();
     }
 

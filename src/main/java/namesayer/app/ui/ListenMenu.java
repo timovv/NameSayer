@@ -9,6 +9,7 @@ import namesayer.app.NameSayerException;
 import namesayer.app.database.Attempt;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class ListenMenu extends StackPane {
 
     private final Parent previous;
     private final NameSayerDatabase database;
+    private final NameSayerShop shop;
 
     @FXML
     private SearchableCellView<Name> nameCellView;
@@ -27,9 +29,10 @@ public class ListenMenu extends StackPane {
     @FXML
     private SearchableCellView<List<String>> attemptsCellView;
 
-    public ListenMenu(Parent previous, NameSayerDatabase db) {
+    public ListenMenu(Parent previous, NameSayerDatabase db, NameSayerShop shop) {
         this.previous = previous;
         this.database = db;
+        this.shop = shop;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/listenMenu.fxml"));
         loader.setController(this);
@@ -45,7 +48,7 @@ public class ListenMenu extends StackPane {
     @FXML
     private void initialize() {
         Bindings.bindContent(nameCellView.getContent(), database.getNameDatabase().getAll());
-        nameCellView.setCellFactory((view, value, index) -> new ListenMenuNameBlock(database, value));
+        nameCellView.setCellFactory((view, value, index) -> new ListenMenuNameBlock(database, shop, value));
         nameCellView.setSearchFilter((name, searchString) -> name.getName().toLowerCase().contains(searchString.toLowerCase()));
         nameCellView.setComparator(Comparator.comparing(Name::getName, String.CASE_INSENSITIVE_ORDER));
 

@@ -29,6 +29,7 @@ import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.shop.NameSayerShop;
 
 /**
  * Menu which allows the user to select what name(s) they want to practice
@@ -39,6 +40,7 @@ public class PracticeMenu extends StackPane {
     private IntegerProperty selectedCount = new SimpleIntegerProperty();
     private NameSayerDatabase database;
     private AudioSystem audioSystem;
+    private NameSayerShop shop;
     @FXML
     private AutoCompleteTextField namesTextField;
     @FXML
@@ -54,8 +56,8 @@ public class PracticeMenu extends StackPane {
     @FXML
     private ListView<List<Name>> namesList;
 
-    public PracticeMenu(Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db) {
-
+    public PracticeMenu(Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db, NameSayerShop shop) {
+        this.shop = shop;
         this.audioSystem = audioSystem;
         this.database = db;
         this.mainMenu = mainMenu;
@@ -129,7 +131,7 @@ public class PracticeMenu extends StackPane {
 
         // reset for when user comes back
         reset();
-        getScene().setRoot(new PracticeRecordingMenu(this, mainMenu, audioSystem, database, names));
+        getScene().setRoot(new PracticeRecordingMenu(this, mainMenu, audioSystem, database, shop, names));
     }
 
     public void reset() {
