@@ -35,7 +35,7 @@ import namesayer.app.database.NameSayerDatabase;
  */
 public class PracticeMenu extends StackPane {
 
-    private final Parent previous;
+    private final Parent mainMenu;
     private IntegerProperty selectedCount = new SimpleIntegerProperty();
     private NameSayerDatabase database;
     private AudioSystem audioSystem;
@@ -54,11 +54,11 @@ public class PracticeMenu extends StackPane {
     @FXML
     private ListView<List<Name>> namesList;
 
-    public PracticeMenu(Parent previous, AudioSystem audioSystem, NameSayerDatabase db) {
+    public PracticeMenu(Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db) {
 
         this.audioSystem = audioSystem;
         this.database = db;
-        this.previous = previous;
+        this.mainMenu = mainMenu;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/practiceMenu.fxml"));
 
@@ -129,7 +129,7 @@ public class PracticeMenu extends StackPane {
 
         // reset for when user comes back
         reset();
-        getScene().setRoot(new PracticeRecordingMenu(this, audioSystem, database, names));
+        getScene().setRoot(new PracticeRecordingMenu(this, mainMenu, audioSystem, database, names));
     }
 
     public void reset() {
@@ -145,6 +145,11 @@ public class PracticeMenu extends StackPane {
     @FXML
     private void addNameClicked() {
         String text = namesTextField.getText().trim();
+
+        if(text.isEmpty()) {
+            return;
+        }
+
         namesTextField.clear();
         if (!tryAddName(text)) {
             new JFXDialogHelper("Could Not Add Name", "Could not find databsase entries for the entered name!", "Okay", this).show();
@@ -226,6 +231,6 @@ public class PracticeMenu extends StackPane {
     @FXML
     private void onBackClicked() {
         reset();
-        getScene().setRoot(previous);
+        getScene().setRoot(mainMenu);
     }
 }
