@@ -61,8 +61,6 @@ public class NameSayerMain extends Application {
             shop.load(shopDataPath);
         }
 
-        shop.addToBalance(50000);
-
         stage.setOnCloseRequest(x -> {
             try {
                 shop.saveTo(shopDataPath);
