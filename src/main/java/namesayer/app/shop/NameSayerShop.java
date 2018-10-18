@@ -12,10 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class NameSayerShop {
@@ -29,7 +26,8 @@ public class NameSayerShop {
      */
     public NameSayerShop() {
         // This is where shop items are added.
-        allShopItems = new HashSet<>(Arrays.asList(
+        allShopItems = new TreeSet<>(Comparator.comparing(ShopItem::getName, String.CASE_INSENSITIVE_ORDER));
+        allShopItems.addAll(Arrays.asList(
                 new BIGMode(),
                 new CongratulatoryMessage(),
                 new IncreasedRecordingTime(),
