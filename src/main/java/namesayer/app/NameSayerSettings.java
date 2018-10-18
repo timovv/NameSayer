@@ -12,7 +12,7 @@ public final class NameSayerSettings {
 
     static {
         DEFAULT_SETTINGS = new NameSayerSettings();
-        DEFAULT_SETTINGS.themeProperty.setValue(null);
+        DEFAULT_SETTINGS.themeProperty.setValue("main");
         DEFAULT_SETTINGS.wellDoneMessageProperty.setValue("You have finished all your practices.");
         DEFAULT_SETTINGS.lipCoinMinerProperty.setValue(0);
         DEFAULT_SETTINGS.recordingTimeProperty.setValue(5);

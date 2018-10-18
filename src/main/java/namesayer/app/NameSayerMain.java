@@ -2,6 +2,8 @@ package namesayer.app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import namesayer.app.audio.AudioStub;
 import namesayer.app.audio.AudioSystem;
@@ -50,7 +52,10 @@ public class NameSayerMain extends Application {
         MainMenu mainMenu = new MainMenu(db, audio, shop);
         Scene scene = new Scene(mainMenu);
         stage.setScene(scene);
+        mainMenu.setScene(scene);
         // TODO: Read files to settings
+        // force update of theme
+        NameSayerSettings.getInstance().setTheme("");
         NameSayerSettings.getInstance().setTheme("main");
         stage.show();
     }

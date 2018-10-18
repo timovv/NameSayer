@@ -2,6 +2,8 @@ package namesayer.app.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -24,6 +26,7 @@ public class MainMenu extends StackPane {
     private final ListenMenu listenMenu;
     private final PracticeMenu practiceMenu;
     private final ShopMenu shopMenu;
+    private Scene scene;
 
     @FXML
     ImageView spectrumBanner;
@@ -73,6 +76,10 @@ public class MainMenu extends StackPane {
         getScene().setRoot(menu);
     }
 
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
     @FXML
     private void onShopButtonClicked() {
         getScene().setRoot(shopMenu);
@@ -80,8 +87,12 @@ public class MainMenu extends StackPane {
 
     // TODO: change to private once the settings thing actually works
     public void setTheme(String address) {
-        this.getScene().getStylesheets().clear();
-        this.getScene().getStylesheets().add("/css/" + address + ".css");
+        if(address == null) {
+            return;
+        }
+
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add("/css/" + address + ".css");
         if (address.equals("spectrum")) {
             spectrumLabel.setVisible(true);
             spectrumBanner.setImage(new Image(getClass().getResourceAsStream("/images/banner.png")));
