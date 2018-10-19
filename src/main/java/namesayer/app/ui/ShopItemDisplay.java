@@ -38,7 +38,7 @@ public class ShopItemDisplay extends StackPane {
         shopItemLabel.setText(shopItem.getName());
 
         shopItemCost.textProperty().bind(Bindings.when(shopItem.purchasedProperty()).then("Purchased!")
-                .otherwise(Integer.toString(shopItem.getPrice())));
+                .otherwise(Integer.toString(shopItem.getPrice()) + " LipCoins\u2122"));
 
         shopItemIcon.imageProperty()
                 .bind(Bindings.when(shopItem.activeProperty())
