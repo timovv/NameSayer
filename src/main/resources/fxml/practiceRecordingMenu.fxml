@@ -68,7 +68,7 @@
                                 <Insets bottom="20.0" right="70.0"/>
                             </VBox.margin>
                         </Label>
-                        <JFXProgressBar fx:id="micLevelBar" prefWidth="1280.0" progress="0.0"
+                        <JFXProgressBar fx:id="micLevelBar" prefWidth="760.0" progress="0.0"
                                         styleClass="microphone-level">
                             <VBox.margin>
                                 <Insets top="20.0"/>

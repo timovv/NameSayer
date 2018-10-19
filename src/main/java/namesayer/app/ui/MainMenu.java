@@ -2,7 +2,6 @@ package namesayer.app.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,13 +29,13 @@ public class MainMenu extends StackPane {
     private Scene scene;
 
     @FXML
-    ImageView spectrumBanner;
+    private ImageView spectrumBanner;
 
     @FXML
-    ImageView soundwaveBanner;
+    private ImageView soundwaveBanner;
 
     @FXML
-    Text spectrumLabel;
+    private Text spectrumLabel;
 
     private NameSayerSettings settings;
 
@@ -88,7 +87,7 @@ public class MainMenu extends StackPane {
 
     // TODO: change to private once the settings thing actually works
     public void setTheme(String address) {
-        if(address == null) {
+        if (address == null) {
             return;
         }
 

@@ -78,7 +78,8 @@
                                         <SearchableCellView fx:id="nameCellView" alignment="CENTER" spacing="10.0"
                                                             VBox.vgrow="ALWAYS">
                                             <placeholder>
-                                                <Label text="You do not have any recordings in your database."/>
+                                                <Label styleClass="placeholder-text"
+                                                       text="You do not have any recordings in your database."/>
                                             </placeholder>
                                             <VBox.margin>
                                                 <Insets/>
@@ -118,7 +119,8 @@
                                         <SearchableCellView fx:id="attemptsCellView" alignment="CENTER" spacing="10.0"
                                                             VBox.vgrow="ALWAYS">
                                             <placeholder>
-                                                <Label text="You have no yet recorded any attempts of names."/>
+                                                <Label styleClass="placeholder-text"
+                                                       text="You have not yet recorded any attempts of names."/>
                                             </placeholder>
                                         </SearchableCellView>
                                     </children>

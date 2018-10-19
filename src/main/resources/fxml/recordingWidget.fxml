@@ -23,8 +23,9 @@
                         <Insets/>
                     </StackPane.margin>
                 </Rectangle>
-                <ImageView fitHeight="130.0" fitWidth="130.0" onMouseClicked="#recordButtonClicked" pickOnBounds="true"
-                           preserveRatio="true" styleClass="record-button">
+                <ImageView fx:id="recordingButton" fitHeight="130.0" fitWidth="130.0"
+                           onMouseClicked="#recordButtonClicked" pickOnBounds="true" preserveRatio="true"
+                           styleClass="record-button">
                     <image>
                         <Image url="@../images/record.png"/>
                     </image>

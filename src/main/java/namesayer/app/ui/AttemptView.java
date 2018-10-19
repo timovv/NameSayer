@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import namesayer.app.database.Attempt;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
@@ -16,20 +18,21 @@ import java.util.stream.Collectors;
 
 public class AttemptView extends VBox {
 
-    private ObjectProperty<List<Name>> namesProperty = new SimpleObjectProperty<>();
-
     private final Label noAttemptsLabel = new Label("You haven't made any attempts for this name!");
     private final VBox attemptsVBox = new VBox();
-    private ListChangeListener<Attempt> listener = c -> update();
+    private ObjectProperty<List<Name>> namesProperty = new SimpleObjectProperty<>();
     private NameSayerDatabase database;
+    private ListChangeListener<Attempt> listener = c -> update();
 
     public AttemptView(List<Name> names, NameSayerDatabase db) {
 
         this.database = db;
         setNames(names);
         // If you have no attempts, show a friendly message
+        noAttemptsLabel.setFont(Font.font("Century Gothic", 18));
+        noAttemptsLabel.setTextFill(Paint.valueOf("#a8a8a8"));
         noAttemptsLabel.visibleProperty().bind(Bindings.createBooleanBinding(() ->
-                db.getAttemptsForNames(namesProperty.get()).isEmpty(),
+                        db.getAttemptsForNames(namesProperty.get()).isEmpty(),
                 namesProperty));
 
         getChildren().add(noAttemptsLabel);
@@ -49,12 +52,12 @@ public class AttemptView extends VBox {
         }
     }
 
+    public List<Name> getNames() {
+        return namesProperty.get();
+    }
+
     public void setNames(List<Name> names) {
         namesProperty.set(names);
         update();
-    }
-
-    public List<Name> getNames() {
-        return namesProperty.get();
     }
 }

@@ -2,8 +2,6 @@ package namesayer.app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import namesayer.app.audio.AudioStub;
 import namesayer.app.audio.AudioSystem;
@@ -59,14 +57,16 @@ public class NameSayerMain extends Application {
         NameSayerSettings.getInstance().setTheme("main");
 
         Path shopDataPath = Paths.get("NameSayer.dat");
-        if(Files.exists(shopDataPath)) {
+        if (Files.exists(shopDataPath)) {
             shop.load(shopDataPath);
         }
+
+        shop.addToBalance(50000);
 
         stage.setOnCloseRequest(x -> {
             try {
                 shop.saveTo(shopDataPath);
-            } catch(IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });

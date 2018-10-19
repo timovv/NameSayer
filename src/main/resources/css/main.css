@@ -236,3 +236,10 @@
 .back-button:hover {
     -fx-fill: #f59d2a;
 }
+
+.placeholder-text {
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 18px;
+    -fx-text-fill: #a8a8a8;
+    -fx-alignment: CENTER;
+}

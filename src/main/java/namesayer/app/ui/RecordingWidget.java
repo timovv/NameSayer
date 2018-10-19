@@ -7,6 +7,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -21,6 +23,8 @@ import java.io.IOException;
  */
 public class RecordingWidget extends BorderPane {
 
+    private final int recordingTimeLimit = 10;
+
     private AudioClip recording = null;
     private AudioSystem audioSystem;
     private Timeline autoStopTimeline;
@@ -30,6 +34,9 @@ public class RecordingWidget extends BorderPane {
 
     @FXML
     private Text recordingTime;
+
+    @FXML
+    private ImageView recordingButton;
 
     public RecordingWidget() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/recordingWidget.fxml"));
@@ -50,10 +57,10 @@ public class RecordingWidget extends BorderPane {
                 .otherwise(Bindings.concat("Recording for ", secondsLeft.asString(), "s")));
 
         // create the timelines, we are recording for 5s
-        autoStopTimeline = new Timeline(new KeyFrame(Duration.millis(5000), a -> stopRecording()));
+        autoStopTimeline = new Timeline(new KeyFrame(Duration.seconds(recordingTimeLimit), a -> stopRecording()));
         autoStopTimeline.setCycleCount(1);
-        countdownTimeline = new Timeline(new KeyFrame(Duration.millis(1000), a -> secondsLeft.set(secondsLeft.get() - 1)));
-        countdownTimeline.setCycleCount(5);
+        countdownTimeline = new Timeline(new KeyFrame(Duration.seconds(1), a -> secondsLeft.set(secondsLeft.get() - 1)));
+        countdownTimeline.setCycleCount(recordingTimeLimit);
     }
 
     @FXML
@@ -82,7 +89,8 @@ public class RecordingWidget extends BorderPane {
     private void startRecording() {
         audioSystem.startRecording();
 
-        secondsLeft.set(5);
+        recordingButton.setImage(new Image(getClass().getResourceAsStream("/images/record-stop.png")));
+        secondsLeft.set(recordingTimeLimit);
         countdownTimeline.playFromStart();
         autoStopTimeline.playFromStart();
     }
@@ -93,6 +101,7 @@ public class RecordingWidget extends BorderPane {
             countdownTimeline.stop();
         }
 
+        recordingButton.setImage(new Image(getClass().getResourceAsStream("/images/record.png")));
         secondsLeft.set(0);
         recording = audioSystem.stopRecording();
     }
