@@ -85,22 +85,24 @@ public class MainMenu extends StackPane {
         getScene().setRoot(shopMenu);
     }
 
-    // TODO: change to private once the settings thing actually works
-    public void setTheme(String address) {
+    private void setTheme(String address) {
         if (address == null) {
             return;
         }
 
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add("/css/" + address + ".css");
         if (address.equals("spectrum")) {
+            scene.getStylesheets().clear();
             spectrumLabel.setVisible(true);
             spectrumBanner.setImage(new Image(getClass().getResourceAsStream("/images/banner.png")));
             soundwaveBanner.setImage(new Image(getClass().getResourceAsStream("/images/soundwave.png")));
         } else if (address.equals("main")) {
+            scene.getStylesheets().clear();
             spectrumLabel.setVisible(false);
             spectrumBanner.setImage(new Image(getClass().getResourceAsStream("/images/main-banner.png")));
             soundwaveBanner.setImage(new Image(getClass().getResourceAsStream("/images/main-soundwave.png")));
         }
+
+        scene.getStylesheets().add("/css/" + address + ".css");
     }
+
 }

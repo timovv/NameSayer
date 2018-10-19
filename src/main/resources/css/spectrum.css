@@ -18,6 +18,11 @@
         -fx-scale-y: 1.06;
 }
 
+.small-listen-button:hover {
+    -fx-scale-x: 1.06;
+    -fx-scale-y: 1.06;
+}
+
 .start-button,
 .next-button {
     -jfx-button-type: FLAT;
@@ -121,6 +126,10 @@
     -fx-font-weight: 300;
     -fx-font-size: 20px;
     -fx-text-fill: #8fbee3;
+}
+
+.title-block {
+ -fx-background-color: linear-gradient(to bottom right, #f9f9f9 0%, #c9c9c9 100%);
 }
 
 .back-button:hover {

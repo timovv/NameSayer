@@ -2,13 +2,12 @@ package namesayer.app.shop;
 
 import namesayer.app.NameSayerSettings;
 
-public class SpectrumGUIPack extends ShopItemBase {
+public class BiggerAnimations extends ShopItemBase {
 
-    private final String spectrumTheme = "spectrum";
-    private final String name = "Spectrum GUI Pack";
-    private final int price = 1000;
-    private final String description = "Who doesn't like Rainbows? If you're bored with just two colors,\n" +
-            "try a theme will all 16 million colors of the spectrum!";
+    private final String bigAnimations = "animations";
+    private final String name = "Bigger Animations";
+    private final int price = 500;
+    private final String description = "Bigger animation scaling on main and recording buttons on hover.";
 
     @Override
     public String getName() {
@@ -27,7 +26,7 @@ public class SpectrumGUIPack extends ShopItemBase {
 
     @Override
     public void activate() {
-        NameSayerSettings.getInstance().setTheme(spectrumTheme);
+        NameSayerSettings.getInstance().setTheme(bigAnimations);
     }
 
     @Override

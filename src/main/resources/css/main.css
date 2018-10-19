@@ -230,7 +230,7 @@
 }
 
 .title-block {
- -fx-background-color: linear-gradient(to bottom right, #ffffff 0%, #c9c9c9 100%);
+ -fx-background-color: linear-gradient(to bottom right, #f9f9f9 0%, #c9c9c9 100%);
 }
 
 .back-button:hover {

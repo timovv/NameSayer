@@ -27,7 +27,9 @@ public class NameSayerShop {
                 new CongratulatoryMessage(),
                 new LipCoinMiner(this),
                 new SpectrumGUIPack(),
-                new WishingWell()
+                new WishingWell(),
+                new AugmentedRealityMode(),
+                new BiggerAnimations()
         ));
     }
 
