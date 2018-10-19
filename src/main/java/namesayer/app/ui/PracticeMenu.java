@@ -154,7 +154,7 @@ public class PracticeMenu extends StackPane {
 
         namesTextField.clear();
         if (!tryAddName(text)) {
-            new JFXDialogHelper("Could Not Add Name", "Could not find databsase entries for the entered name!", "Okay", this).show();
+            new JFXDialogHelper("Could Not Add Name", "Could not find database entries for the entered name!", "Okay", this).show();
         }
     }
 
