@@ -13,6 +13,7 @@ import namesayer.app.database.file.FileBasedNameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
 import namesayer.app.ui.MainMenu;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,7 +48,6 @@ public class NameSayerMain extends Application {
         NameSayerDatabase db = new FileBasedNameSayerDatabase(namesRoot, attemptsRoot, audio);
 
         NameSayerShop shop = new NameSayerShop();
-        shop.setBalance(50000);
 
         MainMenu mainMenu = new MainMenu(db, audio, shop);
         Scene scene = new Scene(mainMenu);
@@ -57,6 +57,19 @@ public class NameSayerMain extends Application {
         // force update of theme
         NameSayerSettings.getInstance().setTheme("");
         NameSayerSettings.getInstance().setTheme("main");
+
+        Path shopDataPath = Paths.get("NameSayer.dat");
+        if(Files.exists(shopDataPath)) {
+            shop.load(shopDataPath);
+        }
+
+        stage.setOnCloseRequest(x -> {
+            try {
+                shop.saveTo(shopDataPath);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        });
         stage.show();
     }
 }

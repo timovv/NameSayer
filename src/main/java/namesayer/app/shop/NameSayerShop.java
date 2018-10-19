@@ -5,6 +5,13 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import namesayer.app.NameSayerException;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -100,5 +107,47 @@ public class NameSayerShop {
      */
     public void setBalance(int amount) {
         balanceProperty.setValue(amount);
+    }
+
+    // saving and loading
+
+    /**
+     * Save the users' purchases, balance, and active shop items to the given path.
+     * @param path The path to save to.
+     */
+    public void saveTo(Path path) throws IOException {
+        try(OutputStream os = Files.newOutputStream(path)) {
+            try(ObjectOutputStream outputStream = new ObjectOutputStream(os)) {
+                // write the balance
+                outputStream.writeInt(getBalance());
+                // count of purchased items
+                Set<ShopItem> purchased = getPurchasedItems();
+                outputStream.writeInt(purchased.size());
+
+                for(ShopItem item : purchased) {
+                    outputStream.writeUTF(item.getName());
+                    // write whether it is active or not.
+                    outputStream.writeBoolean(item.isActive());
+                }
+            }
+        }
+    }
+
+    public void load(Path path) throws IOException {
+        try(InputStream is = Files.newInputStream(path)) {
+            try(ObjectInputStream inputStream = new ObjectInputStream(is)) {
+                setBalance(inputStream.readInt());
+                int purchasedCount = inputStream.readInt();
+
+                for(int i = 0; i < purchasedCount; ++i) {
+                    String name = inputStream.readUTF();
+                    boolean active = inputStream.readBoolean();
+                    ShopItem item = allShopItems.stream().filter(x -> x.getName().equals(name))
+                            .findAny().orElseThrow(() -> new IOException("Could not find shop item matching " + name));
+                    item.setPurchased(true);
+                    item.setActive(active);
+                }
+            }
+        }
     }
 }
