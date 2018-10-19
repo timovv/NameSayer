@@ -31,9 +31,8 @@ public class AttemptView extends VBox {
         // If you have no attempts, show a friendly message
         noAttemptsLabel.setFont(Font.font("Century Gothic", 18));
         noAttemptsLabel.setTextFill(Paint.valueOf("#a8a8a8"));
-        noAttemptsLabel.visibleProperty().bind(Bindings.createBooleanBinding(() ->
-                        db.getAttemptsForNames(namesProperty.get()).isEmpty(),
-                namesProperty));
+        noAttemptsLabel.setVisible(database.getAttemptsForNames(names).isEmpty());
+        noAttemptsLabel.managedProperty().bind(noAttemptsLabel.visibleProperty());
 
         getChildren().add(noAttemptsLabel);
         getChildren().add(attemptsVBox);
@@ -50,6 +49,9 @@ public class AttemptView extends VBox {
                 .stream().sorted(Comparator.comparing(Attempt::getAttemptTime)).collect(Collectors.toList())) {
             attemptsVBox.getChildren().add(new AttemptBlock(database, attempt, ++i));
         }
+
+        // only show the no attempts label if there are no attempts!
+        noAttemptsLabel.setVisible(i == 0);
     }
 
     public List<Name> getNames() {
