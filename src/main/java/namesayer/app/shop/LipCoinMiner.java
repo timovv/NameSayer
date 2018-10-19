@@ -2,16 +2,15 @@ package namesayer.app.shop;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.util.Duration;
-import namesayer.app.NameSayerSettings;
 
 public class LipCoinMiner extends ShopItemBase {
 
     private final int lipCoinMiningRatePerSecond = 1;
     private final NameSayerShop shop;
     private final Timeline timeline;
+    private final String name = "LipCoin\u2122 Miner";
+    private final int price = 1000;
 
     public LipCoinMiner(NameSayerShop shop) {
         this.shop = shop;
@@ -23,12 +22,12 @@ public class LipCoinMiner extends ShopItemBase {
 
     @Override
     public String getName() {
-        return "LipCoin Miner";
+        return this.name;
     }
 
     @Override
     public int getPrice() {
-        return 1000;
+        return this.price;
     }
 
     @Override

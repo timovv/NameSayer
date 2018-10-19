@@ -5,11 +5,7 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import namesayer.app.NameSayerException;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -28,12 +24,10 @@ public class NameSayerShop {
         // This is where shop items are added.
         allShopItems = new TreeSet<>(Comparator.comparing(ShopItem::getName, String.CASE_INSENSITIVE_ORDER));
         allShopItems.addAll(Arrays.asList(
-                new BIGMode(),
                 new CongratulatoryMessage(),
-                new IncreasedRecordingTime(),
                 new LipCoinMiner(this),
                 new SpectrumGUIPack(),
-                new WishingWellShopItem()
+                new WishingWell()
         ));
     }
 
@@ -79,6 +73,15 @@ public class NameSayerShop {
     }
 
     /**
+     * Set the user's balance to the given value.
+     *
+     * @param amount The value to set the balance to.
+     */
+    public void setBalance(int amount) {
+        balanceProperty.setValue(amount);
+    }
+
+    /**
      * Add the given amount to the user's coin balance.
      *
      * @param amount The amount to add to the balance.
@@ -99,31 +102,23 @@ public class NameSayerShop {
         return balanceProperty;
     }
 
-    /**
-     * Set the user's balance to the given value.
-     *
-     * @param amount The value to set the balance to.
-     */
-    public void setBalance(int amount) {
-        balanceProperty.setValue(amount);
-    }
-
     // saving and loading
 
     /**
      * Save the users' purchases, balance, and active shop items to the given path.
+     *
      * @param path The path to save to.
      */
     public void saveTo(Path path) throws IOException {
-        try(OutputStream os = Files.newOutputStream(path)) {
-            try(ObjectOutputStream outputStream = new ObjectOutputStream(os)) {
+        try (OutputStream os = Files.newOutputStream(path)) {
+            try (ObjectOutputStream outputStream = new ObjectOutputStream(os)) {
                 // write the balance
                 outputStream.writeInt(getBalance());
                 // count of purchased items
                 Set<ShopItem> purchased = getPurchasedItems();
                 outputStream.writeInt(purchased.size());
 
-                for(ShopItem item : purchased) {
+                for (ShopItem item : purchased) {
                     outputStream.writeUTF(item.getName());
                     // write whether it is active or not.
                     outputStream.writeBoolean(item.isActive());
@@ -133,12 +128,12 @@ public class NameSayerShop {
     }
 
     public void load(Path path) throws IOException {
-        try(InputStream is = Files.newInputStream(path)) {
-            try(ObjectInputStream inputStream = new ObjectInputStream(is)) {
+        try (InputStream is = Files.newInputStream(path)) {
+            try (ObjectInputStream inputStream = new ObjectInputStream(is)) {
                 setBalance(inputStream.readInt());
                 int purchasedCount = inputStream.readInt();
 
-                for(int i = 0; i < purchasedCount; ++i) {
+                for (int i = 0; i < purchasedCount; ++i) {
                     String name = inputStream.readUTF();
                     boolean active = inputStream.readBoolean();
                     ShopItem item = allShopItems.stream().filter(x -> x.getName().equals(name))

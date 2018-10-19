@@ -2,21 +2,20 @@ package namesayer.app.shop;
 
 import namesayer.app.NameSayerSettings;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class CongratulatoryMessage extends ShopItemBase {
 
     private final String congratulatoryMessage = "HOLY MOLY YOU DID IT, YOU BEAST! WHAT AN ABSOLUTE MADMAN 999/10 GOOD PRACTICE LAD!!!";
+    private final String name = "Congratulatory Message";
+    private final int price = 300;
 
     @Override
     public String getName() {
-        return "Congratulatory Message";
+        return this.name;
     }
 
     @Override
     public int getPrice() {
-        return 300;
+        return this.price;
     }
 
     @Override

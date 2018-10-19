@@ -1,13 +1,12 @@
 package namesayer.app.shop;
 
-public class WishingWell extends OneTimePurchaseShopItem {
-
-    private final String name = "The Wishing Well";
-    private final int price = 100;
+public class AugmentedRealityMode extends OneTimePurchaseShopItem {
+    private final String name = "Augmented Reality Mode";
+    private final int price = 10000;
 
     @Override
     protected void doAction() {
-        // do nothing!
+
     }
 
     @Override
