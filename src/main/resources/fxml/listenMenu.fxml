@@ -37,7 +37,7 @@
                     </right>
                     <left>
                         <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                              styleClass="back-button" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
                             </font>
@@ -75,10 +75,14 @@
                                                 </Text>
                                             </right>
                                         </BorderPane>
-                                        <SearchableCellView fx:id="nameCellView" VBox.vgrow="ALWAYS">
+                                        <SearchableCellView fx:id="nameCellView" alignment="CENTER" spacing="10.0"
+                                                            VBox.vgrow="ALWAYS">
                                             <placeholder>
-                                                <Label text="hi"/>
+                                                <Label text="You do not have any recordings in your database."/>
                                             </placeholder>
+                                            <VBox.margin>
+                                                <Insets/>
+                                            </VBox.margin>
                                         </SearchableCellView>
                                     </children>
                                     <opaqueInsets>
@@ -111,9 +115,10 @@
                                                 </Text>
                                             </right>
                                         </BorderPane>
-                                        <SearchableCellView fx:id="attemptsCellView" VBox.vgrow="ALWAYS">
+                                        <SearchableCellView fx:id="attemptsCellView" alignment="CENTER" spacing="10.0"
+                                                            VBox.vgrow="ALWAYS">
                                             <placeholder>
-                                                <Label text="hi"/>
+                                                <Label text="You have no yet recorded any attempts of names."/>
                                             </placeholder>
                                         </SearchableCellView>
                                     </children>

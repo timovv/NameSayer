@@ -40,7 +40,7 @@
                     </right>
                     <left>
                         <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                              styleClass="back-button" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
                             </font>

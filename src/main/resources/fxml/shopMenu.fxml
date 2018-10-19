@@ -5,8 +5,8 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" style="-fx-background-color: #3d3d3d;"
-         type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" style="-fx-background-color: #3d3d3d;" type="StackPane"
+         xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                     prefHeight="720.0" prefWidth="1280.0" styleClass="shop-menu">
@@ -34,7 +34,7 @@
                     </right>
                     <left>
                         <Text fill="#8d8d8d" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                              styleClass="back-button" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
                             </font>
@@ -63,7 +63,7 @@
                                     </HBox.margin>
                                 </Text>
                                 <Text fx:id="lipCoinLabel" fill="#e84c3d" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="1000 LipCoins." textAlignment="RIGHT">
+                                      text="1000 LipCoins" textAlignment="RIGHT">
                                     <font>
                                         <Font name="Century Gothic" size="20.0"/>
                                     </font>

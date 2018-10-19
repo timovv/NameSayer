@@ -46,7 +46,7 @@ public class ShopMenu extends StackPane {
             shopPane.getChildren().add(display);
         }
 
-        lipCoinLabel.textProperty().bind(shop.balanceProperty().asString().concat(" LipCoins\u2122."));
+        lipCoinLabel.textProperty().bind(shop.balanceProperty().asString().concat(" LipCoins\u2122"));
     }
 
     private void handleItemClicked(ShopItem item) {

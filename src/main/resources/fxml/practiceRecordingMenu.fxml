@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +11,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.*?>
 <?import namesayer.app.ui.RecordingWidget?>
-<?import com.jfoenix.controls.JFXProgressBar?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" style="-fx-background-color: #ededed;"
          type="StackPane" xmlns="http://javafx.com/javafx/8.0.121">
     <children>
@@ -41,7 +41,7 @@
                     <left>
 
                         <Text fill="#afafaf" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
-                              text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                              styleClass="back-button" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
                                 <Font name="Century Gothic" size="45.0"/>
                             </font>
@@ -97,7 +97,8 @@
                                 </Label>
                                 <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
                                     <children>
-                                        <Circle fill="#1f93ff00" radius="25.0" strokeType="INSIDE" strokeWidth="3.0">
+                                        <Circle fill="#1f93ff00" radius="25.0" strokeType="INSIDE" strokeWidth="3.0"
+                                                styleClass="small-listen-button">
                                             <stroke>
                                                 <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                                                     <stops>

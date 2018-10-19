@@ -122,3 +122,7 @@
     -fx-font-size: 20px;
     -fx-text-fill: #8fbee3;
 }
+
+.back-button:hover {
+    -fx-fill: #b8b8b8;
+}

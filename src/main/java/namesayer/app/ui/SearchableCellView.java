@@ -14,6 +14,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -55,6 +56,7 @@ public class SearchableCellView<T> extends VBox {
         contentSorted = content.sorted();
         contentFiltered = contentSorted.filtered(this::filterPredicate);
 
+        searchBox.setFont(Font.font("Century Gothic", 20));
         getChildren().add(searchBox);
         getChildren().add(scrollablePane);
 
@@ -66,21 +68,32 @@ public class SearchableCellView<T> extends VBox {
         this.searchFilter.addListener((Observable x) -> refreshFilter());
     }
 
+    private static <T> CellFactory<T> memoize(final CellFactory<T> in) {
+        return new CellFactory<T>() {
+            private final Map<T, Node> memo = new HashMap<>();
+
+            @Override
+            public Node createCell(SearchableCellView<T> view, T value, int index) {
+                return memo.computeIfAbsent(value, t -> in.createCell(view, value, index));
+            }
+        };
+    }
+
     private void refreshContent() {
         // just regenerate everything, this can be optimized to only regenerate necessary items if needed
         insidePaneBox.getChildren().clear();
 
-        if(getCellFactory() == null || getSearchFilter() == null) {
+        if (getCellFactory() == null || getSearchFilter() == null) {
             return;
         }
 
-        if(contentFiltered.isEmpty()) {
+        if (contentFiltered.isEmpty()) {
             insidePaneBox.getChildren().add(placeholderNode);
             return;
         }
 
         int i = 0;
-        for(T item : contentFiltered) {
+        for (T item : contentFiltered) {
             insidePaneBox.getChildren().add(getCellFactory().createCell(this, item, ++i));
         }
     }
@@ -108,12 +121,12 @@ public class SearchableCellView<T> extends VBox {
         return cellFactory.get();
     }
 
-    public ObjectProperty<CellFactory<T>> cellFactoryProperty() {
-        return cellFactory;
-    }
-
     public void setCellFactory(CellFactory<T> value) {
         cellFactory.set(memoize(value));
+    }
+
+    public ObjectProperty<CellFactory<T>> cellFactoryProperty() {
+        return cellFactory;
     }
 
     public void setComparator(Comparator<T> comparator) {
@@ -124,26 +137,16 @@ public class SearchableCellView<T> extends VBox {
         return searchFilter.get();
     }
 
-    public ObjectProperty<BiPredicate<T, String>> searchFilterProperty() {
-        return searchFilter;
-    }
-
     public void setSearchFilter(BiPredicate<T, String> filter) {
         searchFilter.setValue(filter);
+    }
+
+    public ObjectProperty<BiPredicate<T, String>> searchFilterProperty() {
+        return searchFilter;
     }
 
     @FunctionalInterface
     public interface CellFactory<T> {
         Node createCell(SearchableCellView<T> view, T value, int index);
-    }
-
-    private static <T> CellFactory<T> memoize(final CellFactory<T> in) {
-        return new CellFactory<T>() {
-            private final Map<T, Node> memo = new HashMap<>();
-            @Override
-            public Node createCell(SearchableCellView<T> view, T value, int index) {
-                return memo.computeIfAbsent(value, t -> in.createCell(view, value, index));
-            }
-        };
     }
 }
