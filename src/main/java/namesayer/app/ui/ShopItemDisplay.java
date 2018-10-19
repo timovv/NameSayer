@@ -36,7 +36,9 @@ public class ShopItemDisplay extends StackPane {
         Util.loadFxmlComponent(getClass().getResource("/fxml/shopItem.fxml"), this);
 
         shopItemLabel.setText(shopItem.getName());
-        shopItemCost.setText(Integer.toString(shopItem.getPrice()));
+
+        shopItemCost.textProperty().bind(Bindings.when(shopItem.purchasedProperty()).then("Purchased!")
+                .otherwise(Integer.toString(shopItem.getPrice())));
 
         shopItemIcon.imageProperty()
                 .bind(Bindings.when(shopItem.activeProperty())
@@ -46,7 +48,7 @@ public class ShopItemDisplay extends StackPane {
 
     @FXML
     private void onItemClicked() {
-        if(onAction.getValue() != null) {
+        if (onAction.getValue() != null) {
             onAction.getValue().handle(new ActionEvent());
         }
     }
