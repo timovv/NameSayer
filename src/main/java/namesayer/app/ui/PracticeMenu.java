@@ -212,7 +212,10 @@ public class PracticeMenu extends StackPane {
                 break;
             }
 
-            // todo make the selection of name random (ignoring bad quality files when possible)
+            if(found.stream().anyMatch(x -> !x.isBadQuality())) {
+                found = found.stream().filter(x -> !x.isBadQuality()).collect(Collectors.toList());
+            }
+            Collections.shuffle(found);
             namesOut.add(found.get(0));
         }
 
