@@ -66,7 +66,7 @@ public class RecordMenu extends StackPane {
                     double value = (1 - (audioSystem.getInputLevel() / -100));
                     value = (value >= 0) ? value : 0;
                     micLevelBar.setProgress(value);
-                })); // nominate -75b as our 0 reference since it seems to work
+                })); // nominate -100dB as our 0 reference since it seems to work
         micLevelTimeline.setCycleCount(Animation.INDEFINITE);
         micLevelTimeline.play();
 
@@ -84,6 +84,13 @@ public class RecordMenu extends StackPane {
             // use JFXDialogHelper to create and show a new pop-up dialog for an empty name
             JFXDialogHelper dialog = new JFXDialogHelper("Empty Name", "Please enter a name to record.",
                     "OK", this);
+            dialog.show();
+            return;
+        }
+
+        if(nameTextField.getText().contains(" ") || nameTextField.getText().contains("-")) {
+            JFXDialogHelper dialog = new JFXDialogHelper("Invalid name", "The name must not contain " +
+                    "spaces or hyphens!", "OK", this);
             dialog.show();
             return;
         }
