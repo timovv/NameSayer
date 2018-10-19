@@ -1,5 +1,7 @@
 package namesayer.app.ui;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,13 +54,20 @@ public class ListenMenu extends StackPane {
         nameCellView.setSearchFilter((name, searchString) -> name.getName().toLowerCase().contains(searchString.toLowerCase()));
         nameCellView.setComparator(Comparator.comparing(Name::getName, String.CASE_INSENSITIVE_ORDER));
 
+        refreshAttempts();
+        database.getAttemptDatabase().getAll().addListener((InvalidationListener) observable -> refreshAttempts());
+
+        attemptsCellView.setCellFactory((view, value, index) -> new ListenMenuAttemptsBlock(database, value));
+        attemptsCellView.setSearchFilter((list, searchString) ->
+                String.join(" ", list).toLowerCase().contains(searchString.toLowerCase()));
+    }
+
+    private void refreshAttempts() {
+        attemptsCellView.getContent().clear();
         attemptsCellView.getContent().addAll(
                 database.getAttemptDatabase().getAll().stream()
                         .collect(Collectors.<Attempt,List<String>>groupingBy(Attempt::getNames)).keySet()
         );
-        attemptsCellView.setCellFactory((view, value, index) -> new ListenMenuAttemptsBlock(database, value));
-        attemptsCellView.setSearchFilter((list, searchString) ->
-                String.join(" ", list).toLowerCase().contains(searchString.toLowerCase()));
     }
 
     @FXML
