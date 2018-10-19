@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -63,12 +62,12 @@ public class ShopMenu extends StackPane {
 
             contents.setHeading(new Text(item.getName()));
             contents.setBody(new VBox(new Text(item.getDescription()),
-                    new Text("Cost: " + item.getPrice() + " LipCoins\u2122")));
+                    new Text("\nCost: " + item.getPrice() + " LipCoins\u2122")));
 
             JFXButton purchaseButton = new JFXButton("Purchase");
             JFXButton cancelButton = new JFXButton("Cancel");
 
-            if(shop.getBalance() < item.getPrice()) {
+            if (shop.getBalance() < item.getPrice()) {
                 purchaseButton.setDisable(true);
             }
 

@@ -30,7 +30,7 @@
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
                                         <Stop color="#e181e1"/>
-                                        <Stop color="#ac9ae8" offset="0.02074688796680498"/>
+                                        <Stop color="#9684d6" offset="0.0049504950495049506"/>
                                         <Stop color="#ff91b8" offset="1.0"/>
                                     </stops>
                                 </LinearGradient>

@@ -95,7 +95,7 @@
                                         <Insets top="100.0"/>
                                     </HBox.margin>
                                 </Label>
-                                <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
+                                <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked" prefWidth="50.0">
                                     <children>
                                         <Circle fill="#1f93ff00" radius="25.0" strokeType="INSIDE" strokeWidth="3.0"
                                                 styleClass="small-listen-button">
@@ -119,7 +119,35 @@
                                         </ImageView>
                                     </children>
                                     <HBox.margin>
-                                        <Insets top="100.0"/>
+                                        <Insets left="10.0" top="100.0"/>
+                                    </HBox.margin>
+                                </StackPane>
+                                <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
+                                    <children>
+                                        <Circle fx:id="compareButton" fill="#1f93ff00" radius="25.0" strokeType="INSIDE"
+                                                strokeWidth="3.0" styleClass="small-listen-button">
+                                            <stroke>
+                                                <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+                                                    <stops>
+                                                        <Stop color="#9684d6"/>
+                                                        <Stop color="#79bcee" offset="0.0049504950495049506"/>
+                                                        <Stop color="#9684d6" offset="1.0"/>
+                                                    </stops>
+                                                </LinearGradient>
+                                            </stroke>
+                                        </Circle>
+                                        <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/compare.png"/>
+                                            </image>
+                                            <StackPane.margin>
+                                                <Insets left="1.0"/>
+                                            </StackPane.margin>
+                                        </ImageView>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="30.0" top="100.0"/>
                                     </HBox.margin>
                                 </StackPane>
                             </children>
