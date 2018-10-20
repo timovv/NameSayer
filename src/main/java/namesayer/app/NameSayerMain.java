@@ -51,7 +51,6 @@ public class NameSayerMain extends Application {
         Scene scene = new Scene(mainMenu);
         stage.setScene(scene);
         mainMenu.setScene(scene);
-        // TODO: Read files to settings
         // force update of theme
         NameSayerSettings.getInstance().setTheme("");
         NameSayerSettings.getInstance().setTheme("main");
