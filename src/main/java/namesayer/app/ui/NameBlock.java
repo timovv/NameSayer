@@ -1,5 +1,8 @@
 package namesayer.app.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,10 +24,10 @@ import java.net.URL;
 /**
  * A generic block which represents a name, as used in {@link AbstractNameView}
  */
-public class NameBlock extends BorderPane {
+public class NameBlock extends StackPane {
 
     private final Name name;
-    private final NameSayerDatabase database;
+    private final NameSayerDatabase db;
 
     private NameSayerShop shop;
 
@@ -40,7 +43,7 @@ public class NameBlock extends BorderPane {
 
     public NameBlock(Name name, NameSayerDatabase db, NameSayerShop shop, URL fxmlLocation) {
         this.name = name;
-        this.database = db;
+        this.db = db;
         this.shop = shop;
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         loader.setController(this);
@@ -98,9 +101,24 @@ public class NameBlock extends BorderPane {
 
     @FXML
     private void removeButtonClicked() {
-        // double check they actually want to DELET
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this recording?");
-        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> database.getNameDatabase().remove(name));
+        JFXDialogLayout contents = new JFXDialogLayout();
+
+        contents.setHeading(new Text("Confirm Delete"));
+        contents.setBody(new Text("Are you sure you want to delete this name?"));
+        JFXButton deleteButton = new JFXButton("Delete");
+        JFXButton cancelButton = new JFXButton("Cancel");
+
+        contents.setActions(cancelButton, deleteButton);
+
+        JFXDialog dialog = new JFXDialog(this, contents, JFXDialog.DialogTransition.CENTER);
+
+        cancelButton.setOnAction(x -> dialog.close());
+
+        deleteButton.setOnAction(x -> {
+            // delete the attempt
+            db.getNameDatabase().remove(name);
+            dialog.close();
+        });
     }
 
     /**

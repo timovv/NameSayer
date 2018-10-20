@@ -9,7 +9,8 @@ import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
 
 /**
- * A name block with a check box as used by {@link PracticeRecordingMenu}
+ * A name block with a check box as was used by {@link PracticeRecordingMenu}
+ * Is currently redundant.
  */
 public class PracticeMenuNameBlock extends NameBlock {
 

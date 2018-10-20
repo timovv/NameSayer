@@ -10,59 +10,65 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" style="-fx-background-color: #fcfcfc;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-    <right>
-        <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="172.0" spacing="15.0" BorderPane.alignment="CENTER">
-            <children>
-                <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
-                    <children>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0" />
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/play.png" />
-                            </image>
-                            <StackPane.margin>
-                                <Insets left="5.0" />
-                            </StackPane.margin>
-                        </ImageView>
-                    </children>
-                </StackPane>
-                <StackPane />
-                <StackPane onMouseClicked="#removeButtonClicked">
-                    <children>
-                        <Circle fill="#1f93ff00" radius="30.0" stroke="#e47474" strokeType="INSIDE" strokeWidth="3.0" />
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/delete.png" />
-                            </image>
-                            <StackPane.margin>
-                                <Insets />
-                            </StackPane.margin>
-                        </ImageView>
-                    </children>
-                </StackPane>
-            </children>
-            <BorderPane.margin>
-                <Insets left="40.0" right="15.0" />
-            </BorderPane.margin>
-        </HBox>
-    </right>
-    <left>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <left>
-                <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Text fx:id="attemptText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="Sample Text" textAlignment="RIGHT">
-                            <font>
-                                <Font name="Century Gothic" size="45.0" />
-                            </font>
-                            <StackPane.margin>
-                                <Insets left="20.0" />
-                            </StackPane.margin>
-                        </Text>
-                    </children>
-                </StackPane>
-            </left>
-        </BorderPane>
-    </left>
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" style="-fx-background-color: #fcfcfc;">
+          <right>
+              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="172.0" spacing="15.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
+                          <children>
+                              <Circle fill="#1f93ff00" radius="30.0" stroke="#79bcee" strokeType="INSIDE" strokeWidth="3.0" />
+                              <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../images/play.png" />
+                                  </image>
+                                  <StackPane.margin>
+                                      <Insets left="5.0" />
+                                  </StackPane.margin>
+                              </ImageView>
+                          </children>
+                      </StackPane>
+                      <StackPane onMouseClicked="#removeButtonClicked">
+                          <children>
+                              <Circle fill="#1f93ff00" radius="30.0" stroke="#e47474" strokeType="INSIDE" strokeWidth="3.0" />
+                              <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../images/delete.png" />
+                                  </image>
+                                  <StackPane.margin>
+                                      <Insets />
+                                  </StackPane.margin>
+                              </ImageView>
+                          </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                      </StackPane>
+                  </children>
+                  <BorderPane.margin>
+                      <Insets left="40.0" />
+                  </BorderPane.margin>
+              </HBox>
+          </right>
+          <left>
+              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <left>
+                      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <children>
+                              <Text fx:id="attemptText" fill="#797979" strokeType="OUTSIDE" strokeWidth="0.0" text="Sample Text" textAlignment="RIGHT">
+                                  <font>
+                                      <Font name="Century Gothic" size="45.0" />
+                                  </font>
+                                  <StackPane.margin>
+                                      <Insets left="20.0" />
+                                  </StackPane.margin>
+                              </Text>
+                          </children>
+                      </StackPane>
+                  </left>
+              </BorderPane>
+          </left>
+      </BorderPane>
+   </children>
 </fx:root>

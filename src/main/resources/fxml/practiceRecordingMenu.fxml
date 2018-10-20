@@ -67,12 +67,12 @@
                                 <Insets bottom="20.0" right="70.0" />
                             </VBox.margin>
                         </Label>
-                        <HBox prefHeight="15.0" prefWidth="726.0">
+                        <HBox prefHeight="15.0" prefWidth="730.0">
                             <Label text="Mic " textFill="#b8b8b8">
                         <font>
                            <Font size="15.0" />
                         </font></Label>
-                            <JFXProgressBar fx:id="micLevelBar" prefWidth="740.0" progress="0.0" styleClass="microphone-level">
+                            <JFXProgressBar fx:id="micLevelBar" prefHeight="2.0" prefWidth="750.0" progress="0.0" styleClass="microphone-level">
                                 <VBox.margin>
                                     <Insets top="20.0" />
                                 </VBox.margin>
@@ -81,30 +81,11 @@
                         </HBox.margin>
                             </JFXProgressBar>
                      <VBox.margin>
-                        <Insets left="-30.0" />
+                        <Insets />
                      </VBox.margin>
                         </HBox>
-                        <HBox spacing="10.0">
+                        <HBox spacing="15.0">
                             <children>
-                                <Label fx:id="nameLabel" prefHeight="70.0" prefWidth="780.0" styleClass="name-label" text="NAME GOES HERE">
-                                    <font>
-                                        <Font size="57.0" />
-                                    </font>
-                                    <padding>
-                                        <Insets right="30.0" />
-                                    </padding>
-                                    <textFill>
-                                        <LinearGradient endX="1.0" endY="1.0">
-                                            <stops>
-                                                <Stop color="#dd7272" />
-                                                <Stop color="#7991eb" offset="1.0" />
-                                            </stops>
-                                        </LinearGradient>
-                                    </textFill>
-                                    <HBox.margin>
-                                        <Insets top="100.0" />
-                                    </HBox.margin>
-                                </Label>
                                 <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked" prefWidth="50.0">
                                     <children>
                                         <Circle fill="#1f93ff00" radius="25.0" strokeType="INSIDE" strokeWidth="3.0" styleClass="small-listen-button">
@@ -119,7 +100,7 @@
                                         </Circle>
                                         <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/play.png" />
+                                                <Image url="@../images/purplay.png" />
                                             </image>
                                             <StackPane.margin>
                                                 <Insets left="3.0" />
@@ -143,27 +124,46 @@
                                                 </LinearGradient>
                                             </stroke>
                                         </Circle>
-                                        <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../images/compare.png" />
                                             </image>
                                             <StackPane.margin>
-                                                <Insets left="1.0" />
+                                                <Insets bottom="1.0" />
                                             </StackPane.margin>
                                         </ImageView>
                                     </children>
                                     <HBox.margin>
-                                        <Insets left="-35.0" top="100.0" />
+                                        <Insets top="100.0" />
                                     </HBox.margin>
                                 </StackPane>
+                                <Label fx:id="nameLabel" prefHeight="70.0" styleClass="name-label" text="NAME GOES HERE">
+                                    <font>
+                                        <Font name="Century Gothic" size="50.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets right="30.0" />
+                                    </padding>
+                                    <textFill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="#dd7272" />
+                                                <Stop color="#7991eb" offset="1.0" />
+                                            </stops>
+                                        </LinearGradient>
+                                    </textFill>
+                                    <HBox.margin>
+                                        <Insets left="3.0" top="100.0" />
+                                    </HBox.margin>
+                                </Label>
                             </children>
                         </HBox>
                         <Label text="Previous Attempts" textFill="#afafaf">
                             <VBox.margin>
-                                <Insets bottom="15.0" left="3.0" />
+                                <Insets bottom="15.0" left="135.0" />
                             </VBox.margin>
                             <font>
-                                <Font size="27.0" />
+                                <Font name="Century Gothic" size="27.0" />
                             </font>
                         </Label>
                     </children>
@@ -171,7 +171,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <BorderPane.margin>
-                        <Insets left="70.0" top="40.0" />
+                        <Insets left="50.0" top="40.0" />
                     </BorderPane.margin>
                 </VBox>
             </center>

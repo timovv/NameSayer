@@ -27,10 +27,6 @@ public class JFXDialogHelper {
         contents.setActions(button);
     }
 
-    public void setNextScene(Scene nextScene) {
-
-    }
-
     public void show() {
         _dialog.show();
     }

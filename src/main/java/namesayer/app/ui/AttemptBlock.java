@@ -2,11 +2,16 @@ package namesayer.app.ui;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
@@ -17,7 +22,7 @@ import namesayer.app.database.NameSayerDatabase;
  * A block which represents a single attempt. These are currently used in the
  * PracticeRecordingMenu, so you can listen to your previous attempts.
  */
-public class AttemptBlock extends BorderPane {
+public class AttemptBlock extends StackPane {
 
     @FXML
     private Text attemptText;
@@ -55,9 +60,26 @@ public class AttemptBlock extends BorderPane {
 
     @FXML
     private void removeButtonClicked() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this attempt?");
-        alert.showAndWait().filter(x -> x == ButtonType.OK).ifPresent(x -> {
+
+        JFXDialogLayout contents = new JFXDialogLayout();
+
+        contents.setHeading(new Text("Confirm Delete"));
+        contents.setBody(new Text("Are you sure you want to delete this attempt?"));
+        JFXButton deleteButton = new JFXButton("Delete");
+        JFXButton cancelButton = new JFXButton("Cancel");
+
+        contents.setActions(cancelButton, deleteButton);
+
+        JFXDialog dialog = new JFXDialog(this, contents, JFXDialog.DialogTransition.CENTER);
+
+        cancelButton.setOnAction(x -> dialog.close());
+
+        deleteButton.setOnAction(x -> {
+            // delete the attempt
             db.getAttemptDatabase().remove(attempt);
+            dialog.close();
         });
+
+        dialog.show();
     }
 }

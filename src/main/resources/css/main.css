@@ -144,7 +144,7 @@
 }
 
 .name-label {
-    -fx-fill: #ff7265;
+    -fx-fill: linear-gradient(to right, #f59d2a 0%, #ff7265 20%);
 }
 
 .shop-label {

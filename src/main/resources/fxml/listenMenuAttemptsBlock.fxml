@@ -31,6 +31,9 @@
                                     </StackPane.margin>
                                 </ImageView>
                             </children>
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding>
                         </StackPane>
                         <StackPane fx:id="expandoUnexpand" onMouseClicked="#onUnexpandClicked">
                             <children>
@@ -41,6 +44,9 @@
                                     </image>
                                 </ImageView>
                             </children>
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding>
                         </StackPane>
                     </children>
                 </StackPane>
