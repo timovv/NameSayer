@@ -7,14 +7,18 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class MemoryBackedAudioClip implements AudioClip {
 
     private final AudioData data;
+    private final Consumer<Process> onProcessCreated;
 
-    public MemoryBackedAudioClip(AudioData data) {
-        this.data = data;
+    MemoryBackedAudioClip(AudioData data, Consumer<Process> onProcessCreated) {
+        this.data = Objects.requireNonNull(data);
+        this.onProcessCreated = Objects.requireNonNull(onProcessCreated);
     }
 
     @Override
@@ -33,6 +37,7 @@ public class MemoryBackedAudioClip implements AudioClip {
 
             try {
                 process = pb.start();
+                onProcessCreated.accept(process);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -60,7 +65,6 @@ public class MemoryBackedAudioClip implements AudioClip {
             }
         });
     }
-
 
     @Override
     public CompletableFuture<AudioData> getAudioData() {

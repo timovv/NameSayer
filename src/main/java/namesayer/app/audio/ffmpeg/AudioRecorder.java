@@ -7,6 +7,7 @@ import namesayer.app.audio.AudioData;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.function.Consumer;
 
 class AudioRecorder {
 
@@ -17,6 +18,7 @@ class AudioRecorder {
     private static int SAMPLE_RES_BITS = 16;
     private static boolean SAMPLE_SIGNED = true;
     private static boolean SAMPLE_BIG_ENDIAN = false;
+    private final Consumer<Process> ffplayProcessCreationHandler;
 
     private Process ffmpegProcess;
     private final Object streamLock = new Object();
@@ -27,7 +29,8 @@ class AudioRecorder {
     private final byte[] micLevelBuffer;
     private int micLevelIndex = 0;
     
-    public AudioRecorder() {
+    public AudioRecorder(Consumer<Process> ffplayProcessCreationHandler) {
+        this.ffplayProcessCreationHandler = ffplayProcessCreationHandler;
         // store 100ms worth of audio in our mic level buffer
         micLevelBuffer = new byte[SAMPLE_FREQ_HZ * (SAMPLE_RES_BITS / 8) / 10];
 
@@ -87,7 +90,7 @@ class AudioRecorder {
         return new MemoryBackedAudioClip(
                 new AudioData(SAMPLE_FREQ_HZ, SAMPLE_RES_BITS,
                         true, false,
-                        ByteBuffer.wrap(data)));
+                        ByteBuffer.wrap(data)), ffplayProcessCreationHandler);
     }
 
     /**

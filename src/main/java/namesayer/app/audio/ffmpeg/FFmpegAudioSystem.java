@@ -18,7 +18,9 @@ public class FFmpegAudioSystem implements AudioSystem {
     // cache of audio clips
     private final Map<Path, FileBackedAudioClip> fileBackedAudioClips = new HashMap<>();
 
-    private final AudioRecorder audioRecorder = new AudioRecorder();
+    private final AudioRecorder audioRecorder = new AudioRecorder(this::handleNewFFPlayProcess);
+
+    private volatile Process ffplayProcess;
 
     public FFmpegAudioSystem() {
     }
@@ -47,8 +49,17 @@ public class FFmpegAudioSystem implements AudioSystem {
     @Override
     public CompletableFuture<AudioClip> loadAudio(Path location) {
         return CompletableFuture.completedFuture(
-                fileBackedAudioClips.computeIfAbsent(location, FileBackedAudioClip::new)
+                fileBackedAudioClips.computeIfAbsent(location,
+                        p -> new FileBackedAudioClip(p, this::handleNewFFPlayProcess))
         );
+    }
+
+    private void handleNewFFPlayProcess(Process proc) {
+        if(ffplayProcess != null) {
+            ffplayProcess.destroy();
+        }
+
+        ffplayProcess = proc;
     }
 
     @Override

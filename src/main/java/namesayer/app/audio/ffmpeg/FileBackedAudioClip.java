@@ -5,15 +5,19 @@ import namesayer.app.audio.AudioData;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class FileBackedAudioClip implements AudioClip {
 
     private final Path location;
+    private final Consumer<Process> onProcessCreated;
     private AudioData data = null;
 
-    public FileBackedAudioClip(Path location) {
-        this.location = location;
+    public FileBackedAudioClip(Path location, Consumer<Process> onProcessCreated) {
+        this.location = Objects.requireNonNull(location);
+        this.onProcessCreated = Objects.requireNonNull(onProcessCreated);
     }
 
     @Override
@@ -29,7 +33,9 @@ public class FileBackedAudioClip implements AudioClip {
 
             int exitCode;
             try {
-                exitCode = pb.start().waitFor();
+                Process proc = pb.start();
+                onProcessCreated.accept(proc);
+                exitCode = proc.waitFor();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
