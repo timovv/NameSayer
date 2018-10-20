@@ -76,7 +76,7 @@
                 </Text>
             </right>
             <center>
-                <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="name-label" text="Name" textAlignment="RIGHT" BorderPane.alignment="CENTER_LEFT">
+                <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="name-label" text="Name" wrappingWidth="650.0" BorderPane.alignment="CENTER_LEFT">
                     <font>
                         <Font name="Century Gothic" size="45.0" />
                     </font>
