@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -22,7 +21,6 @@ import namesayer.app.NameSayerException;
 import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.audio.Playable;
 import namesayer.app.database.AttemptInfo;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
@@ -30,7 +28,6 @@ import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -42,35 +39,27 @@ import java.util.stream.Collectors;
 public class PracticeRecordingMenu extends StackPane {
 
     private final Timeline micLevelTimeline;
-
+    private final Parent mainMenu;
+    private final NameSayerShop shop;
     @FXML
     private StackPane stackPane;
-
     @FXML
     private RecordingWidget recordingWidget;
-
     @FXML
     private Label countLabel;
-
     @FXML
     private Label nameLabel;
-
     @FXML
     private Button nextButton;
-
     @FXML
     private VBox contentVBox;
-
     @FXML
     private ProgressBar micLevelBar;
-
     private NameSayerDatabase database;
-    private final Parent mainMenu;
     private AudioSystem audioSystem;
     private Parent previous;
     private int total;
     private ObjectProperty<List<Name>> current;
-    private final NameSayerShop shop;
     private LinkedList<List<Name>> remainingNames;
     private ScrollPane scrollPane = new ScrollPane();
     private AttemptView attemptView;
@@ -141,7 +130,7 @@ public class PracticeRecordingMenu extends StackPane {
 
     @FXML
     private void onBackClicked() {
-        if(recordingWidget.isRecording()) {
+        if (recordingWidget.isRecording()) {
             recordingWidget.stopRecording();
         }
 
@@ -163,10 +152,15 @@ public class PracticeRecordingMenu extends StackPane {
     }
 
     @FXML
+    private void onCompareClicked() {
+        //TODO: Make compare function.
+    }
+
+    @FXML
     private void onNextClicked() {
         if (remainingNames.isEmpty()) {
 
-            if(recordingWidget.isRecording()) {
+            if (recordingWidget.isRecording()) {
                 recordingWidget.stopRecording();
             }
 
