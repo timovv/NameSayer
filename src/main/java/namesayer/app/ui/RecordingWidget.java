@@ -81,7 +81,7 @@ public class RecordingWidget extends BorderPane {
 
     @FXML
     private void saveButtonClicked() {
-        if (saveClickedHandler != null) {
+        if (saveClickedHandler != null && getRecording() != null) {
             saveClickedHandler.run();
         }
     }
