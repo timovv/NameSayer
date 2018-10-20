@@ -55,7 +55,7 @@ public class FFmpegAudioSystem implements AudioSystem {
     }
 
     private void handleNewFFPlayProcess(Process proc) {
-        if(ffplayProcess != null) {
+        if(ffplayProcess != null && ffplayProcess.isAlive()) {
             ffplayProcess.destroy();
         }
 
