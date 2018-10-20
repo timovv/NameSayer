@@ -11,7 +11,7 @@ public class LipCoinMiner extends ShopItemBase {
     private final Timeline timeline;
     private final String name = "LipCoin\u2122 Miner";
     private final int price = 1000;
-    private final String description = "Tired of earning LipCoins\u2122?, have this app this app earn them for you!\n" +
+    private final String description = "Tired of earning LipCoins\u2122? Have this app this app earn them for you!\n" +
             "The LipCoin\u2122 miner will give you one additional LipCoin\u2122 every second!";
 
     public LipCoinMiner(NameSayerShop shop) {

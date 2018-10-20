@@ -7,7 +7,8 @@ public class BiggerAnimations extends ShopItemBase {
     private final String bigAnimations = "animations";
     private final String name = "Bigger Animations";
     private final int price = 500;
-    private final String description = "Bigger animation scaling on main and recording buttons on hover.";
+    private final String description = "Are you an aesthetic connoisseur with an appetite for big animations?\n" +
+            "Then buy this package to enhance your user experience!";
 
     @Override
     public String getName() {

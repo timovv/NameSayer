@@ -8,7 +8,7 @@ public class SpectrumGUIPack extends ShopItemBase {
     private final String name = "Spectrum GUI Pack";
     private final int price = 1000;
     private final String description = "Who doesn't like Rainbows? If you're bored with just two colors,\n" +
-            "try a theme will all 16 million colors of the spectrum!";
+            "try a theme with all 16 million colors of the spectrum!";
 
     @Override
     public String getName() {

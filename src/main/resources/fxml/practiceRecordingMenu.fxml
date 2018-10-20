@@ -67,20 +67,26 @@
                                 <Insets bottom="20.0" right="70.0" />
                             </VBox.margin>
                         </Label>
-                        <HBox>
-                            <Label text="Mic level:" />
+                        <HBox prefHeight="15.0" prefWidth="726.0">
+                            <Label text="Mic " textFill="#b8b8b8">
+                        <font>
+                           <Font size="15.0" />
+                        </font></Label>
                             <JFXProgressBar fx:id="micLevelBar" prefWidth="740.0" progress="0.0" styleClass="microphone-level">
                                 <VBox.margin>
                                     <Insets top="20.0" />
                                 </VBox.margin>
                         <HBox.margin>
-                           <Insets left="5.0" top="5.0" />
+                           <Insets left="5.0" top="8.0" />
                         </HBox.margin>
                             </JFXProgressBar>
+                     <VBox.margin>
+                        <Insets left="-30.0" />
+                     </VBox.margin>
                         </HBox>
                         <HBox spacing="10.0">
                             <children>
-                                <Label fx:id="nameLabel" styleClass="name-label" text="NAME GOES HERE">
+                                <Label fx:id="nameLabel" prefHeight="70.0" prefWidth="780.0" styleClass="name-label" text="NAME GOES HERE">
                                     <font>
                                         <Font size="57.0" />
                                     </font>
@@ -106,7 +112,7 @@
                                                 <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                                                     <stops>
                                                         <Stop color="#7991eb" />
-                                                        <Stop color="#79bcee" offset="1.0" />
+                                                        <Stop color="#dd7272" offset="1.0" />
                                                     </stops>
                                                 </LinearGradient>
                                             </stroke>
@@ -121,7 +127,7 @@
                                         </ImageView>
                                     </children>
                                     <HBox.margin>
-                                        <Insets left="10.0" top="100.0" />
+                                        <Insets top="100.0" />
                                     </HBox.margin>
                                 </StackPane>
                                 <StackPane fx:id="playButton" onMouseClicked="#onPlayClicked">
@@ -131,7 +137,7 @@
                                                 <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                                                     <stops>
                                                         <Stop color="#9684d6" />
-                                                        <Stop color="#79bcee" offset="0.0049504950495049506" />
+                                                        <Stop color="#dd7272" offset="0.0049504950495049506" />
                                                         <Stop color="#9684d6" offset="1.0" />
                                                     </stops>
                                                 </LinearGradient>
@@ -147,14 +153,14 @@
                                         </ImageView>
                                     </children>
                                     <HBox.margin>
-                                        <Insets left="30.0" top="100.0" />
+                                        <Insets left="-35.0" top="100.0" />
                                     </HBox.margin>
                                 </StackPane>
                             </children>
                         </HBox>
                         <Label text="Previous Attempts" textFill="#afafaf">
                             <VBox.margin>
-                                <Insets left="3.0" />
+                                <Insets bottom="15.0" left="3.0" />
                             </VBox.margin>
                             <font>
                                 <Font size="27.0" />
