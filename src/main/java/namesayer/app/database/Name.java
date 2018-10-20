@@ -3,7 +3,7 @@ package namesayer.app.database;
 import java.time.LocalDateTime;
 
 /**
- * Represents a name in a name database.
+ * Represents a single name in a name database.
  */
 public interface Name extends RecordingItem<NameInfo> {
 

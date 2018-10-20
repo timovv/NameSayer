@@ -15,17 +15,24 @@ import java.util.stream.Collectors;
 import namesayer.app.database.NameInfo;
 
 /**
- * Name file resolver based on the names database supplied to us as part of the
- * assignment.
+ * Name file resolver based on the names database supplied to us as part of the project.
  * <p>
- * The format of a given name is se206-d-m-y_h-m-s_Name.wav
+ * The format of a given name is [creator]-d-m-y_h-m-s_Name.wav. [creator] is usually se206, but there is one recording
+ * where it isn't, so this has been handled.
  */
 public class SE206NameFileResolver implements RecordingFileResolver<NameInfo> {
 
+    /**
+     * A regex representing the expected name format.
+     */
     private static final Pattern FORMAT = Pattern.compile("^(?<creator>\\w+?)_(?<day>\\d{0,2})-(?<month>\\d{0,2})" +
             "-(?<year>\\d{4})_(?<hour>\\d{0,2})-(?<minute>\\d{0,2})-(?<second>\\d{0,2})_(?<name>.+)\\.wav$");
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d-M-y_H-m-s");
 
+    /**
+     * Get the info object of all names stored in the given folder.
+     * {@inheritDoc}
+     */
     @Override
     public List<NameInfo> getAll(Path base) {
         try {
@@ -39,6 +46,10 @@ public class SE206NameFileResolver implements RecordingFileResolver<NameInfo> {
         }
     }
 
+    /**
+     * Get the info object of the name stored at the given location.
+     * {@inheritDoc}
+     */
     @Override
     public Optional<NameInfo> getInfo(Path fileLocation) {
         String fileName = fileLocation.getFileName().toString();
@@ -61,11 +72,18 @@ public class SE206NameFileResolver implements RecordingFileResolver<NameInfo> {
         return Optional.of(new NameInfo(name, creator, time));
     }
 
+    /**
+     * Get the full path for where the recording of the name with the given info should be stored.
+     * {@inheritDoc}
+     */
     @Override
     public Path getPathFor(Path basePath, NameInfo nameInfo) {
         return basePath.resolve(getFileName(nameInfo) + ".wav");
     }
 
+    /**
+     * Get the file name for the recording with the given info.
+     */
     private String getFileName(NameInfo info) {
         return info.getCreator() + "_" + DATE_TIME_FORMATTER.format(info.getCreationTime()) + "_" + info.getName();
     }

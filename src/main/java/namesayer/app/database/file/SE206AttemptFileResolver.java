@@ -14,10 +14,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * A RecordingFileResolver used to resolve attempts in the attempts database.
+ * Attempts are saved in the format Name1_Name2_..._d-M-y-H-m-s.wav in the base path.
+ */
 public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptInfo> {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-y-H-m-s");
 
+    /**
+     * Get info for each attempt in the attempts database.
+     * {@inheritDoc}
+     */
     @Override
     public List<AttemptInfo> getAll(Path base) {
         try {
@@ -31,6 +39,10 @@ public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptIn
         }
     }
 
+    /**
+     * From the given path associated with an attempt, resolve the AttemptInfo object based on the file name.
+     * {@inheritDoc}
+     */
     @Override
     public Optional<AttemptInfo> getInfo(Path fileLocation) {
         String fileName = fileLocation.getFileName().toString();
@@ -58,6 +70,10 @@ public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptIn
         return Optional.of(new AttemptInfo(names, date));
     }
 
+    /**
+     * Given the base path and info object, find the path where the attempt with the given information should be saved.
+     * @return The path where the attempt with the given info should be saved.
+     */
     @Override
     public Path getPathFor(Path basePath, AttemptInfo attemptInfo) {
         return basePath.resolve(String.join("_", attemptInfo.getNames())

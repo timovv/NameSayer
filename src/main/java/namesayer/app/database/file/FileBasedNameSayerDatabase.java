@@ -5,6 +5,9 @@ import namesayer.app.database.*;
 
 import java.nio.file.Path;
 
+/**
+ * A NameSayerDatabase that is based on a flat file.
+ */
 public class FileBasedNameSayerDatabase implements NameSayerDatabase {
 
     private final FileBasedRecordingDatabase<NameInfo, ? extends Name> nameDatabase;

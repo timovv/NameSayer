@@ -12,8 +12,14 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Represents a name whose recording is stored in a flat file. Includes support for 'bad quality rating'.
+ */
 public class FileBasedName extends FileBasedRecordingItem<NameInfo> implements Name {
 
+    /**
+     * The location of the bad quality file.
+     */
     private static final Path BAD_QUALITY_FILE = Paths.get("bad_quality.txt");
 
     private boolean isBadQuality;
@@ -23,12 +29,18 @@ public class FileBasedName extends FileBasedRecordingItem<NameInfo> implements N
         setUpBadQuality();
     }
 
+    /**
+     * @return true if this name's recording has been marked as bad quality.
+     */
     @Override
     public boolean isBadQuality() {
         return isBadQuality;
     }
 
-
+    /**
+     * Mark this recording as bad quality (or not). The result will be automatically saved to the bad quality rating file.
+     * @param value true to mark this recording as bad quality; false for the default (i.e. good quality)
+     */
     public void setBadQuality(boolean value) {
         if (value == isBadQuality) {
             return;
@@ -57,7 +69,8 @@ public class FileBasedName extends FileBasedRecordingItem<NameInfo> implements N
     }
 
     /**
-     * Figure out whether this recording was previously marked as bad quality or not
+     * Determine whether this recording was previously marked as bad quality, based on the current contents of the
+     * bad quality file.
      */
     private void setUpBadQuality() {
         if (!Files.exists(BAD_QUALITY_FILE)) {

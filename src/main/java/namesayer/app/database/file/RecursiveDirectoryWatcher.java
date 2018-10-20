@@ -23,7 +23,7 @@ import java.util.function.Consumer;
  * The watcher works on a background thread, waiting for changes to occur; after object
  * creation, the watcher must be activated using the startWatching() method.
  */
-public class RecursiveDirectoryWatcher implements Closeable {
+public class RecursiveDirectoryWatcher implements AutoCloseable {
 
     private final WatchService service;
 
@@ -62,12 +62,18 @@ public class RecursiveDirectoryWatcher implements Closeable {
 
     }
 
+    /**
+     * Start watching the directory.
+     */
     public void startWatching() {
         worker = new Thread(this::work);
         worker.setDaemon(true);
         worker.start();
     }
 
+    /**
+     * Stop watching the directory.
+     */
     public void stopWatching() {
         if (worker != null) {
             worker.interrupt();
@@ -75,10 +81,16 @@ public class RecursiveDirectoryWatcher implements Closeable {
         }
     }
 
+    /**
+     * @return true if the watcher is current recording the directory.
+     */
     public boolean isWatching() {
         return worker != null;
     }
 
+    /**
+     * Worker thread for directory watching.
+     */
     @SuppressWarnings("unchecked")
     private void work() {
         for (; ; ) {
@@ -158,6 +170,9 @@ public class RecursiveDirectoryWatcher implements Closeable {
         onCreatedListeners.remove(Objects.requireNonNull(listener));
     }
 
+    /**
+     * Stops watching the directory if it was being watched.
+     */
     @Override
     public void close() {
         if (isWatching()) {
