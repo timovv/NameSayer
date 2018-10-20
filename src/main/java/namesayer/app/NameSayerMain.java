@@ -44,21 +44,24 @@ public class NameSayerMain extends Application {
         }
 
         NameSayerDatabase db = new FileBasedNameSayerDatabase(namesRoot, attemptsRoot, audio);
-
         NameSayerShop shop = new NameSayerShop();
-
         MainMenu mainMenu = new MainMenu(db, audio, shop);
         Scene scene = new Scene(mainMenu);
         stage.setScene(scene);
         mainMenu.setScene(scene);
+
         // force update of theme
         NameSayerSettings.getInstance().setTheme("");
         NameSayerSettings.getInstance().setTheme("main");
 
+        // load previous settings and purchased items
         Path shopDataPath = Paths.get("NameSayer.dat");
         if (Files.exists(shopDataPath)) {
             shop.load(shopDataPath);
         }
+
+        // +10 LipCoins for logging in
+        shop.addToBalance(10);
 
         stage.setOnCloseRequest(x -> {
             try {

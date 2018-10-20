@@ -21,8 +21,7 @@
                     <children>
                         <StackPane fx:id="expandoExpand" onMouseClicked="#onExpandClicked">
                             <children>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#7991eb" strokeType="INSIDE" strokeWidth="3.0" />
-                                <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView disable="true" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/more.png" />
                                     </image>
@@ -30,6 +29,7 @@
                                         <Insets />
                                     </StackPane.margin>
                                 </ImageView>
+                                <Circle fill="#1f93ff00" radius="30.0" stroke="#7991eb" strokeType="INSIDE" strokeWidth="3.0" styleClass="small-button" />
                             </children>
                      <padding>
                         <Insets bottom="15.0" top="15.0" />
@@ -37,12 +37,12 @@
                         </StackPane>
                         <StackPane fx:id="expandoUnexpand" onMouseClicked="#onUnexpandClicked">
                             <children>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#666666" strokeType="INSIDE" strokeWidth="3.0" />
-                                <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView disable="true" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/less.png" />
                                     </image>
                                 </ImageView>
+                                <Circle fill="#1f93ff00" radius="30.0" stroke="#666666" strokeType="INSIDE" strokeWidth="3.0" styleClass="small-button" />
                             </children>
                      <padding>
                         <Insets bottom="15.0" top="15.0" />
