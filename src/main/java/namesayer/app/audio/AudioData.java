@@ -25,26 +25,44 @@ public final class AudioData {
         this.data = data;
     }
 
+    /**
+     * @return the sample rate of the raw audio data (in Hz).
+     */
     public int getSampleRate() {
         return sampleRate;
     }
 
+    /**
+     * @return the sample resolution of the raw audio data.
+     */
     public int getSampleResolutionBits() {
         return sampleResolutionBits;
     }
 
+    /**
+     * @return true if the audio data is big-endian.
+     */
     public boolean isBigEndian() {
         return isBigEndian;
     }
 
+    /**
+     * @return a read-only buffer representing the raw audio data associated with this AudioClip.
+     */
     public ByteBuffer getData() {
         return data.asReadOnlyBuffer();
     }
 
+    /**
+     * @return true if the audio data is signed.
+     */
     public boolean isSigned() {
         return isSigned;
     }
 
+    /**
+     * @return The duration of this AudioClip
+     */
     public Duration getDuration() {
         return Duration.ofNanos((data.remaining() / getSampleResolutionBits() / 8
                 * TimeUnit.SECONDS.toNanos(1)) / getSampleRate());

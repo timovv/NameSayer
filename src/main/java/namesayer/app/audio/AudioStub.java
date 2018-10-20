@@ -3,6 +3,11 @@ package namesayer.app.audio;
 import java.nio.file.Path;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * An stub audio system that does not do anything.
+ *
+ * Recording, input level, etc. is not available.
+ */
 public class AudioStub implements AudioSystem {
 
     @Override
