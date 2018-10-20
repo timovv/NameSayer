@@ -141,6 +141,10 @@ public class PracticeRecordingMenu extends StackPane {
 
     @FXML
     private void onBackClicked() {
+        if(recordingWidget.isRecording()) {
+            recordingWidget.stopRecording();
+        }
+
         getScene().setRoot(previous);
     }
 
@@ -161,6 +165,11 @@ public class PracticeRecordingMenu extends StackPane {
     @FXML
     private void onNextClicked() {
         if (remainingNames.isEmpty()) {
+
+            if(recordingWidget.isRecording()) {
+                recordingWidget.stopRecording();
+            }
+
             // use JFXDialogHelper to create and show a new pop-up dialog
             int coinsEarned = total * NameSayerSettings.getInstance().getCoinsPerPractice();
             shop.addToBalance(coinsEarned);

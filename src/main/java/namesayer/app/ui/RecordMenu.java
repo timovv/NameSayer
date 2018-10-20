@@ -76,6 +76,10 @@ public class RecordMenu extends StackPane {
 
     @FXML
     private void onBackClicked() {
+        if(recordingWidget.isRecording()) {
+            recordingWidget.stopRecording();
+        }
+
         getScene().setRoot(previous);
     }
 

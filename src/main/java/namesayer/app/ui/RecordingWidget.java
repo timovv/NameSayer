@@ -86,7 +86,11 @@ public class RecordingWidget extends BorderPane {
         }
     }
 
-    private void startRecording() {
+    public void startRecording() {
+        if(isRecording()) {
+            throw new NameSayerException("Tried to start recording while recording");
+        }
+
         audioSystem.startRecording();
 
         recordingButton.setImage(new Image(getClass().getResourceAsStream("/images/record-stop.png")));
@@ -95,7 +99,11 @@ public class RecordingWidget extends BorderPane {
         autoStopTimeline.playFromStart();
     }
 
-    private void stopRecording() {
+    public void stopRecording() {
+        if(!isRecording()) {
+            throw new NameSayerException("Tried to stop recording while not recording");
+        }
+
         if (autoStopTimeline != null) {
             autoStopTimeline.stop();
             countdownTimeline.stop();
@@ -104,6 +112,10 @@ public class RecordingWidget extends BorderPane {
         recordingButton.setImage(new Image(getClass().getResourceAsStream("/images/record.png")));
         secondsLeft.set(0);
         recording = audioSystem.stopRecording();
+    }
+
+    public boolean isRecording() {
+        return audioSystem.isRecording();
     }
 
     public void setAudioSystem(AudioSystem audioSystem) {
