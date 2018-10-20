@@ -220,11 +220,25 @@ public class PracticeMenu extends StackPane {
         }
 
         if (couldFind) {
-            namesList.getItems().add(namesOut);
+            if(!nameIsAlreadyAdded(namesOut.stream().map(Name::getName).collect(Collectors.toList()))) {
+                namesList.getItems().add(namesOut);
+            }
+
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Determine if the given list of names, making up a full name, has already been added to the list of names to practice.
+     * @param names The names to check.
+     * @return true if the name has already been added to the list of names to practice.
+     */
+    private boolean nameIsAlreadyAdded(List<String> names) {
+        return namesList.getItems().stream()
+                .map(x -> x.stream().map(Name::getName).collect(Collectors.toList())) // stringify all the names
+                .anyMatch(x -> x.equals(names)); // list equality -- returns true if all elements are the same
     }
 
     // for testing only!
