@@ -89,11 +89,12 @@ public class FFmpegAudioSystem implements AudioSystem {
 
     /**
      * Handler for when a new FFplay process is created. This handler keeps track of the previous FFplay process and
-     * kills it if it is stil running, to ensure that only one audio clip is played at once.
+     * kills the new one if sound is still being played, to ensure that only one audio clip is played at once.
      */
     private void handleNewFFPlayProcess(Process proc) {
         if(ffplayProcess != null && ffplayProcess.isAlive()) {
-            ffplayProcess.destroy();
+            proc.destroyForcibly();
+            return;
         }
 
         ffplayProcess = proc;
