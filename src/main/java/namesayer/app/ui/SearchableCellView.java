@@ -134,7 +134,11 @@ public class SearchableCellView<T> extends VBox {
     }
 
     public void setCellFactory(CellFactory<T> value) {
-        cellFactory.set(memoize(value));
+        setCellFactory(value, true);
+    }
+
+    public void setCellFactory(CellFactory<T> value, boolean cache) {
+        cellFactory.set(cache ? memoize(value) : value);
     }
 
     public ObjectProperty<CellFactory<T>> cellFactoryProperty() {
