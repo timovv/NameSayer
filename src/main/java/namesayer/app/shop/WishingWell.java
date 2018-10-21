@@ -1,6 +1,6 @@
 package namesayer.app.shop;
 
-public class WishingWell extends OneTimePurchaseShopItem {
+public class WishingWell extends RepurchaseableShopItem {
 
     private final String name = "The Wishing Well";
     private final int price = 100;

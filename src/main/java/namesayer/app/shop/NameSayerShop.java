@@ -11,6 +11,9 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Class storing items and user coin balance for the shop in NameSayer.
+ */
 public class NameSayerShop {
 
     private final Set<ShopItem> allShopItems;
@@ -18,7 +21,7 @@ public class NameSayerShop {
     private final IntegerProperty balanceProperty = new SimpleIntegerProperty();
 
     /**
-     * Construct a new instance of the shop with default values.
+     * Construct a new instance of the shop with default shop items.
      */
     public NameSayerShop() {
         // This is where shop items are added.
@@ -110,6 +113,7 @@ public class NameSayerShop {
      * Save the users' purchases, balance, and active shop items to the given path.
      *
      * @param path The path to save to.
+     * @throws IOException if the path could not be written to
      */
     public void saveTo(Path path) throws IOException {
         try (OutputStream os = Files.newOutputStream(path)) {
@@ -129,6 +133,11 @@ public class NameSayerShop {
         }
     }
 
+    /**
+     * Load the users' purchases, balance, and active shop items from the file at the given path.
+     * @param path The path to read from
+     * @throws IOException if the file could not be read.
+     */
     public void load(Path path) throws IOException {
         try (InputStream is = Files.newInputStream(path)) {
             try (ObjectInputStream inputStream = new ObjectInputStream(is)) {

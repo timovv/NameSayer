@@ -2,7 +2,10 @@ package namesayer.app.shop;
 
 import namesayer.app.NameSayerSettings;
 
-public class BiggerAnimations extends ShopItemBase {
+/**
+ * A store purchase that makes animations (i.e. button hover response) larger.
+ */
+public class BiggerAnimations extends ToggleableShopItem {
 
     private final String bigAnimations = "animations";
     private final String name = "Bigger Animations";
@@ -27,6 +30,7 @@ public class BiggerAnimations extends ShopItemBase {
 
     @Override
     public void activate() {
+        // Set the theme to the one for BIG animations.
         NameSayerSettings.getInstance().setTheme(bigAnimations);
     }
 

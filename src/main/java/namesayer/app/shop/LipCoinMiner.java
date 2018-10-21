@@ -4,7 +4,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
-public class LipCoinMiner extends ShopItemBase {
+/**
+ * A shop purchase that "mines" one coin per second so that users can earn coins while they use the app.
+ */
+public class LipCoinMiner extends ToggleableShopItem {
 
     private final int lipCoinMiningRatePerSecond = 1;
     private final NameSayerShop shop;
@@ -37,11 +40,17 @@ public class LipCoinMiner extends ShopItemBase {
         return this.price;
     }
 
+    /**
+     * Start the coin mining timer
+     */
     @Override
     public void activate() {
         timeline.playFromStart();
     }
 
+    /**
+     * Stops the coin mining timer
+     */
     @Override
     public void deactivate() {
         timeline.pause();

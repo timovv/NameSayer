@@ -2,7 +2,7 @@ package namesayer.app.shop;
 
 import namesayer.app.NameSayerSettings;
 
-public class SpectrumGUIPack extends ShopItemBase {
+public class SpectrumGUIPack extends ToggleableShopItem {
 
     private final String spectrumTheme = "spectrum";
     private final String name = "Spectrum GUI Pack";

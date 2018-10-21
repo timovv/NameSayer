@@ -2,7 +2,10 @@ package namesayer.app.shop;
 
 import namesayer.app.NameSayerSettings;
 
-public class CongratulatoryMessage extends ShopItemBase {
+/**
+ * A store purchase which changes the congratulatory message when users finish their practices.
+ */
+public class CongratulatoryMessage extends ToggleableShopItem {
 
     private final String congratulatoryMessage = "HOLY MOLY YOU DID IT, YOU BEAST! WHAT AN ABSOLUTE MADMAN 999/10 GOOD PRACTICE LAD!!!";
     private final String name = "Congratulatory Message";
@@ -25,11 +28,17 @@ public class CongratulatoryMessage extends ShopItemBase {
         return this.price;
     }
 
+    /**
+     * Update the well done message.
+     */
     @Override
     public void activate() {
         NameSayerSettings.getInstance().setWellDoneMessage(congratulatoryMessage);
     }
 
+    /**
+     * Set the well done message back to the default.
+     */
     @Override
     public void deactivate() {
         NameSayerSettings.getInstance().setWellDoneMessage(NameSayerSettings.defaultSettings().getWellDoneMessage());
