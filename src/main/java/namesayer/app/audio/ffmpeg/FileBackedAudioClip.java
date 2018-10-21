@@ -38,17 +38,10 @@ public class FileBackedAudioClip implements AudioClip {
     @Override
     public CompletableFuture<Void> play() {
         return CompletableFuture.runAsync(() -> {
-            // play from the file
-            ProcessBuilder pb = new ProcessBuilder(
-                    "ffplay",
-                    "-nodisp",
-                    "-autoexit",
-                    location.toString()
-            );
 
             int exitCode;
             try {
-                Process proc = pb.start();
+                Process proc = Util.runResourceScript("/scripts/play_file.sh", location.toString());
                 onProcessCreated.accept(proc);
                 exitCode = proc.waitFor();
             } catch (IOException e) {

@@ -2,6 +2,14 @@ package namesayer.app.audio.ffmpeg;
 
 import namesayer.app.audio.AudioData;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 final class Util {
 
     /**
@@ -18,5 +26,24 @@ final class Util {
         return (signed ? "s" : "u")
                 + sampleResolutionBits
                 + (isBigEndian ? "be" : "le");
+    }
+
+    static Process runResourceScript(String resourceName, String... command) throws IOException {
+        List<String> commandList = new ArrayList<>();
+
+        Path location;
+        try {
+            location = new File(Util.class.getResource(resourceName).toURI()).toPath();
+        } catch(URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
+        commandList.add("bash");
+        commandList.add(location.toString());
+        commandList.addAll(Arrays.asList(command));
+
+        ProcessBuilder pb = new ProcessBuilder(commandList);
+        pb.inheritIO();
+        return pb.start();
     }
 }
