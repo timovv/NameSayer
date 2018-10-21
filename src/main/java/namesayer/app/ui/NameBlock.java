@@ -18,9 +18,6 @@ import namesayer.app.shop.NameSayerShop;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * A generic block which represents a name, as used in {@link AbstractNameView}
- */
 public class NameBlock extends StackPane {
 
     private final Name name;

@@ -48,16 +48,26 @@ public class AttemptBlock extends StackPane {
         }
     }
 
+    /**
+     * Set up the text for this attempt block so that it shows the user's name
+     */
     @FXML
     private void initialize() {
         attemptText.setText("Attempt " + index);
     }
 
+    /**
+     * Play the attempt when the play button is clicked.
+     */
     @FXML
     private void onPlayClicked() {
         attempt.getRecording().thenApply(AudioClip::play);
     }
 
+    /**
+     * Handles when the remove button is clicked. Confirms that the user wants to delete and then deletes the attempt
+     * from the database.
+     */
     @FXML
     private void removeButtonClicked() {
 
