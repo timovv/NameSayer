@@ -1,7 +1,6 @@
 package namesayer.app.ui;
 
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,7 +55,7 @@ public class ListenMenu extends StackPane {
         refreshAttempts();
         database.getAttemptDatabase().getAll().addListener((InvalidationListener) observable -> refreshAttempts());
 
-        attemptsCellView.setCellFactory((view, value, index) -> new ListenMenuAttemptsBlock(database, value, this), false);
+        attemptsCellView.setCellFactory((view, value, index) -> new ListenMenuAttemptsBlock(database, value, this));
         attemptsCellView.setSearchFilter((list, searchString) ->
                 String.join(" ", list).toLowerCase().contains(searchString.toLowerCase()));
     }
