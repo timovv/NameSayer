@@ -1,5 +1,7 @@
 package namesayer.app.shop;
 
+import namesayer.app.NameSayerMain;
+
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -14,13 +16,7 @@ public class AugmentedRealityMode extends OneTimePurchaseShopItem {
 
     @Override
     protected void doAction() {
-        try {
-            Desktop.getDesktop().browse(new URI(uri));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        NameSayerMain.hostServices().showDocument(uri);
     }
 
     @Override
