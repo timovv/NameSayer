@@ -155,7 +155,16 @@ public class PracticeRecordingMenu extends StackPane {
 
     @FXML
     private void onCompareClicked() {
-        //TODO: Make compare function.
+        if(recordingWidget.getRecording() == null) {
+            new JFXDialogHelper("You haven't made a recording", "You need to make a recording to compare!", "Okay", this).show();
+            return;
+        }
+
+        compare().thenCompose(x -> compare()).thenCompose(x -> compare());
+    }
+
+    private CompletableFuture<Void> compare() {
+        return playName().thenCompose(x -> recordingWidget.getRecording().play());
     }
 
     @FXML
