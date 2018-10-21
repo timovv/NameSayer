@@ -55,7 +55,7 @@ public class ListenMenu extends StackPane {
         refreshAttempts();
         database.getAttemptDatabase().getAll().addListener((InvalidationListener) observable -> refreshAttempts());
 
-        attemptsCellView.setCellFactory((view, value, index) -> new ListenMenuAttemptsBlock(database, value, this));
+        attemptsCellView.setCellFactory((view, value, index) -> new ListenMenuAttemptsBlock(database, value, this), false);
         attemptsCellView.setSearchFilter((list, searchString) ->
                 String.join(" ", list).toLowerCase().contains(searchString.toLowerCase()));
     }
