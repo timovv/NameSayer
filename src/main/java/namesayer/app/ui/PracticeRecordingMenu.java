@@ -41,6 +41,16 @@ public class PracticeRecordingMenu extends StackPane {
     private final Timeline micLevelTimeline;
     private final Parent mainMenu;
     private final NameSayerShop shop;
+
+    private NameSayerDatabase database;
+    private AudioSystem audioSystem;
+    private Parent previous;
+    private int total;
+    private ObjectProperty<List<Name>> current;
+    private LinkedList<List<Name>> remainingNames;
+    private ScrollPane scrollPane = new ScrollPane();
+    private AttemptView attemptView;
+
     @FXML
     private StackPane stackPane;
     @FXML
@@ -55,14 +65,6 @@ public class PracticeRecordingMenu extends StackPane {
     private VBox contentVBox;
     @FXML
     private ProgressBar micLevelBar;
-    private NameSayerDatabase database;
-    private AudioSystem audioSystem;
-    private Parent previous;
-    private int total;
-    private ObjectProperty<List<Name>> current;
-    private LinkedList<List<Name>> remainingNames;
-    private ScrollPane scrollPane = new ScrollPane();
-    private AttemptView attemptView;
 
     public PracticeRecordingMenu(Parent previous,
                                  Parent mainMenu,
@@ -114,7 +116,7 @@ public class PracticeRecordingMenu extends StackPane {
         recordingWidget.setAudioSystem(audioSystem);
 
         scrollPane.setFitToWidth(true);
-        attemptView = new AttemptView(current.get(), database);
+        attemptView = new AttemptView(current.get(), database, this);
         scrollPane.setContent(attemptView);
         contentVBox.getChildren().add(scrollPane);
         VBox.setVgrow(scrollPane, Priority.ALWAYS);

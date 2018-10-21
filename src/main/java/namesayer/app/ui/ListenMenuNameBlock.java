@@ -1,7 +1,5 @@
 package namesayer.app.ui;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -25,7 +23,7 @@ public class ListenMenuNameBlock extends NameBlock {
     @FXML
     private VBox attemptsBox;
 
-    public ListenMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name) {
-        super(name, db, shop, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"));
+    public ListenMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name, StackPane parent) {
+        super(name, db, shop, ListenMenuNameBlock.class.getResource("/fxml/nameBlockMain.fxml"), parent);
     }
 }

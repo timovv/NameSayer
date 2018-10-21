@@ -1,22 +1,18 @@
 package namesayer.app.ui;
 
-import java.io.IOException;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioClip;
 import namesayer.app.database.Attempt;
 import namesayer.app.database.NameSayerDatabase;
+
+import java.io.IOException;
 
 /**
  * A block which represents a single attempt. These are currently used in the
@@ -24,16 +20,20 @@ import namesayer.app.database.NameSayerDatabase;
  */
 public class AttemptBlock extends StackPane {
 
-    @FXML
-    private Text attemptText;
-
     private final Attempt attempt;
     private final NameSayerDatabase db;
     private final int index;
 
-    public AttemptBlock(NameSayerDatabase db, Attempt attempt, int index) {
+    private StackPane parent;
+
+    @FXML
+    private Text attemptText;
+
+    public AttemptBlock(NameSayerDatabase db, Attempt attempt, int index, StackPane parent) {
         this.db = db;
         this.attempt = attempt;
+        this.parent = parent;
+
         // index is just a number so we can go Attempt 1, Attempt 2, Attempt 3, etc.
         this.index = index;
 
@@ -69,11 +69,9 @@ public class AttemptBlock extends StackPane {
         JFXButton cancelButton = new JFXButton("Cancel");
 
         contents.setActions(cancelButton, deleteButton);
-
-        JFXDialog dialog = new JFXDialog(this, contents, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(this.parent, contents, JFXDialog.DialogTransition.CENTER);
 
         cancelButton.setOnAction(x -> dialog.close());
-
         deleteButton.setOnAction(x -> {
             // delete the attempt
             db.getAttemptDatabase().remove(attempt);

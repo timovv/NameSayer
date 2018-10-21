@@ -4,6 +4,7 @@ import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.StackPane;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
@@ -17,8 +18,8 @@ public class PracticeMenuNameBlock extends NameBlock {
     @FXML
     private CheckBox selectedCheckBox;
 
-    public PracticeMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name) {
-        super(name, db, shop, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"));
+    public PracticeMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name, StackPane parent) {
+        super(name, db, shop, PracticeMenuNameBlock.class.getResource("/fxml/nameBlockUser.fxml"), parent);
     }
 
     public BooleanProperty selectedProperty() {

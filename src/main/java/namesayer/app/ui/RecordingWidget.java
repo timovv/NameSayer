@@ -9,7 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import namesayer.app.NameSayerException;
@@ -21,7 +22,7 @@ import java.io.IOException;
 /**
  * Widget used for recording audio, playing it back and saving
  */
-public class RecordingWidget extends BorderPane {
+public class RecordingWidget extends StackPane {
 
     private final int recordingTimeLimit = 10;
 
@@ -36,7 +37,22 @@ public class RecordingWidget extends BorderPane {
     private Text recordingTime;
 
     @FXML
+    private Text recordingStatus;
+
+    @FXML
     private ImageView recordingButton;
+
+    @FXML
+    private Circle replayButton;
+
+    @FXML
+    private ImageView replayButtonImage;
+
+    @FXML
+    private Circle saveButton;
+
+    @FXML
+    private ImageView saveButtonImage;
 
     public RecordingWidget() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/recordingWidget.fxml"));
@@ -52,6 +68,8 @@ public class RecordingWidget extends BorderPane {
 
     @FXML
     private void initialize() {
+        recordingStatus.setText("Ready to record");
+
         // show how long they have recording
         recordingTime.textProperty().bind(Bindings.when(secondsLeft.isEqualTo(0)).then("")
                 .otherwise(Bindings.concat("Recording for ", secondsLeft.asString(), "s")));
@@ -76,6 +94,12 @@ public class RecordingWidget extends BorderPane {
     private void playButtonClicked() {
         if (getRecording() != null) {
             getRecording().play();
+        } else {
+            JFXDialogHelper nullDialog = new JFXDialogHelper("No Recording", "You have not yet recorded anything,\n" +
+                    "so there is nothing to play or save.", "I see", this);
+            nullDialog.setSize(1, 1);
+            nullDialog.show();
+
         }
     }
 
@@ -83,6 +107,11 @@ public class RecordingWidget extends BorderPane {
     private void saveButtonClicked() {
         if (saveClickedHandler != null && getRecording() != null) {
             saveClickedHandler.run();
+        } else {
+            JFXDialogHelper nullDialog = new JFXDialogHelper("No Recording", "You have not yet recorded anything,\n" +
+                    "so there is nothing to play or save.", "I see", this);
+            nullDialog.setSize(1, 1);
+            nullDialog.show();
         }
     }
 
@@ -91,12 +120,17 @@ public class RecordingWidget extends BorderPane {
             throw new NameSayerException("Tried to start recording while recording");
         }
 
+        //starts the recording in the audio system
         audioSystem.startRecording();
 
+        //change the state of the recording button to stop recording
         recordingButton.setImage(new Image(getClass().getResourceAsStream("/images/record-stop.png")));
         secondsLeft.set(recordingTimeLimit);
         countdownTimeline.playFromStart();
         autoStopTimeline.playFromStart();
+
+        //disables the recording status text
+        recordingStatus.setText("");
     }
 
     public void stopRecording() {
@@ -112,6 +146,7 @@ public class RecordingWidget extends BorderPane {
         recordingButton.setImage(new Image(getClass().getResourceAsStream("/images/record.png")));
         secondsLeft.set(0);
         recording = audioSystem.stopRecording();
+        recordingStatus.setText("Recorded");
     }
 
     public boolean isRecording() {

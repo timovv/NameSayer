@@ -1,10 +1,10 @@
 package namesayer.app.ui;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -23,11 +23,13 @@ public class AttemptView extends VBox {
     private ObjectProperty<List<Name>> namesProperty = new SimpleObjectProperty<>();
     private NameSayerDatabase database;
     private ListChangeListener<Attempt> listener = c -> update();
+    private StackPane parent;
 
-    public AttemptView(List<Name> names, NameSayerDatabase db) {
-
+    public AttemptView(List<Name> names, NameSayerDatabase db, StackPane parent) {
+        this.parent = parent;
         this.database = db;
         setNames(names);
+
         // If you have no attempts, show a friendly message
         noAttemptsLabel.setFont(Font.font("Century Gothic", 18));
         noAttemptsLabel.setTextFill(Paint.valueOf("#a8a8a8"));
@@ -47,7 +49,7 @@ public class AttemptView extends VBox {
         int i = 0;
         for (Attempt attempt : database.getAttemptsForNames(namesProperty.get())
                 .stream().sorted(Comparator.comparing(Attempt::getAttemptTime)).collect(Collectors.toList())) {
-            attemptsVBox.getChildren().add(new AttemptBlock(database, attempt, ++i));
+            attemptsVBox.getChildren().add(new AttemptBlock(database, attempt, ++i, this.parent));
         }
 
         // only show the no attempts label if there are no attempts!

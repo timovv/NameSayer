@@ -13,26 +13,30 @@ import javafx.scene.text.Text;
  */
 public class JFXDialogHelper {
 
-    private JFXDialog _dialog;
+    private JFXDialog dialog;
 
     public JFXDialogHelper(String heading, String body, String buttonText, StackPane stackPane) {
         JFXDialogLayout contents = new JFXDialogLayout();
         contents.setHeading(new Text(heading));
         contents.setBody(new Text(body));
 
-        _dialog = new JFXDialog(stackPane, contents, JFXDialog.DialogTransition.CENTER);
+        this.dialog = new JFXDialog(stackPane, contents, JFXDialog.DialogTransition.CENTER);
 
         JFXButton button = new JFXButton(buttonText);
-        button.setOnAction(event -> _dialog.close());
+        button.setOnAction(event -> this.dialog.close());
         contents.setActions(button);
     }
 
     public void show() {
-        _dialog.show();
+        this.dialog.show();
+    }
+
+    public void setSize(double width, double height) {
+        this.dialog.setMaxSize(width, height);
     }
 
     public void setNextScene(Scene thisScene, Parent nextScene) {
-        _dialog.setOnDialogClosed(event -> {
+        this.dialog.setOnDialogClosed(event -> {
             thisScene.setRoot(nextScene);
         });
     }

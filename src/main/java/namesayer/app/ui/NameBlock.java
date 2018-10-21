@@ -6,9 +6,6 @@ import com.jfoenix.controls.JFXDialogLayout;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import namesayer.app.Constants;
@@ -29,6 +26,7 @@ public class NameBlock extends StackPane {
     private final Name name;
     private final NameSayerDatabase db;
 
+    private StackPane parent;
     private NameSayerShop shop;
 
     @FXML
@@ -41,10 +39,11 @@ public class NameBlock extends StackPane {
     @FXML
     private StackPane unsetBadQualityButton;
 
-    public NameBlock(Name name, NameSayerDatabase db, NameSayerShop shop, URL fxmlLocation) {
+    public NameBlock(Name name, NameSayerDatabase db, NameSayerShop shop, URL fxmlLocation, StackPane parent) {
         this.name = name;
         this.db = db;
         this.shop = shop;
+        this.parent = parent;
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         loader.setController(this);
         loader.setRoot(this);
@@ -103,22 +102,21 @@ public class NameBlock extends StackPane {
     private void removeButtonClicked() {
         JFXDialogLayout contents = new JFXDialogLayout();
 
-        contents.setHeading(new Text("Confirm Delete"));
-        contents.setBody(new Text("Are you sure you want to delete this name?"));
+        contents.setHeading(new Text("Are you sure you want to delete this name?"));
         JFXButton deleteButton = new JFXButton("Delete");
         JFXButton cancelButton = new JFXButton("Cancel");
 
         contents.setActions(cancelButton, deleteButton);
-
-        JFXDialog dialog = new JFXDialog(this, contents, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(this.parent, contents, JFXDialog.DialogTransition.CENTER);
 
         cancelButton.setOnAction(x -> dialog.close());
-
         deleteButton.setOnAction(x -> {
             // delete the attempt
             db.getNameDatabase().remove(name);
             dialog.close();
         });
+
+        dialog.show();
     }
 
     /**

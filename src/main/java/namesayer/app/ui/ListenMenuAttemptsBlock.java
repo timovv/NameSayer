@@ -17,6 +17,9 @@ import java.util.List;
 
 public class ListenMenuAttemptsBlock extends BorderPane {
 
+    private BooleanProperty expanded;
+    private StackPane parent;
+
     @FXML
     private StackPane expandoExpand;
 
@@ -29,9 +32,7 @@ public class ListenMenuAttemptsBlock extends BorderPane {
     @FXML
     private Text nameText;
 
-    private BooleanProperty expanded;
-
-    public ListenMenuAttemptsBlock(NameSayerDatabase db, List<String> combinedName) {
+    public ListenMenuAttemptsBlock(NameSayerDatabase db, List<String> combinedName, StackPane parent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/listenMenuAttemptsBlock.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -42,6 +43,7 @@ public class ListenMenuAttemptsBlock extends BorderPane {
             throw new NameSayerException("Could not load block", e);
         }
 
+        this.parent = parent;
         nameText.setText(String.join(" ", combinedName));
         expanded = new SimpleBooleanProperty(false);
 
@@ -55,7 +57,7 @@ public class ListenMenuAttemptsBlock extends BorderPane {
         int i = 0;
         List<Attempt> attempts = db.getAttemptsFor(combinedName);
         for(Attempt attempt : attempts) {
-            attemptsBox.getChildren().add(new AttemptBlock(db, attempt, ++i));
+            attemptsBox.getChildren().add(new AttemptBlock(db, attempt, ++i, this.parent));
         }
     }
 
