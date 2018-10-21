@@ -63,6 +63,7 @@ public class MainMenu extends StackPane {
 
     @FXML
     private void onPracticeClicked() {
+        practiceMenu.reset();
         getScene().setRoot(practiceMenu);
     }
 

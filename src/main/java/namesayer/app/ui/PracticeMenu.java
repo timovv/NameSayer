@@ -129,8 +129,6 @@ public class PracticeMenu extends StackPane {
             Collections.shuffle(names);
         }
 
-        // reset for when user comes back
-        reset();
         getScene().setRoot(new PracticeRecordingMenu(this, mainMenu, audioSystem, database, shop, names));
     }
 
