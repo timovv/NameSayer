@@ -1,6 +1,7 @@
 package namesayer.app;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import namesayer.app.audio.AudioStub;
@@ -18,13 +19,15 @@ import java.nio.file.Paths;
 
 public class NameSayerMain extends Application {
 
+    private static HostServices hostServices;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        hostServices = getHostServices();
         AudioSystem audio;
         String useMockAudio = System.getProperty("useMockAudio");
         if (useMockAudio != null && !useMockAudio.equals("false")) {
@@ -71,5 +74,9 @@ public class NameSayerMain extends Application {
             }
         });
         stage.show();
+    }
+
+    public static HostServices hostServices() {
+        return hostServices;
     }
 }
