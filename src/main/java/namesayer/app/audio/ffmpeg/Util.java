@@ -43,7 +43,6 @@ final class Util {
         commandList.addAll(Arrays.asList(command));
 
         ProcessBuilder pb = new ProcessBuilder(commandList);
-        pb.inheritIO();
         return pb.start();
     }
 }
