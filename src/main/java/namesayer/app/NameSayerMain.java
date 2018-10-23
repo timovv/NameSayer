@@ -76,6 +76,7 @@ public class NameSayerMain extends Application {
                 e.printStackTrace();
             }
         });
+        stage.setResizable(false);
         stage.show();
     }
 
