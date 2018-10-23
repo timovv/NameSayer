@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import namesayer.app.NameSayerException;
 import namesayer.app.NameSayerSettings;
 import namesayer.app.audio.AudioSystem;
@@ -79,6 +81,11 @@ public class MainMenu extends StackPane {
     private NameSayerSettings settings;
 
     /**
+     * The help window.
+     */
+    private Stage helpWindowStage = null;
+
+    /**
      * Construct a new main menu with the given entities
      * @param database The database used in this instance of NameSayer.
      * @param audioSystem The audio system used by NameSayer.
@@ -107,6 +114,23 @@ public class MainMenu extends StackPane {
 
         // when the theme is changed (usually by the shop) update the theme!
         NameSayerSettings.getInstance().themeProperty().addListener((observable, oldValue, newValue) -> setTheme(newValue));
+    }
+
+    /**
+     * Performs initial setup for the help menu
+     */
+    private void setupHelpMenu() {
+        StackPane layout = new StackPane();
+        WebView webView = new WebView();
+        webView.getEngine().load(getClass().getResource("/help/help.html").toExternalForm());
+        webView.getEngine().setUserStyleSheetLocation(getClass().getResource("/help/help_user.css").toExternalForm());
+        layout.getChildren().add(webView);
+
+        Scene scene = new Scene(layout, 630, 800);
+        helpWindowStage = new Stage();
+        helpWindowStage.setResizable(false);
+        helpWindowStage.setTitle("NameSayer Help");
+        helpWindowStage.setScene(scene);
     }
 
     /**
@@ -148,6 +172,20 @@ public class MainMenu extends StackPane {
     @FXML
     private void onShopButtonClicked() {
         getScene().setRoot(shopMenu);
+    }
+
+    /**
+     * Show the help menu (if it is not open already) when the help button is clicked.
+     */
+    @FXML
+    private void onHelpButtonClicked() {
+        if(helpWindowStage == null) {
+            setupHelpMenu();
+        }
+
+        if(!helpWindowStage.isShowing()) {
+            helpWindowStage.show();
+        }
     }
 
     /**
