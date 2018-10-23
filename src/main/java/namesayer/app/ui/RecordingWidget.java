@@ -79,6 +79,11 @@ public class RecordingWidget extends StackPane {
     private ImageView recordingButton;
 
     /**
+     * When the save button was last clicked - kept track of to prevent spamming the save button
+     */
+    private long lastSaveButtonClickTime = 0L;
+
+    /**
      * Create a new Recording Widget.
      * The AudioSystem and a save button handler must be set after construction using the methods.
      */
@@ -146,8 +151,17 @@ public class RecordingWidget extends StackPane {
      */
     @FXML
     private void saveButtonClicked() {
+
+        // don't let the user click save more than once per second
+        // this prevents the user from accidentally spamming 'save' and saving multiple copies
+        // also prevents the situation where a recording could be overwritten for having the same timestamp
+        if(System.currentTimeMillis() - lastSaveButtonClickTime <= 1000) {
+            return;
+        }
+
         if (saveClickedHandler != null && getRecording() != null) {
             saveClickedHandler.run();
+            lastSaveButtonClickTime = System.currentTimeMillis();
         } else {
             JFXDialogHelper nullDialog = new JFXDialogHelper("No Recording", "You have not yet recorded anything,\n" +
                     "so there is nothing to play or save.", "I see", this);
