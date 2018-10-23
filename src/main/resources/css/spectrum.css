@@ -31,6 +31,12 @@
     -fx-border-color: #fbfffa;
 }
 
+.remove-button {
+    -jfx-button-type: FLAT;
+    -fx-text-fill: white;
+    -fx-pref-height: 50px;
+}
+
 .add-button {
     -jfx-button-type: FLAT;
     -fx-text-fill: white;

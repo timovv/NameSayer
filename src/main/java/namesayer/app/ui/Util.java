@@ -1,6 +1,11 @@
 package namesayer.app.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import namesayer.app.NameSayerException;
 
 import java.io.IOException;
@@ -50,5 +55,25 @@ final class Util {
         } catch(IOException e) {
             throw new NameSayerException("Could not load component", e);
         }
+    }
+
+    static void showConfirmationDialog(String message, Runnable onYes, StackPane parent) {
+
+        JFXDialogLayout layout = new JFXDialogLayout();
+        layout.setHeading(new Text("Confirmation"));
+        layout.setBody(new Text(message));
+        JFXButton yesButton = new JFXButton("Yes");
+        JFXButton noButton = new JFXButton("No");
+
+        layout.setActions(yesButton, noButton);
+
+        JFXDialog dialog = new JFXDialog(parent, layout, JFXDialog.DialogTransition.CENTER);
+
+        yesButton.setOnAction(e -> {
+            dialog.close();
+            onYes.run();
+        });
+        noButton.setOnAction(e -> dialog.close());
+        dialog.show();
     }
 }
