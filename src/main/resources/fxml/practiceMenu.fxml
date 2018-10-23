@@ -108,14 +108,26 @@
                         </StackPane>
                     </center>
                     <right>
-                        <Text fx:id="selectedText" fill="#868686" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected: X" BorderPane.alignment="CENTER">
-                            <font>
-                                <Font name="Century Gothic" size="25.0" />
-                            </font>
+                        <HBox alignment="CENTER" prefHeight="70" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
+                            <JFXButton onAction="#onRemoveAllClicked" prefHeight="50" styleClass="remove-button" text="Remove all">
+                                <font>
+                                    <Font name="Century Gothic" size="20.0" />
+                                </font>
+                            </JFXButton>
+                            <JFXButton onAction="#onRemoveSelectedClicked" prefHeight="50" styleClass="remove-button" text="Remove selected">
+                                <font>
+                                    <Font name="Century Gothic" size="20.0" />
+                                </font>
+                            </JFXButton>
+                            <Text fx:id="selectedText" fill="#868686" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected: X" BorderPane.alignment="CENTER">
+                                <font>
+                                    <Font name="Century Gothic" size="25.0" />
+                                </font>
+                            </Text>
                             <BorderPane.margin>
                                 <Insets bottom="10.0" right="20.0" />
                             </BorderPane.margin>
-                        </Text>
+                        </HBox>
                     </right>
                     <left>
                         <JFXCheckBox fx:id="shuffleCheckBox" checkedColor="#83d16e" mnemonicParsing="false" styleClass="shuffle-checkbox" text="Shuffle" textFill="#868686" unCheckedColor="#868686" BorderPane.alignment="CENTER">

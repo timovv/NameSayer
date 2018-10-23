@@ -170,7 +170,8 @@
     -fx-border-color: #83d16e;
 }
 
-.file-button {
+.file-button,
+.remove-button {
     -jfx-button-type: FLAT;
     -fx-text-fill: #fafafa;
     -fx-background-color: #bbbbbb;

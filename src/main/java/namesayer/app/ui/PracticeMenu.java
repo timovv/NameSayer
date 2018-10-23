@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -147,6 +148,9 @@ public class PracticeMenu extends StackPane {
                 }
             }
         });
+
+        // allow multiple seelection for the names list
+        namesList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         // count property
         selectedCount.bind(Bindings.size(namesList.getItems()));
@@ -299,6 +303,37 @@ public class PracticeMenu extends StackPane {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Handles the 'remove selected' button being clicked.
+     *
+     * Removes the selected names from the ListBox.
+     */
+    @FXML
+    private void onRemoveSelectedClicked() {
+        if(namesList.getSelectionModel().getSelectedItems().isEmpty()) {
+            new JFXDialogHelper("Information", "No items have been selected!", "Okay", this).show();
+            return;
+        }
+
+        namesList.getItems().removeAll(namesList.getSelectionModel().getSelectedItems());
+    }
+
+    /**
+     * Handles the 'remove all' button being clicked.
+     *
+     * Upon confirmation, removes all names from the ListBox.
+     */
+    @FXML
+    private void onRemoveAllClicked() {
+        if (namesList.getItems().isEmpty()) {
+            new JFXDialogHelper("Information", "There are no names to remove!", "Okay", this).show();
+            return;
+        }
+
+        Util.showConfirmationDialog("Are you sure you want to remove all names " +
+            "from the practice list?", namesList.getItems()::clear, this);
     }
 
     /**
