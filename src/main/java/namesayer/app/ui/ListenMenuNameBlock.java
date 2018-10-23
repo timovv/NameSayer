@@ -18,29 +18,62 @@ import namesayer.app.shop.NameSayerShop;
 import java.io.IOException;
 
 /**
- * A NameBlock that is used in the listen menu.
+ * A NameBlock that is used in the listen menu, representing a single name in the database.
  */
 
-public class ListenMenuNameBlock {
+public class ListenMenuNameBlock extends StackPane {
 
+    /**
+     * The name this block represents.
+     */
     private final Name name;
+
+    /**
+     * The database the name is in.
+     */
     private final NameSayerDatabase db;
+
+    /**
+     * The StackPane which is the parent of this NameBlock; used to display alerts.
+     */
+    private StackPane parent;
+
+    /**
+     * The shop for NameSayer. Used to give the user rewards.
+     */
+    private NameSayerShop shop;
+
+    /**
+     * The text of the name
+     */
     @FXML
     private Text nameText;
 
+    /**
+     * The text of the date of the recording
+     */
     @FXML
     private Text dateText;
 
-    @FXML
-    private VBox attemptsBox;
-    private StackPane parent;
-    private NameSayerShop shop;
-
+    /**
+     * The bad-quality rating button; clicking it marks the recording as bad quality in the database.
+     */
     @FXML
     private StackPane setBadQualityButton;
+
+    /**
+     * Clicking this removes the bad quality rating from the recording.
+     */
     @FXML
     private StackPane unsetBadQualityButton;
 
+    /**
+     * Construct a new ListenMenuNameBlock with the given parameters.
+     * @param db The database that the name is from
+     * @param shop The shop so that shop rewards can be given to the user
+     * @param name The name this name block represents
+     * @param parent The parent stack pane, used to show JFXDialogs.
+     */
     public ListenMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name, StackPane parent) {
         this.name = name;
         this.db = db;
@@ -59,6 +92,7 @@ public class ListenMenuNameBlock {
         nameText.setText(Util.toTitleCase(name.getName()));
         dateText.setText(name.getCreationDate().format(Util.DATE_TIME_FORMAT));
 
+        // show the correct quality button - highlight the 'thumbs down' if the recording has already been marked as bad quality.
         if (name.isBadQuality()) {
             setBadQualityButton.setVisible(false);
             unsetBadQualityButton.setVisible(true);
@@ -68,6 +102,9 @@ public class ListenMenuNameBlock {
         }
     }
 
+    /**
+     * Marks the given recording as bad quality when the thumbs down button is clicked.
+     */
     @FXML
     private void setBadQualityClicked() {
         name.setBadQuality(true);
@@ -77,6 +114,9 @@ public class ListenMenuNameBlock {
         unsetBadQualityButton.setVisible(true);
     }
 
+    /**
+     * Removes the bad quality rating from the recording when the (highlighted) thumbs down button is clicked.
+     */
     @FXML
     private void unsetBadQualityClicked() {
         name.setBadQuality(false);
@@ -85,7 +125,12 @@ public class ListenMenuNameBlock {
         unsetBadQualityButton.setVisible(false);
     }
 
+    /**
+     * Removes the recording from the database.
+     * @deprecated This functionality is supposed to be allowed per the NameSayer specification; the associated button has been removed.
+     */
     @FXML
+    @Deprecated
     private void removeButtonClicked() {
         JFXDialogLayout contents = new JFXDialogLayout();
 
@@ -106,6 +151,9 @@ public class ListenMenuNameBlock {
         dialog.show();
     }
 
+    /**
+     * Plays the recorded name from the database.
+     */
     @FXML
     private void onPlayClicked() {
         name.getRecording().thenAccept(AudioClip::play);

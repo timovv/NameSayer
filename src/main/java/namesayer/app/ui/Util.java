@@ -7,11 +7,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Utility methods for the user interface
+ */
 final class Util {
     static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
     /**
      * Convert the given string to Title Case
+     * @param s The string to convert
+     * @return s, but in Title Case.
      */
     static String toTitleCase(String s) {
         char[] array = s.toCharArray();
@@ -30,6 +35,11 @@ final class Util {
         return sb.toString();
     }
 
+    /**
+     * Load the FXML file into the given root.
+     * @param location The location of the FXML.
+     * @param root The root component.
+     */
     static void loadFxmlComponent(URL location, Object root) {
         FXMLLoader loader = new FXMLLoader(location);
         loader.setController(root);

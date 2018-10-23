@@ -21,15 +21,33 @@ import java.io.IOException;
  */
 public class ShopMenu extends StackPane {
 
+    /**
+     * The internal shop object used to manage purchases.
+     */
     private final NameSayerShop shop;
+
+    /**
+     * The menu to go to when the back button is pressed
+     */
     private final Parent previous;
 
+    /**
+     * The pane which stores the shop items
+     */
     @FXML
     private Pane shopPane;
 
+    /**
+     * Label showing the users' current balance
+     */
     @FXML
     private Text lipCoinLabel;
 
+    /**
+     * Create a new ShopMenu with the given parameters
+     * @param previous The menu to go to when the back button is pressed
+     * @param shop The shop menu.
+     */
     public ShopMenu(Parent previous, NameSayerShop shop) {
         this.shop = shop;
         this.previous = previous;
@@ -44,6 +62,7 @@ public class ShopMenu extends StackPane {
             throw new NameSayerException("Could not load practice menu", e);
         }
 
+        // add the shop items to the shop menu, and set up the callback so that we can handle when they are clicked
         for (ShopItem item : shop.getAvailableItems()) {
             ShopItemDisplay display = new ShopItemDisplay(item);
             display.setOnAction(x -> handleItemClicked(item));
@@ -53,6 +72,14 @@ public class ShopMenu extends StackPane {
         lipCoinLabel.textProperty().bind(shop.balanceProperty().asString().concat(" LipCoins\u2122"));
     }
 
+    /**
+     * Handles a shop item being clicked.
+     *
+     * if hte item is already purchased, toggles the activity of the item.
+     * if the item is not purchased, opens a JFXDialog which allows the user to decide whether they want to
+     * purchase the item or not.
+     * @param item The Shopitem that was clicked
+     */
     private void handleItemClicked(ShopItem item) {
         if (item.isPurchased()) {
             // activate /deactivate
@@ -88,6 +115,9 @@ public class ShopMenu extends StackPane {
         }
     }
 
+    /**
+     * Go back to the previous menu
+     */
     @FXML
     private void onBackClicked() {
         getScene().setRoot(previous);

@@ -17,6 +17,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * The entry point to NameSayer
+ */
 public class NameSayerMain extends Application {
 
     private static HostServices hostServices;
@@ -76,6 +79,10 @@ public class NameSayerMain extends Application {
         stage.show();
     }
 
+    /**
+     * Get the HostServices object associated with this NameSayer.
+     * @return The HostServices object.
+     */
     public static HostServices hostServices() {
         return hostServices;
     }

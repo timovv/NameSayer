@@ -13,6 +13,7 @@ import javafx.util.Duration;
 import namesayer.app.Constants;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
+import namesayer.app.database.Name;
 import namesayer.app.database.NameInfo;
 import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
@@ -108,6 +109,7 @@ public class RecordMenu extends StackPane {
         }
 
         NameInfo nameInfo = new NameInfo(nameTextField.getText(), "se206", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+
         int coinsEarned = Constants.COINS_PER_RECORDING_MADE;
         database.getNameDatabase().createNew(nameInfo, recordingWidget.getRecording());
         // use JFXDialogHelper to create and show a new pop-up dialog for successful recording

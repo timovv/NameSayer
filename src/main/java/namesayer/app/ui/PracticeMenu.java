@@ -32,30 +32,72 @@ import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
 
 /**
- * Menu which allows the user to select what name(s) they want to practice
+ * Menu which allows the user to select what name(s) they want to practice.
  */
 public class PracticeMenu extends StackPane {
 
+    /**
+     * The menu to return to when the back button is pressed (and when the user finishes a practiec session)
+     */
     private final Parent mainMenu;
+
+    /**
+     * Property representing the number of names that have currently been selected for practice.
+     */
     private IntegerProperty selectedCount = new SimpleIntegerProperty();
+
+    /**
+     * The NameSayer database useed in the application
+     */
     private NameSayerDatabase database;
+
+    /**
+     * The audio system used in the application
+     */
     private AudioSystem audioSystem;
+
+    /**
+     * The NameSayer shop, so that we can give the user rewards for completing practices
+     */
     private NameSayerShop shop;
+
+    /**
+     * The text field in which the users can type names to be input.
+     */
     @FXML
     private AutoCompleteTextField namesTextField;
+
+    /**
+     * Text label which shows the number of names that have been selected for practice
+     */
     @FXML
     private Text selectedText;
+
+    /**
+     * Check box which when checked, causes the names to be shuffled when the practice session begins.
+     */
     @FXML
     private CheckBox shuffleCheckBox;
+
+    /**
+     * Stack pane which allows dialogs to be shown
+     */
     @FXML
     private StackPane stackPane;
-    @FXML
-    private Text searchPrompt;
-    @FXML
-    private ProgressBar progressBar;
+
+    /**
+     * ListView of names that are to be practiced.
+     */
     @FXML
     private ListView<List<Name>> namesList;
 
+    /**
+     * Construct a new PracticeMenu with the given parameters.
+     * @param mainMenu The main menu screen which is returned to when the practice session is complete
+     * @param audioSystem The audio system used to make and play recordings
+     * @param db The database with all the names in it
+     * @param shop The shop menu for NameSayer
+     */
     public PracticeMenu(Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db, NameSayerShop shop) {
         this.shop = shop;
         this.audioSystem = audioSystem;
@@ -74,20 +116,23 @@ public class PracticeMenu extends StackPane {
         }
     }
 
+    /**
+     * Initialisation of components for the menu
+     */
     @FXML
     private void initialize() {
 
         // show how many names the user has ticked
         selectedText.textProperty().bind(Bindings.concat("Selected: ", selectedCount));
 
-        // hides the progress bar until you need it for loading.
-        progressBar.setVisible(false);
-
+        // don't let the user edit the names list directly (they have to use buttons etc)
         namesList.setEditable(false);
         Label placeholder = new Label("You have not yet chosen a name to practise.");
         placeholder.setFont(new Font("Century Gothic", 20));
         placeholder.setTextFill(Color.web("#b0b0b0"));
         namesList.setPlaceholder(placeholder);
+
+        // Create name cells based on the name's text
         namesList.setCellFactory(param -> new ListCell<List<Name>>() {
             @Override
             protected void updateItem(List<Name> item, boolean empty) {
@@ -96,12 +141,14 @@ public class PracticeMenu extends StackPane {
                 if (empty || item == null || item.isEmpty()) {
                     setText(null);
                 } else {
+                    // make everything title case; split the names by space
                     setText(String.join(" ",
                             item.stream().map(Name::getName).map(Util::toTitleCase).collect(Collectors.toList())));
                 }
             }
         });
 
+        // count property
         selectedCount.bind(Bindings.size(namesList.getItems()));
 
         namesTextField.getEntries()
@@ -109,6 +156,9 @@ public class PracticeMenu extends StackPane {
         namesTextField.setOnAction(x -> addNameClicked());
     }
 
+    /**
+     * Handle when the 'start practice' button is clciked.
+     */
     @FXML
     private void onStartClicked() {
 
@@ -124,24 +174,28 @@ public class PracticeMenu extends StackPane {
             return;
         }
 
+        // get the list of names to be practiced
         List<List<Name>> names = new ArrayList<>(namesList.getItems());
         if (shuffleCheckBox.isSelected()) {
+            // shuffle them if the box is selected
             Collections.shuffle(names);
         }
 
+        // open the practice recording menu
         getScene().setRoot(new PracticeRecordingMenu(this, mainMenu, audioSystem, database, shop, names));
     }
 
+    /**
+     * Resets the practice menu, clearing all names from the text field.
+     */
     public void reset() {
-//        namesChipView.getChips().clear();
         namesTextField.clear();
         namesList.getItems().clear();
     }
 
-    @FXML
-    private void onNameChanged() {
-    }
-
+    /**
+     * Handle the a new name being added to the practice list.
+     */
     @FXML
     private void addNameClicked() {
         String text = namesTextField.getText().trim();
@@ -156,24 +210,31 @@ public class PracticeMenu extends StackPane {
         }
     }
 
+    /**
+     * Add a list of names to the practice list from a text file.
+     */
     @FXML
     private void addFromFileClicked() {
+        // Create the file chooser
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text files", ".txt"));
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text files", "*.txt"));
 
         File file = fileChooser.showOpenDialog(getScene().getWindow());
 
+        // do nothing if no file was selected
         if(file == null) {
             return;
         }
 
         Path path = file.toPath();
-
+        // only accept files - if the file was not found output an error
         if (!Files.isRegularFile(path)) {
             new JFXDialogHelper("File Not Found", "The file could not be found", "Okay", this).show();
             return;
         }
 
+        // try and read each line from the text file.
+        // if a binary file, etc., is tried to be read, this will throw IOException and an error message will be shown
         List<String> lines;
         try {
             lines = Files.readAllLines(path);
@@ -182,6 +243,7 @@ public class PracticeMenu extends StackPane {
             return;
         }
 
+        // show a list for which the names could not be found
         List<String> notFoundFor = new ArrayList<>();
         for (String line : lines) {
             if (!tryAddName(line)) {
@@ -189,6 +251,7 @@ public class PracticeMenu extends StackPane {
             }
         }
 
+        // if there were names that could not be found then show which ones couldn't be resolved
         if (!notFoundFor.isEmpty()) {
             new JFXDialogHelper("Could Not Read Name(s)",
                     "Could not find database entries for the following name(s):\n"
@@ -198,6 +261,11 @@ public class PracticeMenu extends StackPane {
         }
     }
 
+    /**
+     * Try to add the given name to the list of names to practice.
+     * @param fullName The name to test, either from a file or the text box
+     * @return true if the addition was successful; false otherwise.
+     */
     private boolean tryAddName(String fullName) {
         List<Name> namesOut = new ArrayList<>();
         String[] split = fullName.split("[\\s-]");
@@ -210,14 +278,19 @@ public class PracticeMenu extends StackPane {
                 break;
             }
 
+            // If there are any names which match which are NOT bad quality, only select from non-bad-quality names.
+            // Otherwise, just use the bad quality names anyway.
             if(found.stream().anyMatch(x -> !x.isBadQuality())) {
                 found = found.stream().filter(x -> !x.isBadQuality()).collect(Collectors.toList());
             }
+
+            // Shuffle the list and select the first one, this makes the selection of name random.
             Collections.shuffle(found);
             namesOut.add(found.get(0));
         }
 
         if (couldFind) {
+            // Don't add it again if there's a duplicate
             if(!nameIsAlreadyAdded(namesOut.stream().map(Name::getName).collect(Collectors.toList()))) {
                 namesList.getItems().add(namesOut);
             }
@@ -239,12 +312,9 @@ public class PracticeMenu extends StackPane {
                 .anyMatch(x -> x.equals(names)); // list equality -- returns true if all elements are the same
     }
 
-    // for testing only!
-    @FXML
-    private void onPracticeClicked() {
-//        getScene().setRoot(new PracticeRecordingMenuStub(this, audioSystem, database));
-    }
-
+    /**
+     * Go to the main menu when the back button is clicked.
+     */
     @FXML
     private void onBackClicked() {
         reset();

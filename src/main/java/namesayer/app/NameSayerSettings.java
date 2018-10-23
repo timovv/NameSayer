@@ -5,6 +5,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Class representing settings in NameSayer.
+ */
 public final class NameSayerSettings {
 
     private static final NameSayerSettings DEFAULT_SETTINGS;
@@ -31,16 +34,21 @@ public final class NameSayerSettings {
             instance = new NameSayerSettings();
             instance.themeProperty.setValue(DEFAULT_SETTINGS.getTheme());
             instance.wellDoneMessageProperty.setValue(DEFAULT_SETTINGS.getWellDoneMessage());
-            instance.coinsPerPracticeProperty.set(DEFAULT_SETTINGS.getCoinsPerPractice());
         }
 
         return instance;
     }
 
+    /**
+     * @return the default settings object
+     */
     public static NameSayerSettings defaultSettings() {
         return DEFAULT_SETTINGS;
     }
 
+    /**
+     * @return The current theme.
+     */
     public String getTheme() {
         return themeProperty.get();
     }
@@ -53,6 +61,9 @@ public final class NameSayerSettings {
         return themeProperty;
     }
 
+    /**
+     * @return The current well done message, which is shown to the user when they complete a practice session
+     */
     public String getWellDoneMessage() {
         return wellDoneMessageProperty.get();
     }
@@ -64,30 +75,5 @@ public final class NameSayerSettings {
     public StringProperty wellDoneMessageProperty() {
         return wellDoneMessageProperty;
     }
-
-    public Integer getLipCoinMiner() {
-        return lipCoinMinerProperty.get();
-    }
-
-    public void setLipCoinMiner(int lipCoinMiningRate) {
-        lipCoinMinerProperty.set(lipCoinMiningRate);
-    }
-
-    public IntegerProperty lipCoinMinerProperty() {
-        return lipCoinMinerProperty;
-    }
-
-    public int getCoinsPerPractice() {
-        return coinsPerPracticeProperty.get();
-    }
-
-    public void setCoinsPerPractice(int value) {
-        coinsPerPracticeProperty.set(value);
-    }
-
-    public IntegerProperty coinsPerPracticeProperty() {
-        return coinsPerPracticeProperty;
-    }
-
 }
 
