@@ -1,7 +1,8 @@
 NameSayer
 =========
 
-SOFTENG 206 Project
+SOFTENG 206 Project  
+Check out the NameSayer GitHub: https://github.com/timovv/NameSayer
 
 Authors
 -------
