@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * A generic database of recordings.
+ *
  * @param <TInfo> The type of recording information.
  * @param <TItem> The type of recording that is in this database.
  */
@@ -19,7 +20,8 @@ public interface RecordingDatabase<TInfo, TItem extends RecordingItem<TInfo>> {
 
     /**
      * Asynchronously a new recording of the given type in the database.
-     * @param info The info corresponding to the recording.
+     *
+     * @param info      The info corresponding to the recording.
      * @param recording The audio clip representing the recording.
      * @return A CompletableFuture object that will yield the created database entry once it has been created.
      */
@@ -27,6 +29,7 @@ public interface RecordingDatabase<TInfo, TItem extends RecordingItem<TInfo>> {
 
     /**
      * Remove the given entry from the database.
+     *
      * @param item The item to remove.
      * @return A CompleteableFuture object that will finish once the entry has been removed.
      */

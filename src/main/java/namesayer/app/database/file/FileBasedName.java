@@ -39,6 +39,7 @@ public class FileBasedName extends FileBasedRecordingItem<NameInfo> implements N
 
     /**
      * Mark this recording as bad quality (or not). The result will be automatically saved to the bad quality rating file.
+     *
      * @param value true to mark this recording as bad quality; false for the default (i.e. good quality)
      */
     public void setBadQuality(boolean value) {

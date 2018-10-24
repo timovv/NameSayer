@@ -59,6 +59,7 @@ public class ShopItemDisplay extends StackPane {
 
     /**
      * Create a new ShopItemDisplay representing the given ShopItem
+     *
      * @param shopItem The ShopItem to show
      */
     public ShopItemDisplay(ShopItem shopItem) {
@@ -72,7 +73,7 @@ public class ShopItemDisplay extends StackPane {
         shopItemCost.textProperty().bind(
                 Bindings.when(shopItem.purchasedProperty()).then(Bindings.when(shopItem.activeProperty())
                         .then("Purchased, active!").otherwise("Purchased!"))
-                .otherwise(Integer.toString(shopItem.getPrice()) + " LipCoins\u2122"));
+                        .otherwise(Integer.toString(shopItem.getPrice()) + " LipCoins\u2122"));
 
         shopItemIcon.imageProperty()
                 .bind(Bindings.when(shopItem.activeProperty())
@@ -106,6 +107,7 @@ public class ShopItemDisplay extends StackPane {
 
     /**
      * Set the on action event handler to the given value
+     *
      * @param handler A callback which will be called when this shop item is clicked
      */
     public void setOnAction(EventHandler<ActionEvent> handler) {

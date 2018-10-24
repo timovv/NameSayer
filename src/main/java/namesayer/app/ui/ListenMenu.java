@@ -52,9 +52,10 @@ public class ListenMenu extends StackPane {
 
     /**
      * Create a new ListenMenu with the given parameters.
+     *
      * @param previous The menu to go to when the back button is pressed.
-     * @param db The database being listened to.
-     * @param shop The shop; used to give the user coins when a recording is marked as bad quality.
+     * @param db       The database being listened to.
+     * @param shop     The shop; used to give the user coins when a recording is marked as bad quality.
      */
     public ListenMenu(Parent previous, NameSayerDatabase db, NameSayerShop shop) {
         this.previous = previous;
@@ -67,7 +68,7 @@ public class ListenMenu extends StackPane {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load listen menu", e);
         }
     }
@@ -104,7 +105,7 @@ public class ListenMenu extends StackPane {
         // Groups all attempts by the full name.
         attemptsCellView.getContent().addAll(
                 database.getAttemptDatabase().getAll().stream()
-                        .collect(Collectors.<Attempt,List<String>>groupingBy(Attempt::getNames)).keySet()
+                        .collect(Collectors.<Attempt, List<String>>groupingBy(Attempt::getNames)).keySet()
         );
     }
 

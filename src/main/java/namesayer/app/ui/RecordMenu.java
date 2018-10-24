@@ -13,7 +13,6 @@ import javafx.util.Duration;
 import namesayer.app.Constants;
 import namesayer.app.NameSayerException;
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.Name;
 import namesayer.app.database.NameInfo;
 import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
@@ -77,7 +76,7 @@ public class RecordMenu extends StackPane {
 
     @FXML
     private void onBackClicked() {
-        if(recordingWidget.isRecording()) {
+        if (recordingWidget.isRecording()) {
             recordingWidget.stopRecording();
         }
 
@@ -93,7 +92,7 @@ public class RecordMenu extends StackPane {
             return;
         }
 
-        if(nameTextField.getText().contains(" ") || nameTextField.getText().contains("-")) {
+        if (nameTextField.getText().contains(" ") || nameTextField.getText().contains("-")) {
             JFXDialogHelper dialog = new JFXDialogHelper("Invalid name", "The name must not contain " +
                     "spaces or hyphens!", "OK", this);
             dialog.show();

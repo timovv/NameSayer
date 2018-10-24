@@ -9,11 +9,11 @@ import java.util.Objects;
 
 /**
  * A class representing information about an {@link Attempt} in the database.
- *
+ * <p>
  * Attempts are associated with:
  * <ul>
- *     <li>A list of names, which, when combined, form the full name being practiced in the attempt.</li>
- *     <li>The time at which the attempt was created.</li>
+ * <li>A list of names, which, when combined, form the full name being practiced in the attempt.</li>
+ * <li>The time at which the attempt was created.</li>
  * </ul>
  */
 public final class AttemptInfo {
@@ -23,7 +23,8 @@ public final class AttemptInfo {
 
     /**
      * Construct a new AttemptInfo object.
-     * @param names The names that this attempt is an attempt of.
+     *
+     * @param names       The names that this attempt is an attempt of.
      * @param attemptTime The time at which this attempt was made, which will be truncated to the second.
      */
     public AttemptInfo(List<String> names, LocalDateTime attemptTime) {
@@ -34,6 +35,7 @@ public final class AttemptInfo {
 
     /**
      * When combined, these names will represent the full name that is being practiced.
+     *
      * @return A read-only view of the names this attempt is attempting.
      */
     public List<String> getNames() {
@@ -54,11 +56,11 @@ public final class AttemptInfo {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof AttemptInfo)) {
+        if (!(obj instanceof AttemptInfo)) {
             return false;
         }
 
-        AttemptInfo other = (AttemptInfo)obj;
+        AttemptInfo other = (AttemptInfo) obj;
         return this.names.equals(other.names) && attemptTime.equals(other.attemptTime);
     }
 }

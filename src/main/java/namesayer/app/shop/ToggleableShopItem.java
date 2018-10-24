@@ -14,7 +14,7 @@ public abstract class ToggleableShopItem implements ShopItem {
 
     protected ToggleableShopItem() {
         activeProperty.addListener((observable, oldValue, newValue) -> {
-            if(newValue) {
+            if (newValue) {
                 activate();
             } else {
                 deactivate();

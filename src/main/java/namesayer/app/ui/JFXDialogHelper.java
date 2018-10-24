@@ -17,10 +17,11 @@ public class JFXDialogHelper {
 
     /**
      * Create a new JFXDialogHelper with the given information.
-     * @param heading The heading for the dialog.
-     * @param body The body of the dialog.
+     *
+     * @param heading    The heading for the dialog.
+     * @param body       The body of the dialog.
      * @param buttonText The text of the dialog's button.
-     * @param stackPane The StackPane over which this dialog should be shown.
+     * @param stackPane  The StackPane over which this dialog should be shown.
      */
     public JFXDialogHelper(String heading, String body, String buttonText, StackPane stackPane) {
         JFXDialogLayout contents = new JFXDialogLayout();
@@ -43,7 +44,8 @@ public class JFXDialogHelper {
 
     /**
      * Set the size of the generated JFXDialog.
-     * @param width The width the dialog should be.
+     *
+     * @param width  The width the dialog should be.
      * @param height The height the dialog should be.
      */
     public void setSize(double width, double height) {
@@ -52,6 +54,7 @@ public class JFXDialogHelper {
 
     /**
      * Set the scene that should be transitioned to once the dialog closes.
+     *
      * @param thisScene The current scene object.
      * @param nextScene The next scene.
      */

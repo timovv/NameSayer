@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * An audio system that is powered by FFmpeg.
- *
+ * <p>
  * For this audio system to work, ffmpeg and ffplay must both be installed and on the users' PATH.
  */
 public class FFmpegAudioSystem implements AudioSystem {
@@ -92,7 +92,7 @@ public class FFmpegAudioSystem implements AudioSystem {
      * kills the new one if sound is still being played, to ensure that only one audio clip is played at once.
      */
     private void handleNewFFPlayProcess(Process proc) {
-        if(ffplayProcess != null && ffplayProcess.isAlive()) {
+        if (ffplayProcess != null && ffplayProcess.isAlive()) {
             proc.destroyForcibly();
             return;
         }

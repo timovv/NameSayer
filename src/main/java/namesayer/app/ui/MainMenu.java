@@ -87,9 +87,10 @@ public class MainMenu extends StackPane {
 
     /**
      * Construct a new main menu with the given entities
-     * @param database The database used in this instance of NameSayer.
+     *
+     * @param database    The database used in this instance of NameSayer.
      * @param audioSystem The audio system used by NameSayer.
-     * @param shop The NameSayer shop.
+     * @param shop        The NameSayer shop.
      */
     public MainMenu(NameSayerDatabase database, AudioSystem audioSystem, NameSayerShop shop) {
         // loading fxml
@@ -160,6 +161,7 @@ public class MainMenu extends StackPane {
 
     /**
      * Set the scene used when the theme changes.
+     *
      * @param scene The scene to change when the theme is updated.
      */
     public void setScene(Scene scene) {
@@ -179,17 +181,18 @@ public class MainMenu extends StackPane {
      */
     @FXML
     private void onHelpButtonClicked() {
-        if(helpWindowStage == null) {
+        if (helpWindowStage == null) {
             setupHelpMenu();
         }
 
-        if(!helpWindowStage.isShowing()) {
+        if (!helpWindowStage.isShowing()) {
             helpWindowStage.show();
         }
     }
 
     /**
      * Updates the theme to the given theme
+     *
      * @param address The name of the theme to set to. Currently supported values are "spectrum" and "main".
      */
     private void setTheme(String address) {

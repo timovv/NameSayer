@@ -12,8 +12,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="1200.0"
+         style="-fx-background-color: #ffffff;" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.121"
+         xmlns:fx="http://javafx.com/fxml/1">
     <right>
         <HBox spacing="25.0" BorderPane.alignment="CENTER">
             <children>
@@ -21,38 +22,42 @@
                     <children>
                         <StackPane fx:id="expandoExpand" onMouseClicked="#onExpandClicked">
                             <children>
-                                <ImageView disable="true" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView disable="true" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true"
+                                           preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/more.png" />
+                                        <Image url="@../images/more.png"/>
                                     </image>
                                     <StackPane.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </StackPane.margin>
                                 </ImageView>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#7991eb" strokeType="INSIDE" strokeWidth="3.0" styleClass="small-button" />
+                                <Circle fill="#1f93ff00" radius="30.0" stroke="#7991eb" strokeType="INSIDE"
+                                        strokeWidth="3.0" styleClass="small-button"/>
                             </children>
-                     <padding>
-                        <Insets bottom="15.0" top="15.0" />
-                     </padding>
+                            <padding>
+                                <Insets bottom="15.0" top="15.0"/>
+                            </padding>
                         </StackPane>
                         <StackPane fx:id="expandoUnexpand" onMouseClicked="#onUnexpandClicked">
                             <children>
-                                <ImageView disable="true" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView disable="true" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true"
+                                           preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/less.png" />
+                                        <Image url="@../images/less.png"/>
                                     </image>
                                 </ImageView>
-                                <Circle fill="#1f93ff00" radius="30.0" stroke="#666666" strokeType="INSIDE" strokeWidth="3.0" styleClass="small-button" />
+                                <Circle fill="#1f93ff00" radius="30.0" stroke="#666666" strokeType="INSIDE"
+                                        strokeWidth="3.0" styleClass="small-button"/>
                             </children>
-                     <padding>
-                        <Insets bottom="15.0" top="15.0" />
-                     </padding>
+                            <padding>
+                                <Insets bottom="15.0" top="15.0"/>
+                            </padding>
                         </StackPane>
                     </children>
                 </StackPane>
             </children>
             <BorderPane.margin>
-                <Insets right="30.0" />
+                <Insets right="30.0"/>
             </BorderPane.margin>
         </HBox>
     </right>
@@ -61,26 +66,27 @@
             <right>
             </right>
             <center>
-                <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="name-label" text="Name" textAlignment="RIGHT" BorderPane.alignment="CENTER_LEFT">
+                <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="name-label" text="Name"
+                      textAlignment="RIGHT" BorderPane.alignment="CENTER_LEFT">
                     <font>
-                        <Font name="Century Gothic" size="45.0" />
+                        <Font name="Century Gothic" size="45.0"/>
                     </font>
                     <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                             <stops>
-                                <Stop color="#dd7272" />
-                                <Stop color="#7991eb" offset="1.0" />
+                                <Stop color="#dd7272"/>
+                                <Stop color="#7991eb" offset="1.0"/>
                             </stops>
                         </LinearGradient>
                     </fill>
                     <BorderPane.margin>
-                        <Insets left="30.0" />
+                        <Insets left="30.0"/>
                     </BorderPane.margin>
                 </Text>
             </center>
         </BorderPane>
     </left>
     <bottom>
-        <VBox fx:id="attemptsBox" BorderPane.alignment="CENTER" />
+        <VBox fx:id="attemptsBox" BorderPane.alignment="CENTER"/>
     </bottom>
 </fx:root>

@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * A block used in the listen menu which represents a name that has been attempted.
- *
+ * <p>
  * This block is used in the 'attempts' tab of the menu and lets the user expand and unexpand the menu to view attempts.
  */
 public class ListenMenuAttemptsBlock extends BorderPane {
@@ -58,9 +58,10 @@ public class ListenMenuAttemptsBlock extends BorderPane {
 
     /**
      * Creates a new ListenMenuAttemptsBlock with the given parameters.
-     * @param db The database which the attempts are from.
+     *
+     * @param db           The database which the attempts are from.
      * @param combinedName The name which is being attempted as a list of partial names.
-     * @param parent The UI parent which is used to show JFXDialogs
+     * @param parent       The UI parent which is used to show JFXDialogs
      */
     public ListenMenuAttemptsBlock(NameSayerDatabase db, List<String> combinedName, StackPane parent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/listenMenuAttemptsBlock.fxml"));
@@ -69,7 +70,7 @@ public class ListenMenuAttemptsBlock extends BorderPane {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load block", e);
         }
 
@@ -88,7 +89,7 @@ public class ListenMenuAttemptsBlock extends BorderPane {
         // Add the attempts to the attempts box.
         int i = 0;
         List<Attempt> attempts = db.getAttemptsFor(combinedName);
-        for(Attempt attempt : attempts) {
+        for (Attempt attempt : attempts) {
             attemptsBox.getChildren().add(new AttemptBlock(db, attempt, ++i, this.parent));
         }
     }

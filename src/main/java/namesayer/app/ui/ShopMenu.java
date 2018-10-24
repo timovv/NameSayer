@@ -45,8 +45,9 @@ public class ShopMenu extends StackPane {
 
     /**
      * Create a new ShopMenu with the given parameters
+     *
      * @param previous The menu to go to when the back button is pressed
-     * @param shop The shop menu.
+     * @param shop     The shop menu.
      */
     public ShopMenu(Parent previous, NameSayerShop shop) {
         this.shop = shop;
@@ -74,10 +75,11 @@ public class ShopMenu extends StackPane {
 
     /**
      * Handles a shop item being clicked.
-     *
+     * <p>
      * if hte item is already purchased, toggles the activity of the item.
      * if the item is not purchased, opens a JFXDialog which allows the user to decide whether they want to
      * purchase the item or not.
+     *
      * @param item The Shopitem that was clicked
      */
     private void handleItemClicked(ShopItem item) {

@@ -1,7 +1,12 @@
 package namesayer.app.database.file;
 
 import namesayer.app.audio.AudioSystem;
-import namesayer.app.database.*;
+import namesayer.app.database.Attempt;
+import namesayer.app.database.AttemptInfo;
+import namesayer.app.database.Name;
+import namesayer.app.database.NameInfo;
+import namesayer.app.database.NameSayerDatabase;
+import namesayer.app.database.RecordingDatabase;
 
 import java.nio.file.Path;
 

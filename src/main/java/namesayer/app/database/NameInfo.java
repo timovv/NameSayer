@@ -6,12 +6,12 @@ import java.util.Objects;
 
 /**
  * A class representing information about a {@link Name} in the database.
- *
+ * <p>
  * Names are associated with:
  * <ul>
- *     <li>The string representing the name itself, e.g. "Catherine"</li>
- *     <li>The string representing the creator of the name. For most cases, this is "se206".</li>
- *     <li>The time at which the name was created.</li>
+ * <li>The string representing the name itself, e.g. "Catherine"</li>
+ * <li>The string representing the creator of the name. For most cases, this is "se206".</li>
+ * <li>The time at which the name was created.</li>
  * </ul>
  */
 public final class NameInfo {
@@ -21,8 +21,9 @@ public final class NameInfo {
 
     /**
      * Construct a new NameInfo object.
-     * @param name The name the recording is a recording of.
-     * @param creator The creator of the name.
+     *
+     * @param name         The name the recording is a recording of.
+     * @param creator      The creator of the name.
      * @param creationDate The date when this recording was created.
      */
     public NameInfo(String name, String creator, LocalDateTime creationDate) {
@@ -56,7 +57,7 @@ public final class NameInfo {
 
     @Override
     public boolean equals(Object other) {
-        if(!(other instanceof NameInfo)) {
+        if (!(other instanceof NameInfo)) {
             return false;
         }
 

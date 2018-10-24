@@ -27,6 +27,7 @@ import java.util.function.BiPredicate;
 /**
  * A generic class to view and search cells.
  * Used in the listen menu for search functionality.
+ *
  * @param <T> The type of the items in the SearchableCellView.
  */
 public class SearchableCellView<T> extends VBox {
@@ -85,6 +86,7 @@ public class SearchableCellView<T> extends VBox {
 
     /**
      * Create a new SearchableCellView with the given placeholder node.
+     *
      * @param placeholder The placeholder node to use.
      */
     public SearchableCellView(@NamedArg("placeholder") Node placeholder) {
@@ -128,7 +130,8 @@ public class SearchableCellView<T> extends VBox {
 
     /**
      * Function which given a CellFactory gives a cellfactory that caches values.
-     * @param in The cellFactory input
+     *
+     * @param in  The cellFactory input
      * @param <T> The type of the cell factory
      * @return A cell factory which does not recompute if the same object is encountered
      */
@@ -179,6 +182,7 @@ public class SearchableCellView<T> extends VBox {
 
     /**
      * Useful default predicate which returns always returns false if hte cell factory or search filter has not been set.
+     *
      * @param value The value to test
      * @return true if the search filter matches the value, false otherwise. Also returns false if the cell factory
      * or search filter is unset.
@@ -214,6 +218,7 @@ public class SearchableCellView<T> extends VBox {
     /**
      * Set the cell factory to the given value. Caching is applied so that if the same object is passed through the
      * factory, a cached value is used.
+     *
      * @param value The value to set the cell factory to
      */
     public void setCellFactory(CellFactory<T> value) {
@@ -241,6 +246,7 @@ public class SearchableCellView<T> extends VBox {
 
     /**
      * Items in the SearchableCellView are ordered. This method sets the comparator used to order the items.
+     *
      * @param comparator The comparator used to order the items.
      */
     public void setComparator(Comparator<T> comparator) {
@@ -256,6 +262,7 @@ public class SearchableCellView<T> extends VBox {
 
     /**
      * Set the search filter used by this SearchableCellView.
+     *
      * @param filter The search filter to use. Given the input object and a search query, the filter should return
      *               true if the object should appear in search results.
      */
@@ -272,6 +279,7 @@ public class SearchableCellView<T> extends VBox {
 
     /**
      * An interface representing a cell factory, used to create cells for the SearchableCellView.
+     *
      * @param <T> The type of the items in the cell view.
      */
     @FunctionalInterface
@@ -279,7 +287,8 @@ public class SearchableCellView<T> extends VBox {
 
         /**
          * Create a new cell based on the given object in the SearchableCellView.
-         * @param view The cell view for which the cell is being created.
+         *
+         * @param view  The cell view for which the cell is being created.
          * @param value The value to create the cell for.
          * @return The created cell.
          */

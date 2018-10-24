@@ -1,5 +1,7 @@
 package namesayer.app.database.file;
 
+import namesayer.app.database.NameInfo;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,8 +13,6 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import namesayer.app.database.NameInfo;
 
 /**
  * Name file resolver based on the names database supplied to us as part of the project.

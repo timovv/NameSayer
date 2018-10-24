@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * A recording item that is associated with a file on disk.'
+ *
  * @param <TInfo>
  */
 public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
@@ -24,9 +25,10 @@ public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
 
     /**
      * Create a new FileBasedRecordingItem with the given parameters.
-     * @param nameInfo The metadata behind this recording item.
-     * @param basePath The base path of the database this recording item is in.
-     * @param resolver The resolver used by the database this recording item is in.
+     *
+     * @param nameInfo    The metadata behind this recording item.
+     * @param basePath    The base path of the database this recording item is in.
+     * @param resolver    The resolver used by the database this recording item is in.
      * @param audioSystem The audio system used by the database; used to load the audio from this recording for playing.
      * @throws NameSayerException if no recording exists corresponding to the input info object.
      */
@@ -52,6 +54,7 @@ public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
 
     /**
      * {@inheritDoc}
+     *
      * @throws NameSayerException if this recording item has become invalid.
      */
     @Override
@@ -66,6 +69,7 @@ public class FileBasedRecordingItem<TInfo> implements RecordingItem<TInfo> {
     /**
      * Determines whether this recording is valid, that is, determines if the file associated with this recording exists
      * and if the path associated is valid.
+     *
      * @return true if the recording is valid, false otherwise.
      */
     boolean isValid() {

@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * An stub audio system that does not do anything.
- *
+ * <p>
  * Recording, input level, etc. is not available.
  */
 public class AudioStub implements AudioSystem {

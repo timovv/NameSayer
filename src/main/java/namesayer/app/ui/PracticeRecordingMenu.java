@@ -138,12 +138,13 @@ public class PracticeRecordingMenu extends StackPane {
 
     /**
      * Create a new PracticeRecordingMenu with the given parameters.
-     * @param previous The practice menu which will be returned to when the 'back' button is pressed
-     * @param mainMenu The main menu which will be navigated to when the user completes their practice session
+     *
+     * @param previous    The practice menu which will be returned to when the 'back' button is pressed
+     * @param mainMenu    The main menu which will be navigated to when the user completes their practice session
      * @param audioSystem The NameSayer audio system, used to make and save recordings
-     * @param db The database used to add and save attempts
-     * @param shop The shop used to give the user coins when they complete their practice session
-     * @param names The list of names being practiced in this practice session.
+     * @param db          The database used to add and save attempts
+     * @param shop        The shop used to give the user coins when they complete their practice session
+     * @param names       The list of names being practiced in this practice session.
      */
     public PracticeRecordingMenu(Parent previous,
                                  Parent mainMenu,
@@ -250,7 +251,7 @@ public class PracticeRecordingMenu extends StackPane {
      */
     @FXML
     private void onCompareClicked() {
-        if(recordingWidget.getRecording() == null) {
+        if (recordingWidget.getRecording() == null) {
             new JFXDialogHelper("You haven't made a recording", "You need to make a recording to compare!", "Okay", this).show();
             return;
         }

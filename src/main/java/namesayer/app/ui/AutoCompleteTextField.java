@@ -9,7 +9,10 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * This class is a TextField which implements an "autocomplete" functionality, based on a supplied list of entries.
@@ -80,7 +83,7 @@ public class AutoCompleteTextField extends TextField {
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             item.setOnAction(actionEvent -> {
                 int lastIndex = Math.max(getText().lastIndexOf("-"), getText().lastIndexOf(" "));
-                if(lastIndex == -1) {
+                if (lastIndex == -1) {
                     setText(result + " ");
                 } else {
                     setText(getText().substring(0, lastIndex + 1) + result + " ");

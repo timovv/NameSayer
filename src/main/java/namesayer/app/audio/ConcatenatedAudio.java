@@ -12,7 +12,8 @@ class ConcatenatedAudio implements Playable {
 
     /**
      * Create a new ConcatenatedAudio object.
-     * @param first The audio to play first.
+     *
+     * @param first  The audio to play first.
      * @param second The audio to play second.
      */
     ConcatenatedAudio(Playable first, Playable second) {

@@ -20,6 +20,7 @@ final class Util {
 
     /**
      * Convert the given string to Title Case
+     *
      * @param s The string to convert
      * @return s, but in Title Case.
      */
@@ -42,8 +43,9 @@ final class Util {
 
     /**
      * Load the FXML file into the given root.
+     *
      * @param location The location of the FXML.
-     * @param root The root component.
+     * @param root     The root component.
      */
     static void loadFxmlComponent(URL location, Object root) {
         FXMLLoader loader = new FXMLLoader(location);
@@ -52,7 +54,7 @@ final class Util {
 
         try {
             loader.load();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new NameSayerException("Could not load component", e);
         }
     }

@@ -82,6 +82,7 @@ public class NameSayerMain extends Application {
 
     /**
      * Get the HostServices object associated with this NameSayer.
+     *
      * @return The HostServices object.
      */
     public static HostServices hostServices() {

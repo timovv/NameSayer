@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * An entry in a {@link RecordingDatabase}.
+ *
  * @param <TInfo> The information object which provides data about the recording.
  */
 public interface RecordingItem<TInfo> {

@@ -30,8 +30,9 @@ public class AttemptView extends VBox {
 
     /**
      * Construct a new AttemptView with the given parameters.
-     * @param names The combined name being attempted, as a list of database names.
-     * @param db The database.
+     *
+     * @param names  The combined name being attempted, as a list of database names.
+     * @param db     The database.
      * @param parent The parent StackPane; used to show JFXDialogs.
      */
     public AttemptView(List<Name> names, NameSayerDatabase db, StackPane parent) {
@@ -77,6 +78,7 @@ public class AttemptView extends VBox {
 
     /**
      * Set the combined name this AttemptView shows attempts for.
+     *
      * @param names The combined name that this AttemptView should show attempts for.
      */
     public void setNames(List<Name> names) {

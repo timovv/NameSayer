@@ -22,7 +22,7 @@ public class FileBackedAudioClip implements AudioClip {
     /**
      * Create a new FileBackedAudioClip corresponding to the given path.
      *
-     * @param location The path corresponding to the file's location, must not be null.
+     * @param location         The path corresponding to the file's location, must not be null.
      * @param onProcessCreated A callback for when the ffplay process is created, used by the FFmpegAudioSystem to ensure
      *                         that only one FFplay instance is running at a time. Must not be null.
      */
@@ -58,6 +58,7 @@ public class FileBackedAudioClip implements AudioClip {
 
     /**
      * This method is not currently supported for file backed audio clips.
+     *
      * @throws UnsupportedOperationException always
      */
     @Override

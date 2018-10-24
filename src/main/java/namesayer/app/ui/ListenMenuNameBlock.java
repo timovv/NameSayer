@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import namesayer.app.Constants;
 import namesayer.app.NameSayerException;
@@ -69,9 +68,10 @@ public class ListenMenuNameBlock extends StackPane {
 
     /**
      * Construct a new ListenMenuNameBlock with the given parameters.
-     * @param db The database that the name is from
-     * @param shop The shop so that shop rewards can be given to the user
-     * @param name The name this name block represents
+     *
+     * @param db     The database that the name is from
+     * @param shop   The shop so that shop rewards can be given to the user
+     * @param name   The name this name block represents
      * @param parent The parent stack pane, used to show JFXDialogs.
      */
     public ListenMenuNameBlock(NameSayerDatabase db, NameSayerShop shop, Name name, StackPane parent) {
@@ -127,6 +127,7 @@ public class ListenMenuNameBlock extends StackPane {
 
     /**
      * Removes the recording from the database.
+     *
      * @deprecated This functionality is supposed to be allowed per the NameSayer specification; the associated button has been removed.
      */
     @FXML

@@ -47,7 +47,7 @@ public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptIn
     public Optional<AttemptInfo> getInfo(Path fileLocation) {
         String fileName = fileLocation.getFileName().toString();
 
-        if(!fileName.endsWith(".wav")) {
+        if (!fileName.endsWith(".wav")) {
             return Optional.empty();
         }
 
@@ -58,12 +58,12 @@ public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptIn
         LocalDateTime date;
         try {
             date = LocalDateTime.parse(dateStr, formatter);
-        } catch(DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             return Optional.empty();
         }
 
         List<String> names = new ArrayList<>();
-        for(int i = 0; i < items.length - 1; ++i) {
+        for (int i = 0; i < items.length - 1; ++i) {
             names.add(items[i]);
         }
 
@@ -72,6 +72,7 @@ public class SE206AttemptFileResolver implements RecordingFileResolver<AttemptIn
 
     /**
      * Given the base path and info object, find the path where the attempt with the given information should be saved.
+     *
      * @return The path where the attempt with the given info should be saved.
      */
     @Override

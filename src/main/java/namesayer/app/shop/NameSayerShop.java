@@ -5,10 +5,18 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import namesayer.app.NameSayerException;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -135,6 +143,7 @@ public class NameSayerShop {
 
     /**
      * Load the users' purchases, balance, and active shop items from the file at the given path.
+     *
      * @param path The path to read from
      * @throws IOException if the file could not be read.
      */

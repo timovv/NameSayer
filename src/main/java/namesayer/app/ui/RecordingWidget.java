@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import namesayer.app.NameSayerException;
@@ -155,7 +154,7 @@ public class RecordingWidget extends StackPane {
         // don't let the user click save more than once per second
         // this prevents the user from accidentally spamming 'save' and saving multiple copies
         // also prevents the situation where a recording could be overwritten for having the same timestamp
-        if(System.currentTimeMillis() - lastSaveButtonClickTime <= 1000) {
+        if (System.currentTimeMillis() - lastSaveButtonClickTime <= 1000) {
             return;
         }
 
@@ -172,10 +171,11 @@ public class RecordingWidget extends StackPane {
 
     /**
      * Start recording the user
+     *
      * @throws NameSayerException if the widget is already recording
      */
     public void startRecording() {
-        if(isRecording()) {
+        if (isRecording()) {
             throw new NameSayerException("Tried to start recording while recording");
         }
 
@@ -194,10 +194,11 @@ public class RecordingWidget extends StackPane {
 
     /**
      * Stop recording the user, and update the recording stored by the widget.
+     *
      * @throws NameSayerException if the widget is not currently recording
      */
     public void stopRecording() {
-        if(!isRecording()) {
+        if (!isRecording()) {
             throw new NameSayerException("Tried to stop recording while not recording");
         }
 
@@ -223,6 +224,7 @@ public class RecordingWidget extends StackPane {
 
     /**
      * Set the audio system that this RecordingWidget is using
+     *
      * @param audioSystem The audio system to set to.
      */
     public void setAudioSystem(AudioSystem audioSystem) {
@@ -231,6 +233,7 @@ public class RecordingWidget extends StackPane {
 
     /**
      * Set a callback for when the user clicks the save button and a recording is present.
+     *
      * @param r A Runnable which will be called.
      */
     public void setOnSaveClicked(Runnable r) {

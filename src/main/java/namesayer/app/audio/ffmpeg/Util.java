@@ -34,7 +34,7 @@ final class Util {
         Path location;
         try {
             location = new File(Util.class.getResource(resourceName).toURI()).toPath();
-        } catch(URISyntaxException e) {
+        } catch (URISyntaxException e) {
             e.printStackTrace();
             return null;
         }

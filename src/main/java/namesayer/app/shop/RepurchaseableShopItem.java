@@ -10,7 +10,7 @@ public abstract class RepurchaseableShopItem implements ShopItem {
 
     @Override
     public void setActive(boolean active) {
-        if(active) {
+        if (active) {
             doAction();
         }
     }

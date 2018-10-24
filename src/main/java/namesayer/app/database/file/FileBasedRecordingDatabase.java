@@ -16,14 +16,14 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * A recording database that is based on a file structure in memory.
- *
+ * <p>
  * All recordings are based in a folder on the disk; the structure of the database and the location of files is
  * determined by a {@link RecordingFileResolver} instance.
- *
+ * <p>
  * The directory is watched for changes dynamically, with new entries automatically being added to the database.
  *
- * @param <TInfo> The type of the information corresponding to each recording item. This is an object providing metadata
- *               about database entries.
+ * @param <TInfo>      The type of the information corresponding to each recording item. This is an object providing metadata
+ *                     about database entries.
  * @param <TRecording> The type of recording, which must be a {@link FileBasedRecordingItem}.
  */
 public class FileBasedRecordingDatabase<TInfo, TRecording extends FileBasedRecordingItem<TInfo>>
@@ -47,10 +47,11 @@ public class FileBasedRecordingDatabase<TInfo, TRecording extends FileBasedRecor
 
     /**
      * Construct a new FileBasedRecordingDatabase with the given parameters.
-     * @param root The root of the folder where the recordings are stored.
+     *
+     * @param root        The root of the folder where the recordings are stored.
      * @param audioSystem An audio system, used to load recordings from their files to be played.
-     * @param resolver The resolver, which resolves an information object from a given path, and vice-versa.
-     * @param factory The factory used to create a RecordingItem given an information object.
+     * @param resolver    The resolver, which resolves an information object from a given path, and vice-versa.
+     * @param factory     The factory used to create a RecordingItem given an information object.
      */
     public FileBasedRecordingDatabase(Path root, AudioSystem audioSystem,
                                       RecordingFileResolver<TInfo> resolver,
@@ -77,6 +78,7 @@ public class FileBasedRecordingDatabase<TInfo, TRecording extends FileBasedRecor
 
     /**
      * Asynchronously remove the given RecordingItem from the database, if it is present.
+     *
      * @param item The item to remove.
      * @return A CompletableFuture which will return once the recording has been deleted.
      */
@@ -85,7 +87,7 @@ public class FileBasedRecordingDatabase<TInfo, TRecording extends FileBasedRecor
         TInfo info = item.getInfo();
         TRecording recording = lookup.get(info);
 
-        if(recording == null) {
+        if (recording == null) {
             return CompletableFuture.completedFuture(null);
         } else {
             // Not doing inspection because following through is actually a compile error (might be a bug actually)

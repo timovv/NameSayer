@@ -14,37 +14,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import namesayer.app.ui.AutoCompleteTextField?>
-
-<fx:root fx:id="stackPane" style="-fx-background-color: #ededed;" type="StackPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="stackPane" style="-fx-background-color: #ededed;" type="StackPane"
+         xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;">
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ededed;">
             <top>
-                <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;" BorderPane.alignment="CENTER">
+                <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d0d0d0;"
+                            BorderPane.alignment="CENTER">
                     <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="practice-label" text="Practice" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="practice-label" text="Practice"
+                              textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
-                                <Font name="Century Gothic" size="45.0" />
+                                <Font name="Century Gothic" size="45.0"/>
                             </font>
                             <BorderPane.margin>
-                                <Insets right="30.0" />
+                                <Insets right="30.0"/>
                             </BorderPane.margin>
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
-                                        <Stop color="#eb8581" />
-                                        <Stop color="#85da87" offset="1.0" />
+                                        <Stop color="#eb8581"/>
+                                        <Stop color="#85da87" offset="1.0"/>
                                     </stops>
                                 </LinearGradient>
                             </fill>
                         </Text>
                     </right>
                     <left>
-                        <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back-button" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                        <Text fill="#a8a8a8" onMouseClicked="#onBackClicked" strokeType="OUTSIDE" strokeWidth="0.0"
+                              styleClass="back-button" text="Back" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                             <font>
-                                <Font name="Century Gothic" size="45.0" />
+                                <Font name="Century Gothic" size="45.0"/>
                             </font>
                             <BorderPane.margin>
-                                <Insets left="30.0" />
+                                <Insets left="30.0"/>
                             </BorderPane.margin>
                         </Text>
                     </left>
@@ -55,36 +59,42 @@
                     <children>
                         <HBox spacing="5.0">
                             <VBox.margin>
-                                <Insets left="10.0" right="10.0" top="10.0" />
+                                <Insets left="10.0" right="10.0" top="10.0"/>
                             </VBox.margin>
                             <children>
-                                <AutoCompleteTextField fx:id="namesTextField" prefHeight="5.0" prefWidth="1200.0" promptText="Enter the name you wish to practise" HBox.hgrow="ALWAYS">
+                                <AutoCompleteTextField fx:id="namesTextField" prefHeight="5.0" prefWidth="1200.0"
+                                                       promptText="Enter the name you wish to practise"
+                                                       HBox.hgrow="ALWAYS">
                                     <font>
-                                        <Font name="Century Gothic" size="20.0" />
+                                        <Font name="Century Gothic" size="20.0"/>
                                     </font>
                                 </AutoCompleteTextField>
-                                <JFXButton mnemonicParsing="false" onAction="#addNameClicked" prefHeight="40.0" prefWidth="220.0" styleClass="add-button" text="＋" textAlignment="CENTER" textFill="#71d05d">
+                                <JFXButton mnemonicParsing="false" onAction="#addNameClicked" prefHeight="40.0"
+                                           prefWidth="220.0" styleClass="add-button" text="＋" textAlignment="CENTER"
+                                           textFill="#71d05d">
                                     <font>
-                                        <Font name="Century Gothic" size="20.0" />
+                                        <Font name="Century Gothic" size="20.0"/>
                                     </font>
                                     <tooltip>
-                                        <Tooltip text="Add the typed &#10;name to practise." />
+                                        <Tooltip text="Add the typed &#10;name to practise."/>
                                     </tooltip>
                                 </JFXButton>
-                                <JFXButton mnemonicParsing="false" onAction="#addFromFileClicked" prefHeight="40.0" prefWidth="220.0" styleClass="file-button" text="File" textAlignment="CENTER" textFill="#71d05d">
+                                <JFXButton mnemonicParsing="false" onAction="#addFromFileClicked" prefHeight="40.0"
+                                           prefWidth="220.0" styleClass="file-button" text="File" textAlignment="CENTER"
+                                           textFill="#71d05d">
                                     <font>
-                                        <Font name="Century Gothic" size="20.0" />
+                                        <Font name="Century Gothic" size="20.0"/>
                                     </font>
                                     <tooltip>
-                                        <Tooltip text="Upload a list of files &#10;of names to practise." />
+                                        <Tooltip text="Upload a list of files &#10;of names to practise."/>
                                     </tooltip>
                                 </JFXButton>
                             </children>
                         </HBox>
-                        <ListView fx:id="namesList" style="-fx-background-color: #ededed;" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="namesList" style="-fx-background-color: #ededed;" VBox.vgrow="ALWAYS"/>
                     </children>
                     <BorderPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                     </BorderPane.margin>
                 </VBox>
             </center>
@@ -93,49 +103,56 @@
                     <center>
                         <StackPane prefHeight="70.0" BorderPane.alignment="CENTER">
                             <children>
-                                <JFXButton mnemonicParsing="false" onMouseClicked="#onStartClicked" prefHeight="50.0" prefWidth="200.0" styleClass="start-button" text="START" textAlignment="CENTER" textFill="#71d05d">
+                                <JFXButton mnemonicParsing="false" onMouseClicked="#onStartClicked" prefHeight="50.0"
+                                           prefWidth="200.0" styleClass="start-button" text="START"
+                                           textAlignment="CENTER" textFill="#71d05d">
                                     <font>
-                                        <Font name="Century Gothic" size="20.0" />
+                                        <Font name="Century Gothic" size="20.0"/>
                                     </font>
                                     <StackPane.margin>
-                                        <Insets bottom="10.0" />
+                                        <Insets bottom="10.0"/>
                                     </StackPane.margin>
                                 </JFXButton>
                             </children>
                             <BorderPane.margin>
-                                <Insets left="20.0" right="20.0" />
+                                <Insets left="20.0" right="20.0"/>
                             </BorderPane.margin>
                         </StackPane>
                     </center>
                     <right>
                         <HBox alignment="CENTER" prefHeight="70" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
-                            <JFXButton onAction="#onRemoveAllClicked" prefHeight="50" styleClass="remove-button" text="Remove all">
+                            <JFXButton onAction="#onRemoveAllClicked" prefHeight="50" styleClass="remove-button"
+                                       text="Remove all">
                                 <font>
-                                    <Font name="Century Gothic" size="20.0" />
+                                    <Font name="Century Gothic" size="20.0"/>
                                 </font>
                             </JFXButton>
-                            <JFXButton onAction="#onRemoveSelectedClicked" prefHeight="50" styleClass="remove-button" text="Remove selected">
+                            <JFXButton onAction="#onRemoveSelectedClicked" prefHeight="50" styleClass="remove-button"
+                                       text="Remove selected">
                                 <font>
-                                    <Font name="Century Gothic" size="20.0" />
+                                    <Font name="Century Gothic" size="20.0"/>
                                 </font>
                             </JFXButton>
-                            <Text fx:id="selectedText" fill="#868686" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected: X" BorderPane.alignment="CENTER">
+                            <Text fx:id="selectedText" fill="#868686" strokeType="OUTSIDE" strokeWidth="0.0"
+                                  text="Selected: X" BorderPane.alignment="CENTER">
                                 <font>
-                                    <Font name="Century Gothic" size="25.0" />
+                                    <Font name="Century Gothic" size="25.0"/>
                                 </font>
                             </Text>
                             <BorderPane.margin>
-                                <Insets bottom="10.0" right="20.0" />
+                                <Insets bottom="10.0" right="20.0"/>
                             </BorderPane.margin>
                         </HBox>
                     </right>
                     <left>
-                        <JFXCheckBox fx:id="shuffleCheckBox" checkedColor="#83d16e" mnemonicParsing="false" styleClass="shuffle-checkbox" text="Shuffle" textFill="#868686" unCheckedColor="#868686" BorderPane.alignment="CENTER">
+                        <JFXCheckBox fx:id="shuffleCheckBox" checkedColor="#83d16e" mnemonicParsing="false"
+                                     styleClass="shuffle-checkbox" text="Shuffle" textFill="#868686"
+                                     unCheckedColor="#868686" BorderPane.alignment="CENTER">
                             <font>
-                                <Font name="Century Gothic" size="25.0" />
+                                <Font name="Century Gothic" size="25.0"/>
                             </font>
                             <BorderPane.margin>
-                                <Insets bottom="10.0" left="20.0" />
+                                <Insets bottom="10.0" left="20.0"/>
                             </BorderPane.margin>
                         </JFXCheckBox>
                     </left>

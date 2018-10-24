@@ -1,14 +1,5 @@
 package namesayer.app.ui;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -19,7 +10,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -31,6 +21,15 @@ import namesayer.app.audio.AudioSystem;
 import namesayer.app.database.Name;
 import namesayer.app.database.NameSayerDatabase;
 import namesayer.app.shop.NameSayerShop;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Menu which allows the user to select what name(s) they want to practice.
@@ -94,10 +93,11 @@ public class PracticeMenu extends StackPane {
 
     /**
      * Construct a new PracticeMenu with the given parameters.
-     * @param mainMenu The main menu screen which is returned to when the practice session is complete
+     *
+     * @param mainMenu    The main menu screen which is returned to when the practice session is complete
      * @param audioSystem The audio system used to make and play recordings
-     * @param db The database with all the names in it
-     * @param shop The shop menu for NameSayer
+     * @param db          The database with all the names in it
+     * @param shop        The shop menu for NameSayer
      */
     public PracticeMenu(Parent mainMenu, AudioSystem audioSystem, NameSayerDatabase db, NameSayerShop shop) {
         this.shop = shop;
@@ -204,7 +204,7 @@ public class PracticeMenu extends StackPane {
     private void addNameClicked() {
         String text = namesTextField.getText().trim();
 
-        if(text.isEmpty()) {
+        if (text.isEmpty()) {
             return;
         }
 
@@ -226,7 +226,7 @@ public class PracticeMenu extends StackPane {
         File file = fileChooser.showOpenDialog(getScene().getWindow());
 
         // do nothing if no file was selected
-        if(file == null) {
+        if (file == null) {
             return;
         }
 
@@ -267,6 +267,7 @@ public class PracticeMenu extends StackPane {
 
     /**
      * Try to add the given name to the list of names to practice.
+     *
      * @param fullName The name to test, either from a file or the text box
      * @return true if the addition was successful; false otherwise.
      */
@@ -284,7 +285,7 @@ public class PracticeMenu extends StackPane {
 
             // If there are any names which match which are NOT bad quality, only select from non-bad-quality names.
             // Otherwise, just use the bad quality names anyway.
-            if(found.stream().anyMatch(x -> !x.isBadQuality())) {
+            if (found.stream().anyMatch(x -> !x.isBadQuality())) {
                 found = found.stream().filter(x -> !x.isBadQuality()).collect(Collectors.toList());
             }
 
@@ -295,7 +296,7 @@ public class PracticeMenu extends StackPane {
 
         if (couldFind) {
             // Don't add it again if there's a duplicate
-            if(!nameIsAlreadyAdded(namesOut.stream().map(Name::getName).collect(Collectors.toList()))) {
+            if (!nameIsAlreadyAdded(namesOut.stream().map(Name::getName).collect(Collectors.toList()))) {
                 namesList.getItems().add(namesOut);
             }
 
@@ -307,12 +308,12 @@ public class PracticeMenu extends StackPane {
 
     /**
      * Handles the 'remove selected' button being clicked.
-     *
+     * <p>
      * Removes the selected names from the ListBox.
      */
     @FXML
     private void onRemoveSelectedClicked() {
-        if(namesList.getSelectionModel().getSelectedItems().isEmpty()) {
+        if (namesList.getSelectionModel().getSelectedItems().isEmpty()) {
             new JFXDialogHelper("Information", "No items have been selected!", "Okay", this).show();
             return;
         }
@@ -322,7 +323,7 @@ public class PracticeMenu extends StackPane {
 
     /**
      * Handles the 'remove all' button being clicked.
-     *
+     * <p>
      * Upon confirmation, removes all names from the ListBox.
      */
     @FXML
@@ -333,11 +334,12 @@ public class PracticeMenu extends StackPane {
         }
 
         Util.showConfirmationDialog("Are you sure you want to remove all names " +
-            "from the practice list?", namesList.getItems()::clear, this);
+                "from the practice list?", namesList.getItems()::clear, this);
     }
 
     /**
      * Determine if the given list of names, making up a full name, has already been added to the list of names to practice.
+     *
      * @param names The names to check.
      * @return true if the name has already been added to the list of names to practice.
      */

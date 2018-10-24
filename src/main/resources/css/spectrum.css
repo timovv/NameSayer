@@ -4,18 +4,18 @@
 }
 
 .record-button:hover {
-        -fx-scale-x: 1.04;
-        -fx-scale-y: 1.04;
+    -fx-scale-x: 1.04;
+    -fx-scale-y: 1.04;
 }
 
 .tick-button:hover {
-        -fx-scale-x: 1.06;
-        -fx-scale-y: 1.06;
+    -fx-scale-x: 1.06;
+    -fx-scale-y: 1.06;
 }
 
 .play-button:hover {
-        -fx-scale-x: 1.06;
-        -fx-scale-y: 1.06;
+    -fx-scale-x: 1.06;
+    -fx-scale-y: 1.06;
 }
 
 .small-button:hover {
@@ -100,22 +100,20 @@
     -fx-opacity: 0;
 }
 
-.tab-pane
-{
-    -fx-tab-min-width:250px;
+.tab-pane {
+    -fx-tab-min-width: 250px;
 }
 
-.tab{
-    -fx-background-insets: 0 1 0 1,0,0;
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
 }
-.tab-pane .tab
-{
+
+.tab-pane .tab {
     -fx-background-color: #dddddd;
 
 }
 
-.tab-pane .tab:selected
-{
+.tab-pane .tab:selected {
     -fx-background-color: #ededed;
 }
 
@@ -136,7 +134,7 @@
 }
 
 .title-block {
- -fx-background-color: linear-gradient(to bottom right, #f9f9f9 0%, #c9c9c9 100%);
+    -fx-background-color: linear-gradient(to bottom right, #f9f9f9 0%, #c9c9c9 100%);
 }
 
 .back-button:hover {

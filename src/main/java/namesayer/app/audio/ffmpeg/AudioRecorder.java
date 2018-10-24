@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 /**
  * This class is responsible for handling input from the users' microphone, and provides support for detecting the
  * microphone level and also for starting and stopping recording.
- *
+ * <p>
  * Only one recording session can happen simultaneously.
  */
 class AudioRecorder {
@@ -37,6 +37,7 @@ class AudioRecorder {
 
     /**
      * Create a new AudioRecorder instance.
+     *
      * @param ffplayProcessCreationHandler A callback for when an FFplay process is created. This is used by the audio
      *                                     system to ensure that only one FFplay process is being used at any one time.
      */
@@ -108,6 +109,7 @@ class AudioRecorder {
 
     /**
      * Get the input power of the mic in dB with respect to the maximum value of the audio signal.
+     *
      * @return The decibel value of the microphone's current level. This value will always be negative.
      */
     public double getInputLevel() {
@@ -141,6 +143,7 @@ class AudioRecorder {
 
     /**
      * Determine whether this AudioRecorder is currently recording audio.
+     *
      * @return true if this AudioRecorder is currently recording audio.
      */
     public boolean isRecording() {
