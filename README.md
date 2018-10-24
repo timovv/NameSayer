@@ -1,5 +1,6 @@
 NameSayer
 =========
+[![Build Status](https://timo.nz/build/buildStatus/icon?job=NameSayer/master)](https://timo.nz/build/job/NameSayer/master)
 
 SOFTENG 206 Project  
 Check out the NameSayer GitHub: https://github.com/timovv/NameSayer
