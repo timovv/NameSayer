@@ -276,16 +276,16 @@
                 </ImageView>
             </center>
         </BorderPane>
-        <JFXButton mnemonicParsing="false" onAction="#onHelpButtonClicked" prefHeight="50.0" prefWidth="55.0"
+        <JFXButton mnemonicParsing="false" onAction="#onHelpButtonClicked" prefHeight="50.0" prefWidth="50.0"
                    styleClass="help-button" text="?" textFill="dimgray">
             <padding>
-                <Insets bottom="10.0" left="5.0" right="6.0" top="10.0"/>
+                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
             </padding>
             <font>
                 <Font name="Century Gothic" size="27"/>
             </font>
             <StackPane.margin>
-                <Insets right="1225.0" top="665.0"/>
+                <Insets right="1230.0" top="665.0"/>
             </StackPane.margin>
         </JFXButton>
     </children>
