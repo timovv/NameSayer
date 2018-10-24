@@ -72,7 +72,8 @@
     -fx-stroke: #eeeeee;
 }
 
-.file-button {
+.file-button,
+.remove-button {
     -jfx-button-type: FLAT;
     -fx-text-fill: #fafafa;
     -fx-background-color: #bbbbbb;
