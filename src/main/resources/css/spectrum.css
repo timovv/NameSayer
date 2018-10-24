@@ -84,6 +84,11 @@
     -fx-background-color: #dadada;
 }
 
+.help-button:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
 .name-search {
     -fx-background-color: white;
     -fx-pref-height: 41;

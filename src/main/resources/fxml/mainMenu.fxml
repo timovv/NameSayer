@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<fx:root style="-fx-background-color: #ededed;" type="StackPane" xmlns="http://javafx.com/javafx/8.0.121"
-         xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #ededed;" type="StackPane"
+         xmlns="http://javafx.com/javafx/8.0.121">
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                     prefHeight="720.0" prefWidth="1280.0">
@@ -74,23 +67,11 @@
                                                 </LinearGradient>
                                             </fill>
                                         </Text>
-                                        <JFXButton mnemonicParsing="false" text="Help" prefHeight="32"
-                                                   textFill="dimgray" onAction="#onHelpButtonClicked">
-                                            <HBox.margin>
-                                                <Insets left="520" top="-2"/>
-                                            </HBox.margin>
-                                            <padding>
-                                                <Insets bottom="10" top="10" left="5" right="5"/>
-                                            </padding>
-                                            <font>
-                                                <Font name="Century Gothic" size="27"/>
-                                            </font>
-                                        </JFXButton>
                                         <JFXButton mnemonicParsing="false" onAction="#onShopButtonClicked"
                                                    prefHeight="32.0" prefWidth="150.0" styleClass="shop-button"
                                                    text="Shop">
                                             <HBox.margin>
-                                                <Insets top="-2.0"/>
+                                                <Insets left="595.0" top="-2.0"/>
                                             </HBox.margin>
                                             <font>
                                                 <Font name="Century Gothic" size="27.0"/>
@@ -295,5 +276,17 @@
                 </ImageView>
             </center>
         </BorderPane>
+        <JFXButton mnemonicParsing="false" onAction="#onHelpButtonClicked" prefHeight="50.0" prefWidth="55.0"
+                   styleClass="help-button" text="?" textFill="dimgray">
+            <padding>
+                <Insets bottom="10.0" left="5.0" right="6.0" top="10.0"/>
+            </padding>
+            <font>
+                <Font name="Century Gothic" size="27"/>
+            </font>
+            <StackPane.margin>
+                <Insets right="1225.0" top="665.0"/>
+            </StackPane.margin>
+        </JFXButton>
     </children>
 </fx:root>
